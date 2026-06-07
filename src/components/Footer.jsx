@@ -44,10 +44,25 @@ export default function Footer() {
             <p className="font-heading text-[17px] leading-snug text-sand-200 mb-4.5">
               We do not cut down to build.
             </p>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap mb-5">
               <Badge tone="cert" icon={<BadgeCheck size={13} strokeWidth={2} />}>GreenPro</Badge>
               <Badge tone="cert" icon={<Leaf size={13} strokeWidth={2} />}>EPD</Badge>
             </div>
+
+            <dl className="space-y-3 border-t border-white/10 pt-4">
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-leaf-300">NFC</dt>
+                <dd className="mt-1 text-[12.5px] leading-relaxed text-sand-300">
+                  Short for Natural Fibre Composite — our board material, made by binding agricultural rice-husk fibre into a dense panel that performs like wood without using any of it.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-leaf-300">Ahimsa</dt>
+                <dd className="mt-1 text-[12.5px] leading-relaxed text-sand-300">
+                  A Sanskrit word meaning non-violence — the design principle behind Indowud: build without cutting down a single tree or harming the land that supplies it.
+                </dd>
+              </div>
+            </dl>
           </div>
 
           <div className="flex flex-wrap gap-14 ml-auto">
