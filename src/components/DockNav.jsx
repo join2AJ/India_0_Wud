@@ -123,7 +123,7 @@ export default function DockNav() {
   // against its surroundings rather than blending in or fighting for contrast.
   const t = onDark
     ? {
-        pill: 'bg-husk-50/90 backdrop-blur-xl surface-engraved-light shadow-[var(--shadow-warm-md)]',
+        pill: 'texture-grain-light bg-husk-50/95 backdrop-blur-xl surface-engraved-light shadow-[var(--shadow-warm-md)]',
         text: 'text-ink-900',
         brand: 'text-ink-900',
         badge: 'text-leaf-700 border-leaf-600/40',
