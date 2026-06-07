@@ -22,6 +22,11 @@ const cols = [
     { label: 'Downloads', to: '/downloads' },
     { label: 'Contact', to: '/contact' },
   ]},
+  { h: 'Journal', items: [
+    { label: 'Case Study', to: '/case-study' },
+    { label: 'Blog', to: '/blog' },
+    { label: 'Notice Board', to: '/notice-board' },
+  ]},
 ]
 
 export default function Footer() {

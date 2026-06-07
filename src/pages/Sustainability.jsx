@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, Globe, FileCheck, Trees, Wind, CloudRain, Shapes, ShieldCheck, Recycle } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Globe, FileCheck, Trees, Wind, CloudRain, Shapes, ShieldCheck, Recycle, Target, Eye, Award } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
@@ -20,6 +20,14 @@ const badgeStrip = [
   { src: iso14001, label: 'ISO 14001:2015' },
   { src: iso45001, label: 'ISO 45001:2015' },
   { src: rohs, label: 'RoHS Compliant' },
+]
+
+// Mission, Vision and Quality - reproduced as published on the company's
+// official Mission & Vision page, word for word.
+const principles = [
+  { Icon: Target, title: 'Mission', text: 'Our mission is to become the pioneers of agri-based NFC products in the world, as superior alternate of wood for home owners, builders, architects and designers.' },
+  { Icon: Eye, title: 'Vision', text: 'Our vision is to make Indowud NFC a brand synonymous with sustainability and innovation in the building materials with Make in India Initiative.' },
+  { Icon: Award, title: 'Quality', text: 'We strategize around one principle goal - passion for producing and delivering quality products that surpass customer expectations.' },
 ]
 
 const certIcons = { 'badge-check': BadgeCheck, globe: Globe, 'file-check': FileCheck }
@@ -191,6 +199,31 @@ export default function Sustainability() {
               </p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Mission, Vision & Quality */}
+      <section className="py-20 px-6 lg:px-10">
+        <div className="max-w-[1100px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow text-leaf-600 mb-3.5">What Drives Us</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              Mission, vision and the standard we hold ourselves to
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {principles.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.08}>
+                <div className="h-full rounded-[14px] bg-white border border-sand-200 p-7 shadow-[var(--shadow-warm-sm)]">
+                  <span className="grid place-items-center w-11 h-11 rounded-[10px] bg-leaf-100 text-leaf-700 mb-4">
+                    <p.Icon size={19} strokeWidth={1.6} />
+                  </span>
+                  <h3 className="font-heading font-bold text-lg text-ink-900 mb-2">{p.title}</h3>
+                  <p className="text-[14.5px] leading-relaxed text-sand-500">{p.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

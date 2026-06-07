@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu, X, Newspaper } from 'lucide-react'
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -35,6 +35,19 @@ const items = [
       ],
     },
   },
+  {
+    label: 'Journal',
+    icon: Newspaper,
+    panel: {
+      heading: 'Stories From The Loop',
+      blurb: 'The narrative behind the material - case studies, field notes and the running log of what changes at Indowud.',
+      links: [
+        { to: '/case-study', label: 'Case Study', desc: 'How rice-husk waste becomes a forest-saving material' },
+        { to: '/blog', label: 'Blog', desc: 'Notes on material, making and design from the field' },
+        { to: '/notice-board', label: 'Notice Board', desc: 'Certifications, milestones, releases and events' },
+      ],
+    },
+  },
   { to: '/contact', label: 'Contact', icon: Mail },
 ]
 
@@ -46,6 +59,9 @@ const mobileLinks = [
   { to: '/technical-details', label: 'Technical Details' },
   { to: '/suggestions', label: 'Guidelines' },
   { to: '/downloads', label: 'Downloads' },
+  { to: '/case-study', label: 'Case Study' },
+  { to: '/blog', label: 'Blog' },
+  { to: '/notice-board', label: 'Notice Board' },
   { to: '/contact', label: 'Contact' },
 ]
 

@@ -18,6 +18,14 @@ import iso9001 from '../assets/badges/iso-9001.png'
 import iso14001 from '../assets/badges/iso-14001.png'
 import iso45001 from '../assets/badges/iso-45001.png'
 import rohsBadge from '../assets/badges/rohs.png'
+import loungeInterior from '../assets/applications/lounge-interior.jpg'
+import kitchenDining from '../assets/applications/kitchen-dining.jpg'
+import entryway from '../assets/applications/entryway.jpg'
+import bathroom from '../assets/applications/bathroom.jpg'
+import terraceFurniture from '../assets/applications/terrace-furniture.jpg'
+import decking from '../assets/applications/decking.jpg'
+import facadeLighting from '../assets/applications/facade-lighting.jpg'
+import fencing from '../assets/applications/fencing.jpg'
 
 // Image badges we hold real assets for, plus the additional compliance
 // marks the brochure calls out - rendered as styled chips since we don't
@@ -231,6 +239,43 @@ export default function Home() {
             {products.slice(0, 5).map((p, i) => (
               <Reveal key={p.id} delay={(i % 3) * 0.07} className={i === 0 ? 'sm:col-span-2' : ''}>
                 <ProductTile p={p} big={i === 0} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Applications gallery - where the material actually lives, room by room */}
+      <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">
+        <div className="relative max-w-[1200px] mx-auto">
+          <Reveal className="max-w-2xl mb-9">
+            <p className="eyebrow text-leaf-600 mb-3.5">Where it lives</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              From the entryway to the terrace, one material does it all
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-sand-500 max-w-[60ch]">
+              Indowud NFC moves freely between indoor and outdoor, dry and damp,
+              structural and decorative - the same panel that frames a doorway
+              can deck a terrace or screen a façade against the monsoon.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
+            {[
+              { image: loungeInterior, label: 'Living spaces' },
+              { image: kitchenDining, label: 'Kitchens & dining' },
+              { image: entryway, label: 'Entryways & lobbies' },
+              { image: bathroom, label: 'Moisture-prone areas' },
+              { image: terraceFurniture, label: 'Terraces & balconies' },
+              { image: decking, label: 'Outdoor decking' },
+              { image: facadeLighting, label: 'Façades & screens' },
+              { image: fencing, label: 'Fencing & boundaries' },
+            ].map((a, i) => (
+              <Reveal key={a.label} delay={(i % 4) * 0.06} className={i === 0 ? 'col-span-2 row-span-2' : ''}>
+                <div className={`group relative overflow-hidden rounded-[12px] surface-engraved-light ${i === 0 ? 'aspect-square sm:aspect-auto sm:h-full min-h-[260px]' : 'aspect-[4/3]'}`}>
+                  <img src={a.image} alt={a.label} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/10 to-transparent" />
+                  <span className="absolute bottom-3 left-3.5 font-heading font-semibold text-[13px] text-husk-50">{a.label}</span>
+                </div>
               </Reveal>
             ))}
           </div>
