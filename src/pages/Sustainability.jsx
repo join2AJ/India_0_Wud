@@ -5,7 +5,19 @@ import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
 import { certifications, benefits, philosophy } from '../data/content'
 import riceFields from '../assets/photos/rice-fields.jpg'
-import factory from '../assets/photos/factory.jpg'
+import factoryAerial from '../assets/photos/factory-aerial-2.jpg'
+import factoryInterior from '../assets/photos/factory-interior.jpg'
+import iso9001 from '../assets/badges/iso-9001.png'
+import iso14001 from '../assets/badges/iso-14001.png'
+import iso45001 from '../assets/badges/iso-45001.png'
+import rohs from '../assets/badges/rohs.png'
+
+const badgeStrip = [
+  { src: iso9001, label: 'ISO 9001:2015' },
+  { src: iso14001, label: 'ISO 14001:2015' },
+  { src: iso45001, label: 'ISO 45001:2015' },
+  { src: rohs, label: 'RoHS Compliant' },
+]
 
 const certIcons = { 'badge-check': BadgeCheck, globe: Globe, 'file-check': FileCheck }
 const benefitIcons = { trees: Trees, wind: Wind, 'cloud-rain': CloudRain, shapes: Shapes, 'shield-check': ShieldCheck, recycle: Recycle }
@@ -88,7 +100,10 @@ export default function Sustainability() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <Swatch tone="board" ratio="4/3" rounded="rounded-[12px]" image={factory} label="Indowud manufacturing facility · Chennai" />
+            <div className="grid grid-cols-2 gap-3.5">
+              <Swatch tone="board" ratio="3/4" rounded="rounded-[12px]" image={factoryAerial} label="Factory · aerial view" className="col-span-2 sm:col-span-1" />
+              <Swatch tone="husk" ratio="3/4" rounded="rounded-[12px]" image={factoryInterior} label="Production line" className="col-span-2 sm:col-span-1" />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -136,9 +151,13 @@ export default function Sustainability() {
               return (
                 <Reveal key={c.name} delay={i * 0.1}>
                   <div className="h-full rounded-[12px] border border-leaf-200 bg-leaf-100/50 p-7 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-warm-lg)]">
-                    <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-full bg-leaf-500 text-husk-50">
-                      {Icon && <Icon size={20} strokeWidth={1.8} />}
-                    </div>
+                    {c.badge ? (
+                      <img src={c.badge} alt="" className="mx-auto mb-4 w-16 h-16 object-contain" />
+                    ) : (
+                      <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-full bg-leaf-500 text-husk-50">
+                        {Icon && <Icon size={20} strokeWidth={1.8} />}
+                      </div>
+                    )}
                     <h3 className="font-heading font-bold text-lg text-ink-900 mb-2">{c.name}</h3>
                     <p className="text-sm leading-relaxed text-sand-500">{c.desc}</p>
                   </div>
@@ -146,6 +165,11 @@ export default function Sustainability() {
               )
             })}
           </div>
+          <Reveal delay={0.2} className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {badgeStrip.map((b) => (
+              <img key={b.label} src={b.src} alt={b.label} title={b.label} className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+            ))}
+          </Reveal>
         </div>
       </section>
 

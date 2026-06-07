@@ -1,3 +1,5 @@
+import greenproBadge from '../assets/badges/greenpro.png'
+
 export const products = [
   { id: 'board', name: 'Indowud NFC Board', tone: 'board', tag: 'The hero panel', desc: 'A zero-wood substitute for plywood and MDF/HDF — termite proof, waterproof, flame retardant and easily machinable, with the natural look and feel of tropical wood.' },
   { id: 'door', name: 'NFC Door', tone: 'husk', tag: 'Joinery', desc: 'Pre-engineered door panels and shutters that never warp, swell or rot — built for Indian climates and decades of daily use.' },
@@ -27,6 +29,7 @@ export const certifications = [
     name: 'CII GreenPro Ecolabel',
     desc: 'Certified as a sustainable green product with measurably lower environmental impact — contributing directly to Green Building and Green Company ratings.',
     icon: 'badge-check',
+    badge: greenproBadge,
   },
   {
     name: 'GEN Accreditation · GENICES',
