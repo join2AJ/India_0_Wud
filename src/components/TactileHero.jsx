@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Button from './ui/Button'
 import AhimsaLoader from './ui/AhimsaLoader'
+import OrganicVector from './ui/OrganicVector'
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -85,6 +86,13 @@ export default function TactileHero() {
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute -top-32 -left-40 w-[36rem] h-[36rem] rounded-full bg-leaf-700/15 blur-[120px] pointer-events-none"
       />
+      <motion.div
+        aria-hidden
+        animate={{ opacity: [0.25, 0.5, 0.25], scale: [1, 1.06, 1] }}
+        transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        className="absolute -bottom-40 -right-32 w-[30rem] h-[30rem] rounded-full bg-grain-600/10 blur-[110px] pointer-events-none"
+      />
+      <OrganicVector className="absolute top-1/2 -translate-y-1/2 -right-24 w-[34rem] h-[34rem] opacity-50 pointer-events-none hidden lg:block" tone="grain" />
 
       <div className="relative max-w-[1280px] mx-auto grid lg:grid-cols-[1fr_0.92fr] gap-14 items-start">
         {/* ---- Copy column ---- */}

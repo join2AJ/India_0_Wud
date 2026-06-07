@@ -194,7 +194,7 @@ export default function DockNav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28, ease: EASE }}
-              className="relative border-t border-white/[0.06] px-7 py-7 grid sm:grid-cols-[0.9fr_1.1fr] gap-8"
+              className="relative border-t border-white/[0.06] bg-white/[0.035] px-7 py-7 grid sm:grid-cols-[0.9fr_1.1fr] gap-8"
             >
               {(() => {
                 const panel = items.find((i) => i.label === activePanel)?.panel
