@@ -90,6 +90,53 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 
+/* Ultra-fine SVG noise grain — layered over dark surfaces so they read as
+   matte composite material rather than flat colour. Tiled at a small size
+   and kept near-invisible (low opacity) so it textures without muddying. */
+.texture-grain {
+  position: relative;
+  isolation: isolate;
+}
+.texture-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+.texture-grain > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Soft directional sheen layered under the grain — gives dark panels the
+   subtle depth of a brushed/composite surface rather than a flat fill. */
+.texture-charcoal {
+  background:
+    radial-gradient(120% 90% at 18% -10%, rgba(94, 126, 69, 0.12), transparent 55%),
+    linear-gradient(160deg, #201C16 0%, #1A1A1A 45%, #15120E 100%);
+}
+
+/* "CNC-routed" engraved surface — inner shadow + hairline border so an
+   element reads as cut into the material rather than pasted on top. */
+.surface-engraved {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 6px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.surface-engraved-light {
+  border: 1px solid rgba(28, 24, 19, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 4px rgba(40, 32, 20, 0.08);
+}
+
 /* Material swatch placeholder textures */
 .swatch-fiber { background: linear-gradient(150deg, #CABDA7, #A4977F); }
 .swatch-husk  { background: linear-gradient(150deg, #E6DCC7, #CBBC9F); }

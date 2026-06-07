@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import Navbar from './components/Navbar'
+import DockNav from './components/DockNav'
 import Footer from './components/Footer'
 import AhimsaLoader from './components/ui/AhimsaLoader'
 import Home from './pages/Home'
@@ -40,6 +40,7 @@ function PageTransition({ children }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -14 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="pt-24"
     >
       {children}
     </motion.main>
@@ -59,7 +60,7 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <AnimatePresence>{loading && <Splash key="splash" />}</AnimatePresence>
       <ScrollToTop />
-      <Navbar />
+      <DockNav />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
