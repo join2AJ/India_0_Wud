@@ -8,6 +8,7 @@ import SpecCard from '../components/ui/SpecCard'
 import StatCounter from '../components/ui/StatCounter'
 import Badge from '../components/ui/Badge'
 import { products, matrix } from '../data/content'
+import nfcBoardSample from '../assets/photos/nfc-board-sample.webp'
 
 const matrixIcons = {
   droplet: Droplet, bug: Bug, flame: Flame, waves: Waves, wind: Wind, leaf: Leaf,
@@ -81,7 +82,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            <Swatch tone="board" ratio="3/4" frame label="NFC Board · 16mm matte" className="shadow-[var(--shadow-on-dark)]" />
+            <Swatch tone="board" ratio="3/4" frame image={nfcBoardSample} imageFit="contain" label="NFC Board · husk-grain finish" className="shadow-[var(--shadow-on-dark)]" />
           </motion.div>
         </div>
       </section>

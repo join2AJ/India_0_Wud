@@ -1,9 +1,10 @@
 export const products = [
-  { id: 'boards', name: 'NFC Boards', tone: 'board', tag: 'The hero panel', desc: 'A 100% waterproof, termite-proof plywood alternative. Cuts, drills and screws like wood — without a single tree felled.' },
-  { id: 'decking', name: 'NFC Decking', tone: 'deck', tag: 'Outdoor', desc: 'UV-stable, weatherproof planks engineered for patios, façades and poolside decks that face the elements every day.' },
-  { id: 'jaali', name: 'NFC Jaali', tone: 'jaali', tag: 'CNC screens', desc: 'CNC-routed decorative screens and partitions that bring privacy with light — a modern take on a timeless craft.' },
-  { id: 'trims', name: 'NFC Trims', tone: 'husk', tag: 'Profiles', desc: 'Edge bands, profiles and doorframes engineered to match every board in the range, down to the grain.' },
-  { id: 'glu', name: 'NFC-GLU', tone: 'leaf', tag: 'Adhesive', desc: 'A non-toxic, zero-formaldehyde structural bonding system — engineered for the same Ahimsa standard as the boards.' },
+  { id: 'board', name: 'Indowud NFC Board', tone: 'board', tag: 'The hero panel', desc: 'A zero-wood substitute for plywood and MDF/HDF — termite proof, waterproof, flame retardant and easily machinable, with the natural look and feel of tropical wood.' },
+  { id: 'door', name: 'NFC Door', tone: 'husk', tag: 'Joinery', desc: 'Pre-engineered door panels and shutters that never warp, swell or rot — built for Indian climates and decades of daily use.' },
+  { id: 'frame', name: 'NFC Frame', tone: 'fiber', tag: 'Joinery', desc: 'Door and window frames engineered to match every panel in the range — dimensionally stable, paintable and CNC-ready.' },
+  { id: 'jaali', name: 'NFC Jaali', tone: 'jaali', tag: 'Façades', desc: 'CNC-routed decorative screens and partitions that bring privacy with light — a modern take on a timeless architectural craft.' },
+  { id: 'decking', name: 'NFC Decking', tone: 'deck', tag: 'Outdoor', desc: 'Ice, rain and water-proof planks engineered for patios, façades and poolside decks that face the elements every day.' },
+  { id: 'fence', name: 'NFC Fence', tone: 'leaf', tag: 'Outdoor', desc: 'Anti-rodent, weatherproof fencing and boundary panels that hold their shape and finish through every season.' },
 ]
 
 export const matrix = [

@@ -4,6 +4,8 @@ import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
 import { certifications, benefits, philosophy } from '../data/content'
+import riceFields from '../assets/photos/rice-fields.jpg'
+import factory from '../assets/photos/factory.jpg'
 
 const certIcons = { 'badge-check': BadgeCheck, globe: Globe, 'file-check': FileCheck }
 const benefitIcons = { trees: Trees, wind: Wind, 'cloud-rain': CloudRain, shapes: Shapes, 'shield-check': ShieldCheck, recycle: Recycle }
@@ -40,7 +42,7 @@ export default function Sustainability() {
       <section className="py-20 px-6 lg:px-10 bg-husk-50">
         <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-10 items-center">
           <Reveal>
-            <Swatch tone="leaf" ratio="1/1" rounded="rounded-[12px]" label="Husk to Habitat" />
+            <Swatch tone="leaf" ratio="1/1" rounded="rounded-[12px]" image={riceFields} label="Rice husk · raw material" />
           </Reveal>
           <Reveal delay={0.1}>
             <p className="eyebrow text-leaf-600 mb-4">Husk to Habitat</p>
@@ -59,6 +61,34 @@ export default function Sustainability() {
               prevents deforestation, reduces agricultural air pollution, and
               keeps emissions out of the homes and buildings it furnishes.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Factory */}
+      <section className="py-20 px-6 lg:px-10">
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <Reveal>
+            <p className="eyebrow text-leaf-600 mb-4">Made in Chennai</p>
+            <h2 className="font-heading font-bold text-3xl tracking-[-0.02em] text-ink-900 mb-5 text-balance">
+              Inside the factory where husk becomes habitat
+            </h2>
+            <p className="text-ink-600 leading-relaxed mb-4">
+              Our manufacturing facility in Chennai, Tamil Nadu turns
+              agricultural rice husk — sourced from surrounding farms — into
+              dense, engineered NFC panels through a closed-loop process
+              designed to leave nothing behind: no wood pulp, no toxic
+              binders, no wasted husk.
+            </p>
+            <p className="text-ink-600 leading-relaxed">
+              Every board that leaves this site carries CII GreenPro
+              certification and an Environmental Product Declaration (EPD),
+              so architects can specify it with full confidence in its
+              life-cycle impact.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Swatch tone="board" ratio="4/3" rounded="rounded-[12px]" image={factory} label="Indowud manufacturing facility · Chennai" />
           </Reveal>
         </div>
       </section>

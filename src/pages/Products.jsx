@@ -8,6 +8,8 @@ import Badge from '../components/ui/Badge'
 import Swatch from '../components/ui/Swatch'
 import SpecCard from '../components/ui/SpecCard'
 import { products, finishes, thicknesses } from '../data/content'
+import nfcBoardSample from '../assets/photos/nfc-board-sample.webp'
+import interiorShowcase from '../assets/photos/interior-showcase.webp'
 
 const detailSpecs = [
   { Icon: Droplet, value: '100%', property: 'Waterproof', std: '0% absorption' },
@@ -105,11 +107,18 @@ function ProductDetail({ product, onBack }) {
 
       <div className="grid lg:grid-cols-2 gap-11 items-start">
         <div>
-          <Swatch tone={product.tone} ratio="4/3" frame label={`${product.name} · ${thicknesses[thick]} ${finishes[finish]}`} />
+          <Swatch
+            tone={product.tone}
+            ratio="4/3"
+            frame
+            image={product.id === 'board' ? nfcBoardSample : undefined}
+            imageFit="contain"
+            label={`${product.name} · ${thicknesses[thick]} ${finishes[finish]}`}
+          />
           <div className="flex gap-3 mt-3.5">
-            {['board', 'jaali', 'deck'].map((t, i) => (
-              <Swatch key={t} tone={t} ratio="1/1" rounded="rounded-[5px]" className={`flex-1 cursor-pointer ${i === 0 ? '' : 'opacity-70'}`} />
-            ))}
+            <Swatch image={nfcBoardSample} imageFit="contain" ratio="1/1" rounded="rounded-[5px]" className="flex-1 cursor-pointer" />
+            <Swatch image={interiorShowcase} ratio="1/1" rounded="rounded-[5px]" className="flex-1 cursor-pointer opacity-70" label="In application" />
+            <Swatch tone="jaali" ratio="1/1" rounded="rounded-[5px]" className="flex-1 cursor-pointer opacity-70" />
           </div>
         </div>
 
