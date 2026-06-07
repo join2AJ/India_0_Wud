@@ -57,7 +57,7 @@ export default function MaterialPreview({ finish, thickness, className = '' }) {
       </AnimatePresence>
 
       <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1 font-mono text-[9px] tracking-[0.08em] uppercase text-ink-900/55 bg-husk-50/80 backdrop-blur-sm px-2 py-1 rounded-[3px]">
-        <Sparkles size={10} /> AI-generated · for reference only
+        <Sparkles size={10} /> Illustrative finish preview
       </span>
       <span className="absolute bottom-2.5 left-2.5 font-mono text-[10px] tracking-[0.1em] uppercase text-husk-50/90 bg-ink-900/45 backdrop-blur-sm px-2.5 py-1 rounded-[3px]">
         {finish} · {thickness}

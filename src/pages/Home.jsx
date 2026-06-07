@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, FileText, Droplet, Bug, Flame, Waves, Wind, Leaf } from 'lucide-react'
+import {
+  ArrowRight, FileText, Droplet, Bug, Flame, Waves, Wind, Leaf,
+  Wrench, ShieldCheck, Gem, Rat, Anchor, Microscope, ShieldPlus,
+  Sun, Thermometer, CloudFog, Recycle, FlaskConical, Volume2, CloudOff,
+} from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
@@ -12,10 +16,62 @@ const matrixIcons = {
   droplet: Droplet, bug: Bug, flame: Flame, waves: Waves, wind: Wind, leaf: Leaf,
 }
 
+// Straight from the Indowud nfc brochure's "why choose us" property grid —
+// the claims that set the material apart from conventional plywood/MDF.
+const properties = [
+  { Icon: Bug, label: 'Termite proof' },
+  { Icon: Droplet, label: 'Water proof' },
+  { Icon: Flame, label: 'Flame retardant' },
+  { Icon: Wrench, label: 'Easily machinable' },
+  { Icon: ShieldCheck, label: 'No splintering, no crack' },
+  { Icon: Gem, label: 'Durable' },
+  { Icon: Rat, label: 'Anti rodent' },
+  { Icon: Anchor, label: 'Good screw holding' },
+  { Icon: Microscope, label: 'Resistant to fungus, algae or mold' },
+  { Icon: ShieldPlus, label: 'Anti-bacterial' },
+  { Icon: Sun, label: 'UV resistant' },
+  { Icon: Thermometer, label: 'Thermoformable' },
+  { Icon: CloudFog, label: 'Smoke suppressant' },
+  { Icon: Recycle, label: '100% Recyclable' },
+  { Icon: FlaskConical, label: 'No harmful ingredients' },
+  { Icon: Volume2, label: 'Absorbs sound' },
+  { Icon: Leaf, label: '100% Eco-friendly' },
+  { Icon: CloudOff, label: 'No formaldehyde emission' },
+]
+
 export default function Home() {
   return (
     <div>
       <TactileHero />
+
+      {/* Property grid — straight from the brochure's "why choose Indowud nfc" page */}
+      <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">
+        <OrganicVector flip className="absolute -top-28 -left-28 w-[28rem] h-[28rem] opacity-50" />
+        <div className="relative max-w-[1200px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow text-leaf-600 mb-3.5">Eighteen reasons, one material</p>
+            <h2 className="font-heading font-bold text-[clamp(1.5rem,3.5vw,2.1rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              Everything plywood promises — and the things it never delivered
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+            {properties.map(({ Icon, label }, i) => (
+              <Reveal key={label} delay={(i % 6) * 0.05}>
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-full rounded-[12px] bg-white border border-sand-200 shadow-[var(--shadow-warm-sm)] p-5 text-center flex flex-col items-center gap-3"
+                >
+                  <span className="grid place-items-center w-11 h-11 rounded-[10px] bg-leaf-100 text-leaf-700">
+                    <Icon size={19} strokeWidth={1.6} />
+                  </span>
+                  <p className="font-heading font-semibold text-[12.5px] leading-snug text-ink-900">{label}</p>
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* NFC Matrix — bento of claims, on the same warm husk surface as About */}
       <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">

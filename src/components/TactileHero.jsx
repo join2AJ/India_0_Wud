@@ -5,13 +5,16 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Button from './ui/Button'
 import AhimsaLoader from './ui/AhimsaLoader'
 import OrganicVector from './ui/OrganicVector'
+import boardImg from '../assets/products/indowud-board.webp'
+import jaaliImg from '../assets/products/nfc-jaali.webp'
+import deckingImg from '../assets/products/nfc-decking.webp'
 
 const EASE = [0.16, 1, 0.3, 1]
 
 const showcase = [
-  { id: 'board', name: 'NFC Board', desc: 'The hero panel — zero-wood plywood replacement', tone: 'from-[#6F6253] to-[#3A332A]' },
-  { id: 'jaali', name: 'NFC Jaali', desc: 'CNC-routed façade screens, light through privacy', tone: 'from-[#7E9C60] to-[#3C5230]' },
-  { id: 'decking', name: 'NFC Decking', desc: 'Weatherproof outdoor profiles, every season', tone: 'from-[#A87C3F] to-[#5A4023]' },
+  { id: 'board', name: 'NFC Board', desc: 'The hero panel — zero-wood plywood replacement', image: boardImg },
+  { id: 'jaali', name: 'NFC Jaali', desc: 'CNC-routed façade screens, light through privacy', image: jaaliImg },
+  { id: 'decking', name: 'NFC Decking', desc: 'Weatherproof outdoor profiles, every season', image: deckingImg },
 ]
 
 /**
@@ -54,8 +57,18 @@ function TiltCard({ item, index }) {
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
         whileHover={{ scale: 1.025, z: 40 }}
         transition={{ type: 'spring', ...springCfg }}
-        className={`group relative h-full min-h-[180px] rounded-[16px] overflow-hidden surface-engraved bg-gradient-to-br ${item.tone} cursor-pointer`}
+        className="group relative h-full min-h-[180px] rounded-[16px] overflow-hidden surface-engraved cursor-pointer"
       >
+        <motion.img
+          src={item.image}
+          alt={item.name}
+          style={{ transform: 'translateZ(0)' }}
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: index * 0.8 }}
+          whileHover={{ scale: 1.1 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent pointer-events-none" />
         {/* Floating label plane — sits forward of the card surface in Z so
             the tilt reveals genuine depth rather than a flat sticker. */}
         <motion.div
@@ -69,7 +82,6 @@ function TiltCard({ item, index }) {
             Explore <ArrowUpRight size={13} />
           </span>
         </motion.div>
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent pointer-events-none" />
       </motion.div>
     </motion.div>
   )
@@ -106,7 +118,7 @@ export default function TactileHero() {
             <span className="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/20 text-leaf-300">
               <AhimsaLoader size={26} />
             </span>
-            <span className="eyebrow text-leaf-300">Zero-wood material library</span>
+            <span className="eyebrow text-leaf-300">India's first agro-husk natural fibre composite</span>
           </motion.div>
 
           <motion.h1
