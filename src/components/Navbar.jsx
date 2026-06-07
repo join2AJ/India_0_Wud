@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react'
 import Button from './ui/Button'
+import Logo from './Logo'
 
 const primaryLinks = [
   { to: '/', label: 'Material' },
@@ -35,7 +36,8 @@ export default function Navbar() {
       className="sticky top-0 z-50 border-b border-white/40 bg-husk-50/70 backdrop-blur-xl supports-[backdrop-filter]:bg-husk-50/55 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset]"
     >
       <nav className="max-w-[1360px] mx-auto px-6 lg:px-10 flex items-center gap-7 h-[72px]">
-        <Link to="/" className="flex items-baseline gap-2.5" onClick={() => setOpen(false)}>
+        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <Logo className="w-8 h-8 shrink-0" />
           <span className="font-display font-extrabold text-[22px] tracking-[-0.01em] text-ink-900">INDOWUD</span>
           <span className="font-mono text-[10px] font-semibold tracking-[0.28em] text-leaf-600 border border-leaf-500 px-1.5 py-0.5 rounded">NFC</span>
         </Link>

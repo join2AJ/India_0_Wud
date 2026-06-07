@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import DockNav from './components/DockNav'
+import ContentGuard from './components/ContentGuard'
 import Footer from './components/Footer'
 import AhimsaLoader from './components/ui/AhimsaLoader'
 import Home from './pages/Home'
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ContentGuard />
       <AnimatePresence>{loading && <Splash key="splash" />}</AnimatePresence>
       <ScrollToTop />
       <DockNav />

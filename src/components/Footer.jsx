@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { BadgeCheck, Leaf } from 'lucide-react'
 import Badge from './ui/Badge'
+import Logo from './Logo'
 
 const cols = [
   { h: 'Products', items: [
@@ -35,7 +36,8 @@ export default function Footer() {
       <div className="max-w-[1360px] mx-auto">
         <div className="flex flex-wrap gap-14">
           <div className="max-w-[300px]">
-            <Link to="/" className="inline-flex items-baseline gap-2.5 mb-4">
+            <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
+              <Logo className="w-8 h-8 shrink-0" />
               <span className="font-display font-extrabold text-[22px] text-husk-50">INDOWUD</span>
               <span className="font-mono text-[10px] font-semibold tracking-[0.28em] text-leaf-300 border border-leaf-500 px-1.5 py-0.5 rounded">NFC</span>
             </Link>

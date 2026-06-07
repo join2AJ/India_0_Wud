@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu, X, Newspaper } from 'lucide-react'
+import Logo from './Logo'
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -89,7 +90,8 @@ export default function DockNav() {
         className="texture-grain texture-charcoal surface-engraved relative w-full max-w-[860px] rounded-[20px] text-husk-100 shadow-[var(--shadow-on-dark)] overflow-hidden"
       >
         <div className="relative flex items-center gap-1.5 px-3 py-2.5">
-          <Link to="/" onClick={close} className="flex items-baseline gap-2 pl-2.5 pr-4 shrink-0">
+          <Link to="/" onClick={close} className="flex items-center gap-2 pl-2.5 pr-4 shrink-0">
+            <Logo className="w-7 h-7 shrink-0" />
             <span className="font-display font-extrabold text-[17px] tracking-[-0.01em] text-husk-50">INDOWUD</span>
             <span className="font-mono text-[9px] font-semibold tracking-[0.26em] text-leaf-300 border border-leaf-500/60 px-1.5 py-0.5 rounded">NFC</span>
           </Link>

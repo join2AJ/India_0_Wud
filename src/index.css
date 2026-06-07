@@ -71,6 +71,23 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Allow normal selection inside form fields - blocking it there would
+   break typing, pasting and editing for visitors. */
+input,
+textarea,
+[contenteditable='true'] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: auto;
 }
 
 /* Sitewide husk-fibre grain - a faint paper-like noise washed over every
