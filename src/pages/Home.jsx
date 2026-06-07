@@ -232,7 +232,7 @@ export default function Home() {
           <Reveal>
             <p className="eyebrow text-leaf-600 mb-3.5">Product range</p>
             <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 mb-9 text-balance">
-              Five products. One zero-wood system.
+              Five products. A zero-wood system.
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -14,6 +14,7 @@ import Suggestions from './pages/Suggestions'
 import Downloads from './pages/Downloads'
 import Contact from './pages/Contact'
 import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import NoticeBoard from './pages/NoticeBoard'
 import CaseStudy from './pages/CaseStudy'
 
@@ -78,6 +79,7 @@ function App() {
           <Route path="/downloads" element={<PageTransition><Downloads /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
           <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+          <Route path="/blog/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
           <Route path="/notice-board" element={<PageTransition><NoticeBoard /></PageTransition>} />
           <Route path="/case-study" element={<PageTransition><CaseStudy /></PageTransition>} />
         </Routes>

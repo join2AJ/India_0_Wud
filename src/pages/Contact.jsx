@@ -3,6 +3,11 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageCircleQuestion, FileText, Hammer } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
+import factoryAerial from '../assets/photos/factory-aerial-2.jpg'
+import factoryInterior from '../assets/photos/factory-interior.jpg'
+
+const officeAddress = 'First Floor, New, 30, 1st Main Rd E, Shenoy Nagar, Chennai, Tamil Nadu 600030'
+const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(officeAddress)}&output=embed`
 
 const fields = [
   { name: 'name', label: 'Full name', type: 'text', required: true },
@@ -41,7 +46,7 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[760px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Let's Talk</p>
@@ -79,7 +84,7 @@ export default function Contact() {
                 <div>
                   <p className="eyebrow text-leaf-600 mb-1">Visit us</p>
                   <p className="font-heading font-semibold text-lg text-ink-900">Indowud Polymers Pvt. Ltd.</p>
-                  <p className="text-sm text-sand-500 mt-1">Chennai, Tamil Nadu, India</p>
+                  <p className="text-sm text-sand-500 mt-1">{officeAddress}</p>
                 </div>
               </div>
             </div>
@@ -149,6 +154,50 @@ export default function Contact() {
               )}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Where we are - the office on the map, plus a glimpse of the factory */}
+      <section className="py-20 px-6 lg:px-10 bg-husk-100 section-seam">
+        <div className="max-w-[1200px] mx-auto">
+          <Reveal className="max-w-2xl mb-9">
+            <p className="eyebrow text-leaf-600 mb-3">Find us</p>
+            <h2 className="font-display font-bold text-[clamp(1.75rem,3.5vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              Drop by the office, or see where the material is made
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-sand-500 max-w-[60ch]">
+              We're based in Shenoy Nagar, Chennai - reach out to schedule a
+              visit to the office or a tour of the manufacturing facility
+              where rice husk becomes architecture.
+            </p>
+          </Reveal>
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-5">
+            <Reveal>
+              <div className="h-full min-h-[340px] rounded-[12px] overflow-hidden border border-sand-200 shadow-[var(--shadow-warm-sm)]">
+                <iframe
+                  title="Indowud Polymers Pvt. Ltd. location map"
+                  src={mapEmbedSrc}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full min-h-[340px] border-0"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-rows-2 gap-5 h-full">
+                <div className="relative rounded-[12px] overflow-hidden surface-engraved-light min-h-[160px]">
+                  <img src={factoryAerial} alt="Indowud manufacturing facility, aerial view" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/65 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3.5 font-heading font-semibold text-[13px] text-husk-50">The factory, from above</span>
+                </div>
+                <div className="relative rounded-[12px] overflow-hidden surface-engraved-light min-h-[160px]">
+                  <img src={factoryInterior} alt="Inside the Indowud manufacturing facility" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/65 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3.5 font-heading font-semibold text-[13px] text-husk-50">On the factory floor</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

@@ -16,10 +16,10 @@ import varunPhoto from '../assets/team/varun.webp'
 import chairmanSign from '../assets/team/chairman-sign.png'
 
 const badgeStrip = [
-  { src: iso9001, label: 'ISO 9001:2015' },
-  { src: iso14001, label: 'ISO 14001:2015' },
-  { src: iso45001, label: 'ISO 45001:2015' },
-  { src: rohs, label: 'RoHS Compliant' },
+  { src: iso9001, label: 'ISO 9001:2015', desc: 'Our quality management system is certified to the international standard, keeping every batch consistent from raw husk to finished board.' },
+  { src: iso14001, label: 'ISO 14001:2015', desc: 'An externally audited environmental management system that holds our factory floor accountable to measurable ecological targets.' },
+  { src: iso45001, label: 'ISO 45001:2015', desc: 'Independently certified occupational health and safety management, protecting every person who helps make Indowud NFC.' },
+  { src: rohs, label: 'RoHS Compliant', desc: 'Verified free of the hazardous substances restricted under RoHS — safe to specify for homes, schools and healthcare interiors alike.' },
 ]
 
 // Mission, Vision and Quality - reproduced as published on the company's
@@ -37,7 +37,7 @@ export default function Sustainability() {
   return (
     <div>
       {/* Hero */}
-      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 min-h-[58vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[900px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">The Ahimsa Design Philosophy</p>
@@ -284,20 +284,29 @@ export default function Sustainability() {
               )
             })}
           </div>
-          <Reveal delay={0.2} className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {badgeStrip.map((b) => (
-              <img key={b.label} src={b.src} alt={b.label} title={b.label} className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
-            ))}
+          <Reveal delay={0.2} className="mt-7">
+            <p className="eyebrow text-leaf-600 mb-5 text-center">And the standards behind every batch</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {badgeStrip.map((b, i) => (
+                <Reveal key={b.label} delay={i * 0.08}>
+                  <div className="h-full rounded-[12px] border border-leaf-200 bg-leaf-100/50 p-7 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-warm-lg)]">
+                    <img src={b.src} alt={b.label} className="mx-auto mb-4 w-16 h-16 object-contain" />
+                    <h3 className="font-heading font-bold text-base text-ink-900 mb-2">{b.label}</h3>
+                    <p className="text-[13px] leading-relaxed text-sand-500">{b.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="pb-24 px-6 lg:px-10 text-center">
+      <section className="texture-grain texture-charcoal py-24 px-6 lg:px-10 text-center text-husk-100">
         <Reveal>
-          <p className="font-display italic text-2xl sm:text-3xl text-ink-900 leading-relaxed text-balance max-w-2xl mx-auto">
+          <p className="font-heading font-semibold text-2xl sm:text-3xl lg:text-4xl text-husk-50 leading-snug text-balance max-w-2xl mx-auto tracking-[-0.01em]">
             "Only when we make the right choices, we achieve the right consequences."
           </p>
-          <p className="mt-5 eyebrow text-leaf-600">- The Indowud Ethos</p>
+          <p className="mt-5 eyebrow text-leaf-300">- The Indowud Ethos</p>
           <Link to="/contact" className="inline-block mt-9">
             <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Talk to our team</Button>
           </Link>
