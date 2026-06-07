@@ -21,7 +21,7 @@ export default function ThemeToggle({ className = '' }) {
       onClick={() => setDark((d) => !d)}
       aria-label={dark ? 'Switch to day mode' : 'Switch to night mode'}
       aria-pressed={dark}
-      className={`relative grid place-items-center w-9 h-9 rounded-full surface-engraved bg-white/[0.03] text-husk-100 hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer ${className}`}
+      className={`relative grid place-items-center w-9 h-9 rounded-full surface-engraved bg-white/[0.03] text-cream-100 hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer ${className}`}
     >
       <motion.span
         initial={false}

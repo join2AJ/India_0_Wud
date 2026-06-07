@@ -37,11 +37,18 @@
   --color-ink-700: #383024;
   --color-ink-600: #4B4133;
 
-  /* Husk / cream */
+  /* Husk / cream — flips with theme (page surfaces) */
   --color-husk-50: #FBF8F1;
   --color-husk-100: #F5F0E4;
   --color-husk-200: #EDE6D5;
   --color-husk-300: #E2D8C2;
+
+  /* Cream — constant light tone, never flips. Used as text/accents on the
+     permanently-dark charcoal surfaces (hero, dock nav, footer, matrix
+     bands) so they keep their contrast regardless of site theme. */
+  --color-cream-50: #FBF8F1;
+  --color-cream-100: #F5F0E4;
+  --color-cream-200: #EDE6D5;
 
   /* Sand neutrals */
   --color-sand-100: #E7E0D3;

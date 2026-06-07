@@ -61,10 +61,10 @@ function TiltCard({ item, index }) {
           style={{ transform: 'translateZ(48px)', transformStyle: 'preserve-3d' }}
           className="relative h-full flex flex-col justify-end p-5"
         >
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-husk-100/70 mb-1.5">{`0${index + 1} · NFC Range`}</span>
-          <h3 className="font-heading font-bold text-[19px] text-husk-50 mb-1">{item.name}</h3>
-          <p className="text-[12.5px] leading-snug text-husk-100/75 max-w-[26ch]">{item.desc}</p>
-          <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.14em] text-husk-50/0 group-hover:text-husk-50/90 transition-all duration-300 -translate-x-1 group-hover:translate-x-0">
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-100/70 mb-1.5">{`0${index + 1} · NFC Range`}</span>
+          <h3 className="font-heading font-bold text-[19px] text-cream-50 mb-1">{item.name}</h3>
+          <p className="text-[12.5px] leading-snug text-cream-100/75 max-w-[26ch]">{item.desc}</p>
+          <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.14em] text-cream-50/0 group-hover:text-cream-50/90 transition-all duration-300 -translate-x-1 group-hover:translate-x-0">
             Explore <ArrowUpRight size={13} />
           </span>
         </motion.div>
@@ -76,7 +76,7 @@ function TiltCard({ item, index }) {
 
 export default function TactileHero() {
   return (
-    <section className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
+    <section className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-cream-100">
       {/* Ambient glow — breathing radial wash that keeps the matte charcoal
           from reading as inert flat colour. */}
       <motion.div
@@ -105,7 +105,7 @@ export default function TactileHero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
-            className="font-display font-extrabold text-[clamp(2.75rem,6vw,4.75rem)] leading-[0.98] tracking-[-0.025em] text-husk-50"
+            className="font-display font-extrabold text-[clamp(2.75rem,6vw,4.75rem)] leading-[0.98] tracking-[-0.025em] text-cream-50"
           >
             Architecture, cut<br />from <span className="text-leaf-400">husk,</span> not forest.
           </motion.h1>
@@ -148,8 +148,8 @@ export default function TactileHero() {
               ['−60%', 'carbon vs plywood'],
               ['0', 'formaldehyde & VOC'],
             ].map(([value, label]) => (
-              <div key={label} className="bg-ink-900/40 px-4 py-4">
-                <p className="font-display font-extrabold text-[22px] text-husk-50">{value}</p>
+              <div key={label} className="bg-ink-950/40 px-4 py-4">
+                <p className="font-display font-extrabold text-[22px] text-cream-50">{value}</p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-sand-400 mt-1 leading-tight">{label}</p>
               </div>
             ))}

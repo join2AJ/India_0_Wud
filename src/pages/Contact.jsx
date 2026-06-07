@@ -26,11 +26,11 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-cream-100 pt-20 pb-20 px-6 lg:px-10">
         <div className="max-w-[760px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Let's Talk</p>
-            <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-husk-50 text-balance">
+            <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-cream-50 text-balance">
               Tell us about your next project
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">

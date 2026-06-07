@@ -26,12 +26,12 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-950 text-husk-100 px-6 lg:px-10 pt-14 pb-8">
+    <footer className="bg-ink-950 text-cream-100 px-6 lg:px-10 pt-14 pb-8">
       <div className="max-w-[1360px] mx-auto">
         <div className="flex flex-wrap gap-14">
           <div className="max-w-[300px]">
             <Link to="/" className="inline-flex items-baseline gap-2.5 mb-4">
-              <span className="font-display font-extrabold text-[22px] text-husk-50">INDOWUD</span>
+              <span className="font-display font-extrabold text-[22px] text-cream-50">INDOWUD</span>
               <span className="font-mono text-[10px] font-semibold tracking-[0.28em] text-leaf-300 border border-leaf-500 px-1.5 py-0.5 rounded">NFC</span>
             </Link>
             <p className="font-heading text-[17px] leading-snug text-sand-200 mb-4.5">
@@ -50,7 +50,7 @@ export default function Footer() {
                 <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
                   {c.items.map((it) => (
                     <li key={it.label}>
-                      <Link to={it.to} className="font-body text-sm text-sand-300 hover:text-husk-50 transition-colors duration-200">
+                      <Link to={it.to} className="font-body text-sm text-sand-300 hover:text-cream-50 transition-colors duration-200">
                         {it.label}
                       </Link>
                     </li>

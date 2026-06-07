@@ -16,16 +16,16 @@ export default function Home() {
       <TactileHero />
 
       {/* NFC Matrix — engraved bento, same charcoal/grain surface as the hero */}
-      <section className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-husk-100 border-t border-white/[0.05]">
+      <section className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-cream-100 border-t border-white/[0.05]">
         <div className="max-w-[1200px] mx-auto">
           <Reveal className="flex flex-wrap items-end justify-between gap-6 mb-9">
             <div>
               <p className="eyebrow text-leaf-300 mb-3.5">The NFC Matrix</p>
-              <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-husk-50 m-0 max-w-[18ch] leading-[1.05] text-balance">
+              <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-cream-50 m-0 max-w-[18ch] leading-[1.05] text-balance">
                 Every claim, engraved into one material.
               </h2>
             </div>
-            <Button variant="ghost" iconRight={<FileText size={16} />} className="!text-husk-100 hover:!bg-white/[0.06]">Full spec sheet</Button>
+            <Button variant="ghost" iconRight={<FileText size={16} />} className="!text-cream-100 hover:!bg-white/[0.06]">Full spec sheet</Button>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:auto-rows-[150px]">
@@ -36,7 +36,7 @@ export default function Home() {
                   <Leaf size={13} /> Climate-positive
                 </span>
                 <div>
-                  <p className="font-display font-extrabold text-[56px] leading-none tracking-[-0.02em] text-husk-50">−60%</p>
+                  <p className="font-display font-extrabold text-[56px] leading-none tracking-[-0.02em] text-cream-50">−60%</p>
                   <p className="mt-3 text-[14.5px] leading-relaxed text-sand-300 max-w-[40ch]">
                     Lower embodied carbon than plywood — built from rice husk
                     that would otherwise be openly burned in the field.
@@ -58,7 +58,7 @@ export default function Home() {
                       <Icon size={19} strokeWidth={1.6} />
                     </span>
                     <div>
-                      <p className="font-display font-extrabold text-[26px] tracking-[-0.02em] text-husk-50 leading-none">{m.value}</p>
+                      <p className="font-display font-extrabold text-[26px] tracking-[-0.02em] text-cream-50 leading-none">{m.value}</p>
                       <p className="font-heading font-semibold text-[14px] text-sand-200 mt-2">{m.property}</p>
                       <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-sand-400 mt-2">{m.std}</p>
                     </div>
@@ -74,7 +74,7 @@ export default function Home() {
                   <Flame size={21} strokeWidth={1.6} />
                 </span>
                 <div>
-                  <p className="font-display font-extrabold text-[22px] text-husk-50 tracking-[-0.02em]">Class 1/A flame retardant</p>
+                  <p className="font-display font-extrabold text-[22px] text-cream-50 tracking-[-0.02em]">Class 1/A flame retardant</p>
                   <p className="text-[13.5px] text-sand-300 mt-1.5">Smoke-suppressant and self-extinguishing — tested to ASTM E84.</p>
                 </div>
               </div>
@@ -89,7 +89,7 @@ export default function Home() {
                       <Icon size={19} strokeWidth={1.6} />
                     </span>
                     <div>
-                      <p className="font-display font-extrabold text-[26px] tracking-[-0.02em] text-husk-50 leading-none">{m.value}</p>
+                      <p className="font-display font-extrabold text-[26px] tracking-[-0.02em] text-cream-50 leading-none">{m.value}</p>
                       <p className="font-heading font-semibold text-[14px] text-sand-200 mt-2">{m.property}</p>
                       <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-sand-400 mt-2">{m.std}</p>
                     </div>
@@ -103,7 +103,7 @@ export default function Home() {
               <div className="surface-well h-full p-6 flex items-center justify-between gap-5">
                 <div>
                   <p className="eyebrow text-leaf-300 mb-1.5">Axe the Axe</p>
-                  <p className="font-display font-extrabold text-[34px] tracking-[-0.02em] text-husk-50 leading-none">20,000+</p>
+                  <p className="font-display font-extrabold text-[34px] tracking-[-0.02em] text-cream-50 leading-none">20,000+</p>
                   <p className="text-[13px] text-sand-300 mt-2 max-w-[34ch]">trees spared at full plant capacity, every single year.</p>
                 </div>
                 <Leaf size={48} strokeWidth={1.3} className="text-leaf-400/40 shrink-0" />
