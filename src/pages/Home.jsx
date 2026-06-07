@@ -156,7 +156,7 @@ export default function Home() {
 function ProductTile({ p, big }) {
   return (
     <Link to="/products" className="group block h-full rounded-[14px] overflow-hidden surface-raised transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(0,0,0,0.55)]">
-      <Swatch tone={p.tone} ratio={big ? '21/9' : '4/3'} rounded="rounded-none" />
+      <Swatch tone={p.tone} image={p.image} imageFit="contain" ratio={big ? '21/9' : '4/3'} rounded="rounded-none" />
       <div className="px-5 pt-4.5 pb-5">
         <div className="flex items-center gap-2.5 mb-2">
           <h3 className="font-heading font-bold text-[20px] text-husk-50 m-0">{p.name}</h3>

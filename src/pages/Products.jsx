@@ -56,7 +56,7 @@ function ProductGrid({ onOpen }) {
           {products.map((p, i) => (
             <Reveal key={p.id} delay={(i % 3) * 0.08} className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}>
               <button onClick={() => onOpen(p)} className="group block w-full text-left h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-[3px] cursor-pointer">
-                <Swatch tone={p.tone} ratio={i === 0 ? '21/9' : '4/3'} rounded="rounded-none" />
+                <Swatch tone={p.tone} image={p.image} imageFit="contain" ratio={i === 0 ? '21/9' : '4/3'} rounded="rounded-none" />
                 <div className="px-5 pt-4.5 pb-5">
                   <div className="flex items-center gap-2.5 mb-2">
                     <h3 className="font-heading font-bold text-[20px] text-ink-900 m-0">{p.name}</h3>
@@ -111,7 +111,7 @@ function ProductDetail({ product, onBack }) {
             tone={product.tone}
             ratio="4/3"
             frame
-            image={product.id === 'board' ? nfcBoardSample : undefined}
+            image={product.image}
             imageFit="contain"
             label={`${product.name} · ${thicknesses[thick]} ${finishes[finish]}`}
           />

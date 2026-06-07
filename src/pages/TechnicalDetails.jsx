@@ -4,6 +4,11 @@ import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import SpecCard from '../components/ui/SpecCard'
 import { matrix } from '../data/content'
+import Swatch from '../components/ui/Swatch'
+import rawMaterialImg from '../assets/process/selection-of-raw-material.webp'
+import matrixFormulationImg from '../assets/process/matrix-formulation.webp'
+import interfaceStrengthImg from '../assets/process/interface-strength.webp'
+import manufacturingImg from '../assets/process/manufacturing.webp'
 
 const matrixIcons = { droplet: Droplets, bug: Bug, flame: Flame, waves: FlaskConical, wind: Wind, leaf: Layers }
 
@@ -27,6 +32,13 @@ const composition = [
     title: 'Functional additives',
     desc: 'Flame-retardant and anti-microbial compounds are dispersed through the matrix at the formulation stage, not coated on — so the protection runs through the full thickness of the board.',
   },
+]
+
+const process = [
+  { title: 'Selection of raw material', desc: 'Agricultural rice husk is sourced from surrounding farms and screened for quality before entering the line.', image: rawMaterialImg },
+  { title: 'Matrix formulation', desc: 'Husk fibre is blended with the engineered polymer matrix and functional additives in precise ratios.', image: matrixFormulationImg },
+  { title: 'Interface strength', desc: 'Heat and pressure fuse the matrix into a dense, homogenous composite with strong inter-fibre bonding.', image: interfaceStrengthImg },
+  { title: 'Manufacturing', desc: 'Panels are pressed, cured, trimmed and finished to spec — ready for joinery, façades and interiors.', image: manufacturingImg },
 ]
 
 export default function TechnicalDetails() {
@@ -71,8 +83,33 @@ export default function TechnicalDetails() {
         </div>
       </section>
 
+      {/* Manufacturing process */}
+      <section className="py-20 px-6 lg:px-10">
+        <div className="max-w-[1200px] mx-auto">
+          <Reveal className="max-w-2xl mb-12">
+            <p className="eyebrow text-leaf-600 mb-3.5">From Husk to Panel</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              Four steps. One closed-loop process.
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4.5">
+            {process.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.08}>
+                <div className="h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)]">
+                  <Swatch ratio="4/3" rounded="rounded-none" image={p.image} label={`0${i + 1} · ${p.title}`} />
+                  <div className="p-5">
+                    <h3 className="font-heading font-bold text-base text-ink-900 mb-1.5">{p.title}</h3>
+                    <p className="text-[13.5px] leading-relaxed text-sand-500">{p.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Performance matrix */}
-      <section className="py-20 px-6 lg:px-10 bg-husk-100 border-y border-husk-300">
+      <section className="py-20 px-6 lg:px-10 bg-husk-100 section-seam">
         <div className="max-w-[1200px] mx-auto">
           <Reveal className="max-w-2xl mb-12">
             <p className="eyebrow text-leaf-600 mb-3.5">The NFC Matrix</p>

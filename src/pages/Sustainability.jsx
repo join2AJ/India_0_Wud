@@ -11,6 +11,9 @@ import iso9001 from '../assets/badges/iso-9001.png'
 import iso14001 from '../assets/badges/iso-14001.png'
 import iso45001 from '../assets/badges/iso-45001.png'
 import rohs from '../assets/badges/rohs.png'
+import chairmanPhoto from '../assets/team/chairman.webp'
+import varunPhoto from '../assets/team/varun.webp'
+import chairmanSign from '../assets/team/chairman-sign.png'
 
 const badgeStrip = [
   { src: iso9001, label: 'ISO 9001:2015' },
@@ -77,6 +80,47 @@ export default function Sustainability() {
         </div>
       </section>
 
+      {/* Leadership */}
+      <section className="py-20 px-6 lg:px-10 bg-husk-100 section-seam">
+        <div className="max-w-[1100px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <p className="eyebrow text-leaf-600 mb-3.5">From the Leadership</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              A philosophy carried forward, generation to generation
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Reveal>
+              <div className="h-full rounded-[14px] bg-white border border-sand-200 p-8 shadow-[var(--shadow-warm-sm)]">
+                <img src={chairmanPhoto} alt="Chairman" className="w-20 h-20 rounded-full object-cover mb-5" />
+                <p className="text-ink-600 leading-relaxed italic mb-5">
+                  "We started this company with one belief — that progress
+                  shouldn't come at the cost of the planet. Every board we make
+                  is proof that you can build a business, and a better future,
+                  without cutting down a single tree."
+                </p>
+                <img src={chairmanSign} alt="Chairman's signature" className="h-10 w-auto object-contain mb-1.5" />
+                <p className="font-heading font-bold text-ink-900">Chairman</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-500 mt-0.5">Indowud NFC</p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="h-full rounded-[14px] bg-white border border-sand-200 p-8 shadow-[var(--shadow-warm-sm)]">
+                <img src={varunPhoto} alt="Team member" className="w-20 h-20 rounded-full object-cover mb-5" />
+                <p className="text-ink-600 leading-relaxed italic mb-5">
+                  "Ahimsa isn't a marketing line for us — it's the standard
+                  every decision is measured against, from sourcing husk to
+                  shipping the finished panel. We're building a material
+                  India's architects can specify with a clear conscience."
+                </p>
+                <p className="font-heading font-bold text-ink-900 mt-[52px]">Varun</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-500 mt-0.5">Indowud NFC</p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Factory */}
       <section className="py-20 px-6 lg:px-10">
         <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -109,7 +153,7 @@ export default function Sustainability() {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 px-6 lg:px-10 bg-husk-100 border-y border-husk-300">
+      <section className="py-20 px-6 lg:px-10 bg-husk-100 section-seam">
         <div className="max-w-[1200px] mx-auto">
           <Reveal className="text-center max-w-2xl mx-auto mb-14">
             <p className="eyebrow text-leaf-600 mb-3.5">Why It Matters</p>

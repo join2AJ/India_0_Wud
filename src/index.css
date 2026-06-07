@@ -109,10 +109,6 @@ h1, h2, h3, h4 {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
 }
-.texture-grain > * {
-  position: relative;
-  z-index: 1;
-}
 
 /* Soft directional sheen layered under the grain — gives dark panels the
    subtle depth of a brushed/composite surface rather than a flat fill. */
@@ -162,6 +158,26 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(242, 234, 217, 0.12);
   border-radius: 14px;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(242, 234, 217, 0.06);
+}
+
+/* Soft section seam — replaces hard border lines between stacked sections
+   with a faint gradient fade, so backgrounds blend rather than cut. */
+.section-seam {
+  position: relative;
+}
+.section-seam::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 106, 87, 0.18) 50%, transparent);
+}
+.section-seam::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 106, 87, 0.18) 50%, transparent);
 }
 
 /* Material swatch placeholder textures */

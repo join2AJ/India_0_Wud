@@ -1,12 +1,18 @@
 import greenproBadge from '../assets/badges/greenpro.png'
+import boardImg from '../assets/products/indowud-board.webp'
+import doorImg from '../assets/products/nfc-door.webp'
+import frameImg from '../assets/products/nfc-frame.webp'
+import jaaliImg from '../assets/products/nfc-jaali.webp'
+import deckingImg from '../assets/products/nfc-decking.webp'
+import fenceImg from '../assets/products/nfc-fence.webp'
 
 export const products = [
-  { id: 'board', name: 'Indowud NFC Board', tone: 'board', tag: 'The hero panel', desc: 'A zero-wood substitute for plywood and MDF/HDF — termite proof, waterproof, flame retardant and easily machinable, with the natural look and feel of tropical wood.' },
-  { id: 'door', name: 'NFC Door', tone: 'husk', tag: 'Joinery', desc: 'Pre-engineered door panels and shutters that never warp, swell or rot — built for Indian climates and decades of daily use.' },
-  { id: 'frame', name: 'NFC Frame', tone: 'fiber', tag: 'Joinery', desc: 'Door and window frames engineered to match every panel in the range — dimensionally stable, paintable and CNC-ready.' },
-  { id: 'jaali', name: 'NFC Jaali', tone: 'jaali', tag: 'Façades', desc: 'CNC-routed decorative screens and partitions that bring privacy with light — a modern take on a timeless architectural craft.' },
-  { id: 'decking', name: 'NFC Decking', tone: 'deck', tag: 'Outdoor', desc: 'Ice, rain and water-proof planks engineered for patios, façades and poolside decks that face the elements every day.' },
-  { id: 'fence', name: 'NFC Fence', tone: 'leaf', tag: 'Outdoor', desc: 'Anti-rodent, weatherproof fencing and boundary panels that hold their shape and finish through every season.' },
+  { id: 'board', name: 'Indowud NFC Board', tone: 'board', tag: 'The hero panel', desc: 'A zero-wood substitute for plywood and MDF/HDF — termite proof, waterproof, flame retardant and easily machinable, with the natural look and feel of tropical wood.', image: boardImg },
+  { id: 'door', name: 'NFC Door', tone: 'husk', tag: 'Joinery', desc: 'Pre-engineered door panels and shutters that never warp, swell or rot — built for Indian climates and decades of daily use.', image: doorImg },
+  { id: 'frame', name: 'NFC Frame', tone: 'fiber', tag: 'Joinery', desc: 'Door and window frames engineered to match every panel in the range — dimensionally stable, paintable and CNC-ready.', image: frameImg },
+  { id: 'jaali', name: 'NFC Jaali', tone: 'jaali', tag: 'Façades', desc: 'CNC-routed decorative screens and partitions that bring privacy with light — a modern take on a timeless architectural craft.', image: jaaliImg },
+  { id: 'decking', name: 'NFC Decking', tone: 'deck', tag: 'Outdoor', desc: 'Ice, rain and water-proof planks engineered for patios, façades and poolside decks that face the elements every day.', image: deckingImg },
+  { id: 'fence', name: 'NFC Fence', tone: 'leaf', tag: 'Outdoor', desc: 'Anti-rodent, weatherproof fencing and boundary panels that hold their shape and finish through every season.', image: fenceImg },
 ]
 
 export const matrix = [
