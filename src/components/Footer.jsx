@@ -11,15 +11,15 @@ const cols = [
     { label: 'NFC-GLU', to: '/products' },
   ]},
   { h: 'Material', items: [
-    { label: 'The NFC Matrix', to: '/' },
-    { label: 'Sustainability', to: '/sustainability' },
-    { label: 'Certifications', to: '/sustainability' },
-    { label: 'Spec sheets', to: '/products' },
+    { label: 'The NFC Matrix', to: '/technical-details' },
+    { label: 'Technical specs', to: '/technical-details' },
+    { label: 'Installation guidelines', to: '/suggestions' },
+    { label: 'Spec sheets', to: '/downloads' },
   ]},
   { h: 'Company', items: [
-    { label: 'Ahimsa Design', to: '/sustainability' },
-    { label: 'About', to: '/sustainability' },
-    { label: 'Projects', to: '/products' },
+    { label: 'Ahimsa Design', to: '/about-us' },
+    { label: 'Sustainability & Certifications', to: '/about-us' },
+    { label: 'Downloads', to: '/downloads' },
     { label: 'Contact', to: '/contact' },
   ]},
 ]
