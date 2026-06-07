@@ -1,21 +1,11 @@
 import { Link, useParams, Navigate } from 'react-router-dom'
-import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Clock, Sun, Gem, Sofa, Leaf, CloudRain, Sparkles,
-  Factory, LayoutPanelLeft, CheckCircle, ShieldCheck, FlaskConical, Scale,
-  Sprout, Building2, Layers, ShieldPlus, Bug, Droplets, Flame, IndianRupee, Home,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Clock, CircleCheck } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
-import { blogPosts, blogPostBySlug, palettes } from '../data/blogPosts'
-
-const icons = {
-  sun: Sun, gem: Gem, sofa: Sofa, leaf: Leaf, 'cloud-rain': CloudRain, sparkles: Sparkles,
-  factory: Factory, 'layout-panel-left': LayoutPanelLeft, 'check-circle': CheckCircle,
-  'shield-check': ShieldCheck, 'flask-conical': FlaskConical, scale: Scale, sprout: Sprout,
-  'building-2': Building2, layers: Layers, 'shield-plus': ShieldPlus, bug: Bug,
-  droplets: Droplets, flame: Flame, 'indian-rupee': IndianRupee, home: Home,
-}
+import BlogIllustration from '../components/BlogIllustration'
+import { CompareTable, StatBars } from '../components/BlogDataViz'
+import { blogPosts, blogPostBySlug } from '../data/blogPosts'
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -23,29 +13,18 @@ export default function BlogPost() {
   if (!post) return <Navigate to="/blog" replace />
 
   const index = blogPosts.findIndex((p) => p.slug === slug)
-  const Icon = icons[post.icon]
-  const art = palettes[index % palettes.length]
   const next = blogPosts[(index + 1) % blogPosts.length]
-  const NextIcon = icons[next.icon]
-  const nextArt = palettes[(index + 1) % palettes.length]
 
   return (
     <div>
-      <section className={`relative texture-grain text-husk-100 min-h-[54vh] flex items-center pt-24 pb-16 px-6 lg:px-10 overflow-hidden bg-gradient-to-br ${art}`}>
-        <div aria-hidden className="absolute inset-0 opacity-25 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, white, transparent 45%), radial-gradient(circle at 85% 80%, white, transparent 40%)' }} />
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/30 to-ink-950/10" />
-        <div className="relative max-w-[760px] mx-auto text-center">
+      <section className="relative texture-grain texture-charcoal text-husk-100 min-h-[40vh] flex items-end pt-24 pb-0 px-6 lg:px-10 overflow-hidden">
+        <div className="relative max-w-[760px] mx-auto text-center pb-10">
           <Reveal>
             <Link to="/blog" className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-husk-100/80 hover:text-husk-50 transition-colors duration-200 mb-6">
               <ArrowLeft size={13} /> Back to the journal
             </Link>
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="grid place-items-center w-11 h-11 rounded-full bg-white/15 backdrop-blur-[2px] text-husk-50 ring-1 ring-white/25">
-                {Icon && <Icon size={19} strokeWidth={1.6} />}
-              </span>
-              <Badge tone="accent">{post.tag}</Badge>
-            </div>
-            <h1 className="font-display font-extrabold text-[clamp(1.9rem,4.5vw,3.1rem)] tracking-[-0.02em] text-husk-50 text-balance">
+            <Badge tone="accent">{post.tag}</Badge>
+            <h1 className="mt-4 font-display font-extrabold text-[clamp(1.9rem,4.5vw,3.1rem)] tracking-[-0.02em] text-husk-50 text-balance">
               {post.title}
             </h1>
             <div className="mt-6 flex items-center justify-center gap-5 font-mono text-[11px] uppercase tracking-[0.1em] text-husk-100/75">
@@ -56,13 +35,23 @@ export default function BlogPost() {
         </div>
       </section>
 
-      <section className="py-16 px-6 lg:px-10">
+      {/* Cover illustration - the visual anchor for the essay's theme */}
+      <section className="px-6 lg:px-10 -mt-1">
+        <Reveal>
+          <div className="max-w-[860px] mx-auto rounded-[16px] overflow-hidden surface-engraved-light aspect-[16/7]">
+            <BlogIllustration scene={post.art} className="w-full h-full" />
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="py-14 px-6 lg:px-10">
         <div className="max-w-[720px] mx-auto">
           <Reveal>
             <p className="font-heading text-lg leading-relaxed text-ink-900 mb-8 text-balance">
               {post.excerpt}
             </p>
           </Reveal>
+
           <div className="space-y-5">
             {post.body.map((para, i) => (
               <Reveal key={i} delay={i * 0.05}>
@@ -70,6 +59,43 @@ export default function BlogPost() {
               </Reveal>
             ))}
           </div>
+
+          {post.bullets && (
+            <Reveal delay={0.1}>
+              <ul className="mt-6 space-y-3.5">
+                {post.bullets.map((b) => (
+                  <li key={b.title} className="flex items-start gap-3 rounded-[10px] border border-sand-200 bg-white px-4 py-3.5">
+                    <CircleCheck size={17} className="shrink-0 mt-0.5 text-leaf-600" strokeWidth={1.8} />
+                    <p className="text-[14px] leading-relaxed text-sand-500">
+                      <span className="font-heading font-semibold text-ink-900">{b.title}.</span> {b.desc}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          )}
+
+          {post.viz && (
+            <Reveal delay={0.12}>
+              <div className="mt-8">
+                {post.viz.type === 'table' ? (
+                  <CompareTable caption={post.viz.caption} columns={post.viz.columns} rows={post.viz.rows} highlight={post.viz.highlight} />
+                ) : (
+                  <StatBars caption={post.viz.caption} unit={post.viz.unit} items={post.viz.items} />
+                )}
+              </div>
+            </Reveal>
+          )}
+
+          {post.bodyAfterViz && (
+            <div className="mt-6 space-y-5">
+              {post.bodyAfterViz.map((para, i) => (
+                <Reveal key={i} delay={i * 0.05}>
+                  <p className="text-[15px] leading-relaxed text-sand-500">{para}</p>
+                </Reveal>
+              ))}
+            </div>
+          )}
 
           <Reveal delay={0.15}>
             <div className="mt-12 rounded-[14px] border border-leaf-200 bg-leaf-100/50 p-7 flex flex-wrap items-center justify-between gap-5">
@@ -91,10 +117,8 @@ export default function BlogPost() {
           <Reveal>
             <p className="eyebrow text-leaf-600 mb-4">Read next</p>
             <Link to={`/blog/${next.slug}`} className="group flex items-center gap-5 rounded-[14px] border border-sand-200 bg-white p-5 shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-md)] hover:-translate-y-1">
-              <div className={`relative shrink-0 w-20 h-20 rounded-[10px] overflow-hidden bg-gradient-to-br ${nextArt} grid place-items-center`}>
-                <span className="grid place-items-center w-9 h-9 rounded-full bg-white/15 text-husk-50 ring-1 ring-white/25">
-                  {NextIcon && <NextIcon size={16} strokeWidth={1.6} />}
-                </span>
+              <div className="relative shrink-0 w-20 h-20 rounded-[10px] overflow-hidden">
+                <BlogIllustration scene={next.art} className="absolute inset-0 w-full h-full" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-heading font-bold text-[15px] leading-snug text-ink-900 line-clamp-2">{next.title}</p>
