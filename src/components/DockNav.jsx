@@ -87,7 +87,7 @@ export default function DockNav() {
       <motion.nav
         layout
         transition={{ layout: { duration: 0.45, ease: EASE } }}
-        className="texture-grain texture-charcoal surface-engraved relative w-full max-w-[860px] rounded-[20px] text-husk-100 shadow-[var(--shadow-on-dark)] overflow-hidden"
+        className="texture-grain texture-charcoal surface-engraved relative w-full max-w-[980px] rounded-[20px] text-husk-100 shadow-[var(--shadow-on-dark)] overflow-hidden"
       >
         <div className="relative flex items-center gap-1.5 px-3 py-2.5">
           <Link to="/" onClick={close} className="flex items-center gap-2 pl-2.5 pr-4 shrink-0">
@@ -146,7 +146,7 @@ export default function DockNav() {
           <div className="ml-auto flex items-center gap-2.5">
             <button
               onClick={() => navigate('/contact')}
-              className="hidden sm:inline-flex items-center gap-2 font-heading text-[13px] font-semibold text-ink-900 bg-leaf-400 hover:bg-leaf-300 px-4 py-2 rounded-[12px] transition-colors duration-200 whitespace-nowrap"
+              className="hidden lg:inline-flex items-center gap-2 font-heading text-[13px] font-semibold text-ink-900 bg-leaf-400 hover:bg-leaf-300 px-4 py-2 rounded-[12px] transition-colors duration-200 whitespace-nowrap"
             >
               Request a sample
               <ArrowUpRight size={14} />
