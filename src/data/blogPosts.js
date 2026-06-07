@@ -9,7 +9,7 @@
 // `art` keys resolve against <BlogIllustration scene="...">.
 // `viz` is optional: { type: 'table' | 'stats', ...props for that component }.
 
-export const blogPosts = [
+const rawPosts = [
   {
     slug: 'uv-resistant-panels-outdoor-furniture',
     tag: 'Material Science',
@@ -502,5 +502,9 @@ export const blogPosts = [
     ],
   },
 ]
+
+// Each entry gets a stable, unique journal number - shown as "No. 01" etc.
+// across the grid, the post header and search results.
+export const blogPosts = rawPosts.map((p, i) => ({ ...p, no: i + 1 }))
 
 export const blogPostBySlug = (slug) => blogPosts.find((p) => p.slug === slug)

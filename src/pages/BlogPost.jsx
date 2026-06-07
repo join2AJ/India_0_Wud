@@ -23,7 +23,12 @@ export default function BlogPost() {
             <Link to="/blog" className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-husk-100/80 hover:text-husk-50 transition-colors duration-200 mb-6">
               <ArrowLeft size={13} /> Back to the journal
             </Link>
-            <Badge tone="accent">{post.tag}</Badge>
+            <div className="flex items-center justify-center gap-2.5">
+              <Badge tone="accent">{post.tag}</Badge>
+              <span className="rounded-[6px] border border-husk-100/25 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-husk-100/80">
+                Entry No. {String(post.no).padStart(2, '0')}
+              </span>
+            </div>
             <h1 className="mt-4 font-display font-extrabold text-[clamp(1.9rem,4.5vw,3.1rem)] tracking-[-0.02em] text-husk-50 text-balance">
               {post.title}
             </h1>
