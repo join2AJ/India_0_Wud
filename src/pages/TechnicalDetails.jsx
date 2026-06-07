@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, FlaskConical, Layers, FileBarChart, Bug, Flame, Wind, Droplets } from 'lucide-react'
+import { ArrowRight, FlaskConical, Layers, FileBarChart, Bug, Flame, Wind, Droplets, Check, X } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import SpecCard from '../components/ui/SpecCard'
@@ -11,6 +11,26 @@ import interfaceStrengthImg from '../assets/process/interface-strength.webp'
 import manufacturingImg from '../assets/process/manufacturing.webp'
 
 const matrixIcons = { droplet: Droplets, bug: Bug, flame: Flame, waves: FlaskConical, wind: Wind, leaf: Layers }
+
+const comparison = [
+  { label: 'Termite proof', nfc: true, wpc: true, ply: false, mdf: false },
+  { label: 'Water proof', nfc: true, wpc: true, ply: false, mdf: false },
+  { label: 'Flame resistant', nfc: true, wpc: false, ply: false, mdf: false },
+  { label: 'Screw holding', nfc: 'Above par', wpc: 'Below par', ply: 'Above par', mdf: 'Below par' },
+  { label: 'Indoor & outdoor use', nfc: true, wpc: 'Not always', ply: false, mdf: false },
+  { label: 'Eco-friendly', nfc: true, wpc: 'Not always', ply: 'For some time', mdf: 'Hazardous' },
+]
+
+const labResults = [
+  { test: 'Density', method: 'ASTM D792', value: '800 Kg/CBM' },
+  { test: 'Water absorption · 24 hrs', method: 'IS 2380', value: '0.12%' },
+  { test: 'Thickness swelling · 2 hrs', method: 'IS 2380', value: '0.06%' },
+  { test: 'Modulus of rupture', method: 'IS 2380', value: '14.5 N/mm²' },
+  { test: 'Screw withdrawal · face', method: 'IS 2380', value: '2,252 N' },
+  { test: 'Tensile strength', method: 'ASTM D638', value: '7.6 MPa' },
+  { test: 'Heat deflection · 0.45 MPa', method: 'ASTM D648', value: '64.45°C' },
+  { test: 'VOC emissions', method: 'EPA 5035A', value: 'Below detectable limit' },
+]
 
 const testReports = [
   { Icon: Bug, title: 'Termite Resistance', std: 'IS 4833 / EN 117', result: 'No damage after 8-week graveyard exposure — zero colonisation.' },
@@ -44,7 +64,7 @@ const process = [
 export default function TechnicalDetails() {
   return (
     <div>
-      <section className="bg-ink-900 text-husk-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Technical Specifications</p>
@@ -163,6 +183,72 @@ export default function TechnicalDetails() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Comparative study */}
+      <section className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-husk-100 border-t border-white/[0.05]">
+        <div className="max-w-[1100px] mx-auto">
+          <Reveal className="max-w-2xl mb-12">
+            <p className="eyebrow text-leaf-300 mb-3.5">How NFC Compares</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-husk-50 text-balance">
+              Measured against plywood, MDF and PVC/WPC foam board
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="surface-well overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse min-w-[640px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.08]">
+                      <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-400 font-medium px-6 py-4">Property</th>
+                      <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-leaf-300 font-medium px-6 py-4">Indowud NFC</th>
+                      <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-400 font-medium px-6 py-4">PVC / WPC Foam</th>
+                      <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-400 font-medium px-6 py-4">Plywood</th>
+                      <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-sand-400 font-medium px-6 py-4">MDF</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparison.map((row) => (
+                      <tr key={row.label} className="border-b border-white/[0.05] last:border-0">
+                        <td className="text-[14px] text-sand-200 px-6 py-4">{row.label}</td>
+                        {[row.nfc, row.wpc, row.ply, row.mdf].map((cell, j) => (
+                          <td key={j} className="px-6 py-4">
+                            {cell === true && <Check size={17} className="text-leaf-400" strokeWidth={2.2} />}
+                            {cell === false && <X size={17} className="text-signal-danger" strokeWidth={2.2} />}
+                            {typeof cell === 'string' && <span className="text-[13px] text-sand-300">{cell}</span>}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Lab test results */}
+      <section className="py-20 px-6 lg:px-10">
+        <div className="max-w-[1100px] mx-auto">
+          <Reveal className="max-w-2xl mb-12">
+            <p className="eyebrow text-leaf-600 mb-3.5">Lab-Verified, Not Self-Declared</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              Tested by CIPET, IPIRTI, Spectro &amp; SGS Labs
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {labResults.map((r, i) => (
+                <div key={r.test} className="rounded-[10px] border border-sand-200 bg-white p-5">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-sand-400 mb-2">{r.method}</p>
+                  <p className="font-display font-extrabold text-[20px] text-ink-900 leading-tight">{r.value}</p>
+                  <p className="text-[13px] text-sand-500 mt-1.5">{r.test}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 

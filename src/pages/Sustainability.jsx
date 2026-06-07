@@ -29,7 +29,7 @@ export default function Sustainability() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-ink-900 text-husk-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
         <div className="max-w-[900px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">The Ahimsa Design Philosophy</p>
