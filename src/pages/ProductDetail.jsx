@@ -93,7 +93,7 @@ export default function ProductDetail() {
 
           <p className="text-xs text-sand-400 mb-7 max-w-[46ch] leading-relaxed">
             The swatch above is procedurally generated to preview your finish
-            and thickness selection — actual board grain and tone may vary.
+            and thickness selection - actual board grain and tone may vary.
             Request a physical sample for an exact match.
           </p>
 

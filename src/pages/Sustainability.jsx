@@ -44,7 +44,7 @@ export default function Sustainability() {
           <Reveal delay={0.45}>
             <p className="mt-8 text-sand-300 leading-relaxed max-w-2xl mx-auto">
               "No trees cut. No forests destroyed. No beings harmed." Ahimsa —
-              the principle of non-violence — sits at the centre of how we
+              the principle of non-violence - sits at the centre of how we
               design, manufacture and think about material. It isn't a tagline.
               It's the filter every decision passes through, from the rice
               field to the finished panel.
@@ -66,7 +66,7 @@ export default function Sustainability() {
             </h2>
             <p className="text-ink-600 leading-relaxed mb-4">
               Rice husk is one of the world's most abundant agricultural
-              by-products — and one of the most under-used. Instead of being
+              by-products - and one of the most under-used. Instead of being
               burned in open fields, the husk used in Indowud NFC is processed
               into a dense, durable composite that performs like premium
               tropical wood, without a single tree felled.
@@ -94,7 +94,7 @@ export default function Sustainability() {
               <div className="h-full rounded-[14px] bg-white border border-sand-200 p-8 shadow-[var(--shadow-warm-sm)]">
                 <img src={chairmanPhoto} alt="Chairman" className="w-20 h-20 rounded-full object-cover mb-5" />
                 <p className="text-ink-600 leading-relaxed italic mb-5">
-                  "We started this company with one belief — that progress
+                  "We started this company with one belief - that progress
                   shouldn't come at the cost of the planet. Every board we make
                   is proof that you can build a business, and a better future,
                   without cutting down a single tree."
@@ -108,7 +108,7 @@ export default function Sustainability() {
               <div className="h-full rounded-[14px] bg-white border border-sand-200 p-8 shadow-[var(--shadow-warm-sm)]">
                 <img src={varunPhoto} alt="Team member" className="w-20 h-20 rounded-full object-cover mb-5" />
                 <p className="text-ink-600 leading-relaxed italic mb-5">
-                  "Ahimsa isn't a marketing line for us — it's the standard
+                  "Ahimsa isn't a marketing line for us - it's the standard
                   every decision is measured against, from sourcing husk to
                   shipping the finished panel. We're building a material
                   India's architects can specify with a clear conscience."
@@ -131,7 +131,7 @@ export default function Sustainability() {
             </h2>
             <p className="text-ink-600 leading-relaxed mb-4">
               Our manufacturing facility in Chennai, Tamil Nadu turns
-              agricultural rice husk — sourced from surrounding farms — into
+              agricultural rice husk - sourced from surrounding farms - into
               dense, engineered NFC panels through a closed-loop process
               designed to leave nothing behind: no wood pulp, no toxic
               binders, no wasted husk.
@@ -222,7 +222,7 @@ export default function Sustainability() {
           <p className="font-display italic text-2xl sm:text-3xl text-ink-900 leading-relaxed text-balance max-w-2xl mx-auto">
             "Only when we make the right choices, we achieve the right consequences."
           </p>
-          <p className="mt-5 eyebrow text-leaf-600">— The Indowud Ethos</p>
+          <p className="mt-5 eyebrow text-leaf-600">- The Indowud Ethos</p>
           <Link to="/contact" className="inline-block mt-9">
             <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Talk to our team</Button>
           </Link>

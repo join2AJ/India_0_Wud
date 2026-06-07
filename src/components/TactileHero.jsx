@@ -1,93 +1,15 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { motion, useTransform, useScroll } from 'framer-motion'
+import { ArrowRight, Sprout } from 'lucide-react'
 import Button from './ui/Button'
 import AhimsaLoader from './ui/AhimsaLoader'
 import OrganicVector from './ui/OrganicVector'
 import CountUp from './ui/CountUp'
 import Magnetic from './ui/Magnetic'
-import boardImg from '../assets/products/indowud-board.webp'
-import jaaliImg from '../assets/products/nfc-jaali.webp'
-import deckingImg from '../assets/products/nfc-decking.webp'
+import riceVideo from '../assets/video/rice-stalks.mp4'
 
 const EASE = [0.16, 1, 0.3, 1]
-
-const showcase = [
-  { id: 'board', name: 'NFC Board', desc: 'The hero panel — zero-wood plywood replacement', image: boardImg },
-  { id: 'jaali', name: 'NFC Jaali', desc: 'CNC-routed façade screens, light through privacy', image: jaaliImg },
-  { id: 'decking', name: 'NFC Decking', desc: 'Weatherproof outdoor profiles, every season', image: deckingImg },
-]
-
-/**
- * A single bento card that tracks the cursor and tilts toward it in 3D.
- * `rotateX`/`rotateY` are derived from pointer position relative to the
- * card's centre, smoothed with a spring so the motion feels weighted
- * rather than snapping straight to the cursor.
- */
-function TiltCard({ item, index }) {
-  const ref = useRef(null)
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const springCfg = { stiffness: 220, damping: 22, mass: 0.6 }
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [9, -9]), springCfg)
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-9, 9]), springCfg)
-
-  const handleMove = (e) => {
-    const rect = ref.current.getBoundingClientRect()
-    mouseX.set((e.clientX - rect.left) / rect.width - 0.5)
-    mouseY.set((e.clientY - rect.top) / rect.height - 0.5)
-  }
-  const handleLeave = () => {
-    mouseX.set(0)
-    mouseY.set(0)
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.45 + index * 0.1, ease: EASE }}
-      style={{ perspective: 1000 }}
-      className={index === 0 ? 'sm:row-span-2' : ''}
-    >
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-        whileHover={{ scale: 1.025, z: 40 }}
-        transition={{ type: 'spring', ...springCfg }}
-        className="group relative h-full min-h-[180px] rounded-[16px] overflow-hidden surface-engraved cursor-pointer"
-      >
-        <motion.img
-          src={item.image}
-          alt={item.name}
-          style={{ transform: 'translateZ(0)' }}
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: index * 0.8 }}
-          whileHover={{ scale: 1.1 }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent pointer-events-none" />
-        {/* Floating label plane — sits forward of the card surface in Z so
-            the tilt reveals genuine depth rather than a flat sticker. */}
-        <motion.div
-          style={{ transform: 'translateZ(48px)', transformStyle: 'preserve-3d' }}
-          className="relative h-full flex flex-col justify-end p-5"
-        >
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-husk-100/70 mb-1.5">{`0${index + 1} · NFC Range`}</span>
-          <h3 className="font-heading font-bold text-[19px] text-husk-50 mb-1">{item.name}</h3>
-          <p className="text-[12.5px] leading-snug text-husk-100/75 max-w-[26ch]">{item.desc}</p>
-          <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.14em] text-husk-50/0 group-hover:text-husk-50/90 transition-all duration-300 -translate-x-1 group-hover:translate-x-0">
-            Explore <ArrowUpRight size={13} />
-          </span>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  )
-}
 
 export default function TactileHero() {
   const sectionRef = useRef(null)
@@ -97,7 +19,7 @@ export default function TactileHero() {
 
   return (
     <section ref={sectionRef} className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
-      {/* Ambient glow — breathing radial wash that keeps the matte charcoal
+      {/* Ambient glow - breathing radial wash that keeps the matte charcoal
           from reading as inert flat colour. Drifts on scroll for parallax depth. */}
       <motion.div
         style={{ y: glowY }}
@@ -169,7 +91,7 @@ export default function TactileHero() {
             </Magnetic>
           </motion.div>
 
-          {/* Engraved metric strip — reads as routed into the surface via
+          {/* Engraved metric strip - reads as routed into the surface via
               inset shadows rather than sitting on top of it. */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -192,12 +114,34 @@ export default function TactileHero() {
           </motion.div>
         </div>
 
-        {/* ---- 3D bento showcase column ---- */}
-        <div className="grid sm:grid-cols-2 gap-4 sm:h-[520px]">
-          {showcase.map((item, i) => (
-            <TiltCard key={item.id} item={item} index={i} />
-          ))}
-        </div>
+        {/* ---- Looping field footage column ---- */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
+          className="relative rounded-[20px] overflow-hidden surface-engraved sm:h-[520px] min-h-[320px]"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={riceVideo} type="video/mp4" />
+          </video>
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/15 to-transparent pointer-events-none" />
+          <div className="relative h-full flex flex-col justify-end p-6">
+            <span className="inline-flex items-center gap-2 self-start font-mono text-[10px] tracking-[0.2em] uppercase text-husk-100/80 mb-2 surface-engraved bg-ink-950/30 backdrop-blur-sm rounded-full px-3 py-1.5">
+              <Sprout size={13} className="text-leaf-300" /> From the paddy field to the panel
+            </span>
+            <h3 className="font-heading font-bold text-[22px] text-husk-50 mb-1.5">Every board starts as rice husk</h3>
+            <p className="text-[13px] leading-snug text-husk-100/75 max-w-[34ch]">
+              Agricultural waste that once choked fields and air is reclaimed at
+              source, milled, and engineered into the matrix behind every Indowud panel.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -20,7 +20,7 @@ import iso45001 from '../assets/badges/iso-45001.png'
 import rohsBadge from '../assets/badges/rohs.png'
 
 // Image badges we hold real assets for, plus the additional compliance
-// marks the brochure calls out — rendered as styled chips since we don't
+// marks the brochure calls out - rendered as styled chips since we don't
 // carry separate logo files for those.
 const imageBadges = [
   { src: greenproBadge, label: 'CII GreenPro Ecolabel' },
@@ -37,25 +37,31 @@ const matrixIcons = {
 
 // Straight from the Indowud nfc brochure's "why choose us" property grid —
 // the claims that set the material apart from conventional plywood/MDF.
+const propertyTones = {
+  green: 'bg-leaf-100 text-leaf-700',
+  red: 'bg-[#A64B36]/10 text-[#A64B36]',
+  gray: 'bg-sand-200 text-sand-600',
+}
+
 const properties = [
-  { Icon: Bug, label: 'Termite proof' },
-  { Icon: Droplet, label: 'Water proof' },
-  { Icon: Flame, label: 'Flame retardant' },
-  { Icon: Wrench, label: 'Easily machinable' },
-  { Icon: ShieldCheck, label: 'No splintering, no crack' },
-  { Icon: Gem, label: 'Durable' },
-  { Icon: Rat, label: 'Anti rodent' },
-  { Icon: Anchor, label: 'Good screw holding' },
-  { Icon: Microscope, label: 'Resistant to fungus, algae or mold' },
-  { Icon: ShieldPlus, label: 'Anti-bacterial' },
-  { Icon: Sun, label: 'UV resistant' },
-  { Icon: Thermometer, label: 'Thermoformable' },
-  { Icon: CloudFog, label: 'Smoke suppressant' },
-  { Icon: Recycle, label: '100% Recyclable' },
-  { Icon: FlaskConical, label: 'No harmful ingredients' },
-  { Icon: Volume2, label: 'Absorbs sound' },
-  { Icon: Leaf, label: '100% Eco-friendly' },
-  { Icon: CloudOff, label: 'No formaldehyde emission' },
+  { Icon: Bug, label: 'Termite proof', tone: 'green' },
+  { Icon: Droplet, label: 'Water proof', tone: 'green' },
+  { Icon: Flame, label: 'Flame retardant', tone: 'green' },
+  { Icon: Wrench, label: 'Easily machinable', tone: 'gray' },
+  { Icon: ShieldCheck, label: 'No splintering, no crack', tone: 'red' },
+  { Icon: Gem, label: 'Durable', tone: 'green' },
+  { Icon: Rat, label: 'Anti rodent', tone: 'green' },
+  { Icon: Anchor, label: 'Good screw holding', tone: 'green' },
+  { Icon: Microscope, label: 'Resistant to fungus, algae or mold', tone: 'green' },
+  { Icon: ShieldPlus, label: 'Anti-bacterial', tone: 'green' },
+  { Icon: Sun, label: 'UV resistant', tone: 'green' },
+  { Icon: Thermometer, label: 'Thermoformable', tone: 'gray' },
+  { Icon: CloudFog, label: 'Smoke suppressant', tone: 'green' },
+  { Icon: Recycle, label: '100% Recyclable', tone: 'green' },
+  { Icon: FlaskConical, label: 'No harmful ingredients', tone: 'red' },
+  { Icon: Volume2, label: 'Absorbs sound', tone: 'gray' },
+  { Icon: Leaf, label: '100% Eco-friendly', tone: 'green' },
+  { Icon: CloudOff, label: 'No formaldehyde emission', tone: 'red' },
 ]
 
 export default function Home() {
@@ -63,25 +69,25 @@ export default function Home() {
     <div>
       <TactileHero />
 
-      {/* Property grid — straight from the brochure's "why choose Indowud nfc" page */}
+      {/* Property grid - straight from the brochure's "why choose Indowud nfc" page */}
       <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">
         <OrganicVector flip className="absolute -top-28 -left-28 w-[28rem] h-[28rem] opacity-50" />
         <div className="relative max-w-[1200px] mx-auto">
           <Reveal className="text-center max-w-2xl mx-auto mb-12">
             <p className="eyebrow text-leaf-600 mb-3.5">Eighteen reasons, one material</p>
             <h2 className="font-heading font-bold text-[clamp(1.5rem,3.5vw,2.1rem)] tracking-[-0.02em] text-ink-900 text-balance">
-              Everything plywood promises — and the things it never delivered
+              Everything plywood promises - and the things it never delivered
             </h2>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-            {properties.map(({ Icon, label }, i) => (
+            {properties.map(({ Icon, label, tone }, i) => (
               <Reveal key={label} delay={(i % 6) * 0.05}>
                 <motion.div
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="h-full rounded-[12px] bg-white border border-sand-200 shadow-[var(--shadow-warm-sm)] p-5 text-center flex flex-col items-center gap-3"
                 >
-                  <span className="grid place-items-center w-11 h-11 rounded-[10px] bg-leaf-100 text-leaf-700">
+                  <span className={`grid place-items-center w-11 h-11 rounded-[10px] ${propertyTones[tone]}`}>
                     <Icon size={19} strokeWidth={1.6} />
                   </span>
                   <p className="font-heading font-semibold text-[12.5px] leading-snug text-ink-900">{label}</p>
@@ -92,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NFC Matrix — bento of claims, on the same warm husk surface as About */}
+      {/* NFC Matrix - bento of claims, on the same warm husk surface as About */}
       <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">
         <OrganicVector className="absolute -top-24 -right-32 w-[34rem] h-[34rem] opacity-70" />
         <div className="relative max-w-[1200px] mx-auto">
@@ -107,7 +113,7 @@ export default function Home() {
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:auto-rows-[150px]">
-            {/* Feature cell — climate stat, spans 2x2 */}
+            {/* Feature cell - climate stat, spans 2x2 */}
             <Reveal className="lg:col-span-2 lg:row-span-2">
               <motion.div
                 whileHover={{ y: -3 }}
@@ -120,7 +126,7 @@ export default function Home() {
                 <div>
                   <p className="font-display font-extrabold text-[56px] leading-none tracking-[-0.02em] text-ink-900">−60%</p>
                   <p className="mt-3 text-[14.5px] leading-relaxed text-sand-500 max-w-[40ch]">
-                    Lower embodied carbon than plywood — built from rice husk
+                    Lower embodied carbon than plywood - built from rice husk
                     that would otherwise be openly burned in the field.
                   </p>
                 </div>
@@ -153,7 +159,7 @@ export default function Home() {
               )
             })}
 
-            {/* Flame cell — spans 2 cols */}
+            {/* Flame cell - spans 2 cols */}
             <Reveal delay={0.12} className="sm:col-span-2 lg:col-span-2">
               <motion.div
                 whileHover={{ y: -3 }}
@@ -165,7 +171,7 @@ export default function Home() {
                 </span>
                 <div>
                   <p className="font-display font-extrabold text-[22px] text-ink-900 tracking-[-0.02em]">Class 1/A flame retardant</p>
-                  <p className="text-[13.5px] text-sand-500 mt-1.5">Smoke-suppressant and self-extinguishing — tested to ASTM E84.</p>
+                  <p className="text-[13.5px] text-sand-500 mt-1.5">Smoke-suppressant and self-extinguishing - tested to ASTM E84.</p>
                 </div>
               </motion.div>
             </Reveal>
@@ -192,7 +198,7 @@ export default function Home() {
               )
             })}
 
-            {/* Trees cell — spans 2 cols */}
+            {/* Trees cell - spans 2 cols */}
             <Reveal delay={0.3} className="sm:col-span-2 lg:col-span-2">
               <motion.div
                 whileHover={{ y: -3 }}
@@ -211,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product range — raised cards on the warm husk surface */}
+      {/* Product range - raised cards on the warm husk surface */}
       <section id="products" className="relative py-20 px-6 lg:px-10 bg-husk-100 section-seam overflow-hidden">
         <OrganicVector flip className="absolute -bottom-28 -left-32 w-[30rem] h-[30rem] opacity-60" tone="grain" />
         <div className="relative max-w-[1200px] mx-auto">
@@ -231,7 +237,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certifications strip — the compliance marks the brochure leads with */}
+      {/* Certifications strip - the compliance marks the brochure leads with */}
       <section className="py-16 px-6 lg:px-10 bg-husk-100 section-seam">
         <div className="max-w-[1100px] mx-auto">
           <Reveal className="text-center mb-9">
@@ -260,7 +266,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA band — warm leaf-tinted panel, echoing the About hero's optimism */}
+      {/* CTA band - warm leaf-tinted panel, echoing the About hero's optimism */}
       <section className="relative py-24 px-6 lg:px-10 bg-husk-50 overflow-hidden">
         <Reveal className="max-w-[1100px] mx-auto rounded-[16px] bg-leaf-100 border border-leaf-200 px-8 sm:px-16 py-16 text-center relative overflow-hidden">
           <motion.div
@@ -276,7 +282,7 @@ export default function Home() {
           </h2>
           <p className="mt-4 text-leaf-800 max-w-xl mx-auto relative">
             Talk to our team about specifications, finishes and how Indowud NFC
-            can fit into your next project — or request a physical sample today.
+            can fit into your next project - or request a physical sample today.
           </p>
           <Magnetic className="relative mt-8">
             <Link to="/contact" className="inline-block">

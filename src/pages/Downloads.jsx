@@ -6,10 +6,10 @@ import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 
 const resources = [
-  { Icon: BookOpen, title: 'E-Brochure · English', desc: 'The full product overview — range, finishes, certifications and the Ahimsa story, in English.', tag: 'PDF · 8.2 MB' },
-  { Icon: Languages, title: 'E-Brochure · Hindi', desc: 'वही जानकारी, हिंदी में — उन ग्राहकों और साझेदारों के लिए जो हिंदी में पढ़ना पसंद करते हैं।', tag: 'PDF · 8.4 MB' },
+  { Icon: BookOpen, title: 'E-Brochure · English', desc: 'The full product overview - range, finishes, certifications and the Ahimsa story, in English.', tag: 'PDF · 8.2 MB' },
+  { Icon: Languages, title: 'E-Brochure · Hindi', desc: 'वही जानकारी, हिंदी में - उन ग्राहकों और साझेदारों के लिए जो हिंदी में पढ़ना पसंद करते हैं।', tag: 'PDF · 8.4 MB' },
   { Icon: FileText, title: 'Technical Guidelines', desc: 'Framing, fastening, edge protection and thermoforming instructions for fabricators and site teams.', tag: 'PDF · 3.1 MB' },
-  { Icon: Layers, title: 'Product Catalogue', desc: 'Full specification sheets for every panel in the range — boards, doors, frames, decking, jaali and more.', tag: 'PDF · 12.6 MB' },
+  { Icon: Layers, title: 'Product Catalogue', desc: 'Full specification sheets for every panel in the range - boards, doors, frames, decking, jaali and more.', tag: 'PDF · 12.6 MB' },
 ]
 
 export default function Downloads() {
@@ -26,11 +26,11 @@ export default function Downloads() {
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Resources</p>
             <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-husk-50 text-balance">
-              Brochures, specs and guidelines — ready to share with your team
+              Brochures, specs and guidelines - ready to share with your team
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
               Everything an architect, fabricator or procurement team needs to
-              specify Indowud NFC with confidence — request access below and
+              specify Indowud NFC with confidence - request access below and
               we'll email the full set directly to you.
             </p>
           </Reveal>
@@ -72,7 +72,7 @@ export default function Downloads() {
                   </span>
                   <h3 className="font-heading font-bold text-2xl text-ink-900">On its way</h3>
                   <p className="text-sand-500 max-w-sm">
-                    Check your inbox — the full resource set will land within
+                    Check your inbox - the full resource set will land within
                     the next few minutes.
                   </p>
                 </motion.div>

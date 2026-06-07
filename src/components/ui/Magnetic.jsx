@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 /**
  * Wraps an element so it drifts gently toward the cursor within its
- * bounds — the small "this responds to you" cue luxury product sites use
+ * bounds - the small "this responds to you" cue luxury product sites use
  * on primary calls to action.
  */
 export default function Magnetic({ children, strength = 0.3, className = '' }) {

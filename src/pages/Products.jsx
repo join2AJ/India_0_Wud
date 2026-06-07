@@ -16,7 +16,7 @@ export default function Products() {
               Three categories. One zero-wood system.
             </h1>
             <p className="mt-5 text-lg text-sand-500 max-w-[60ch] leading-relaxed">
-              Indowud NFC isn't plywood, and it isn't a wood-fibre board — those
+              Indowud NFC isn't plywood, and it isn't a wood-fibre board - those
               still carry wood particles. Ours is built purely from agricultural
               husk, organised into three families engineered for every part of
               a build.

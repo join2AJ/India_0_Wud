@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 /**
- * Decorative background vector — an organic leaf-vein silhouette that
+ * Decorative background vector - an organic leaf-vein silhouette that
  * breathes slowly behind section content. Kept near-invisible so it
  * textures the surface like an engraving rather than competing with it.
  */

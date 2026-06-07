@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageCircleQuestion, FileText, Hammer } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 
@@ -11,9 +11,24 @@ const fields = [
   { name: 'company', label: 'Company / Studio', type: 'text', required: false },
 ]
 
+const reasons = [
+  'Request a material sample',
+  'Get a project quote',
+  'Become a dealer / distributor',
+  'Technical specification support',
+  'Something else',
+]
+
 const info = [
   { Icon: Phone, eyebrow: 'Call us', value: '+91 44 4215 8586' },
   { Icon: Mail, eyebrow: 'Email us', value: 'info@indowud.com' },
+  { Icon: Clock, eyebrow: 'Working hours', value: 'Mon - Sat, 9:30 AM - 6:30 PM IST' },
+]
+
+const nextSteps = [
+  { Icon: MessageCircleQuestion, title: 'We listen first', desc: 'Our technical team reviews your brief and reaches out within one business day.' },
+  { Icon: FileText, title: 'We recommend', desc: 'You receive finish, thickness and profile suggestions matched to your application.' },
+  { Icon: Hammer, title: 'We support the build', desc: 'From sample dispatch to on-site guidance, we stay with you through installation.' },
 ]
 
 export default function Contact() {
@@ -36,7 +51,7 @@ export default function Contact() {
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
               Whether you're an architect specifying materials, a designer
               exploring finishes, or simply curious about climate-positive
-              building — we'd love to hear from you.
+              building - we'd love to hear from you.
             </p>
           </Reveal>
         </div>
@@ -83,7 +98,7 @@ export default function Contact() {
                   </span>
                   <h3 className="font-heading font-bold text-2xl text-ink-900">Message received</h3>
                   <p className="text-sand-500 max-w-sm">
-                    Thank you for reaching out — our team will get back to you
+                    Thank you for reaching out - our team will get back to you
                     within one business day.
                   </p>
                 </motion.div>
@@ -105,6 +120,20 @@ export default function Contact() {
                     ))}
                   </div>
                   <label className="block text-left">
+                    <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">What can we help with? *</span>
+                    <select
+                      name="reason"
+                      required
+                      defaultValue=""
+                      className="mt-2 w-full rounded-[5px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/15"
+                    >
+                      <option value="" disabled>Select a reason for reaching out</option>
+                      {reasons.map((r) => (
+                        <option key={r} value={r}>{r}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block text-left">
                     <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">Tell us about your project *</span>
                     <textarea
                       name="message"
@@ -120,6 +149,32 @@ export default function Contact() {
               )}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* What happens next - sets expectations for the journey from enquiry to install */}
+      <section className="pb-24 px-6 lg:px-10">
+        <div className="max-w-[1200px] mx-auto">
+          <Reveal>
+            <p className="eyebrow text-leaf-600 text-center mb-3">What happens next</p>
+            <h2 className="font-display font-bold text-[clamp(1.75rem,3.5vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-center max-w-2xl mx-auto text-balance">
+              From the first message to the finished install
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid sm:grid-cols-3 gap-6">
+            {nextSteps.map(({ Icon, title, desc }, i) => (
+              <Reveal key={title} delay={i * 0.08}>
+                <div className="h-full rounded-[12px] border border-sand-200 bg-white p-7 shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-md)] hover:-translate-y-1">
+                  <span className="grid place-items-center w-11 h-11 rounded-[10px] bg-leaf-100 text-leaf-700 mb-4">
+                    <Icon size={19} strokeWidth={1.6} />
+                  </span>
+                  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-sand-400 mb-1.5">{`Step 0${i + 1}`}</p>
+                  <h3 className="font-heading font-bold text-lg text-ink-900 mb-1.5">{title}</h3>
+                  <p className="text-sm leading-relaxed text-sand-500">{desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </div>

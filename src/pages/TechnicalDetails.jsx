@@ -32,24 +32,24 @@ const labResults = [
 ]
 
 const testReports = [
-  { Icon: Bug, title: 'Termite Resistance', std: 'IS 4833 / EN 117', result: 'No damage after 8-week graveyard exposure — zero colonisation.' },
+  { Icon: Bug, title: 'Termite Resistance', std: 'IS 4833 / EN 117', result: 'No damage after 8-week graveyard exposure - zero colonisation.' },
   { Icon: Flame, title: 'Fire Performance', std: 'ASTM E84 · Class 1/A', result: 'Self-extinguishing, low flame spread, smoke-suppressant char layer.' },
   { Icon: Wind, title: 'Smoke Density', std: 'ASTM E662', result: 'Significantly lower optical smoke density than plywood and MDF.' },
-  { Icon: Droplets, title: 'Moisture & Swelling', std: '24-hr water immersion', result: '0% thickness swelling, 0% water absorption — fully sealed matrix.' },
+  { Icon: Droplets, title: 'Moisture & Swelling', std: '24-hr water immersion', result: '0% thickness swelling, 0% water absorption - fully sealed matrix.' },
 ]
 
 const composition = [
   {
     title: 'Agricultural rice husk',
-    desc: 'The structural backbone — pulverised into a fine, silica-rich fibre that gives the board its density, screw-holding strength and natural wood-like grain.',
+    desc: 'The structural backbone - pulverised into a fine, silica-rich fibre that gives the board its density, screw-holding strength and natural wood-like grain.',
   },
   {
     title: 'Engineered polymer matrix',
-    desc: 'A blend of mineral additives and polymer resins binds the husk fibres into a homogenous, moisture-sealed composite — with zero added formaldehyde.',
+    desc: 'A blend of mineral additives and polymer resins binds the husk fibres into a homogenous, moisture-sealed composite - with zero added formaldehyde.',
   },
   {
     title: 'Functional additives',
-    desc: 'Flame-retardant and anti-microbial compounds are dispersed through the matrix at the formulation stage, not coated on — so the protection runs through the full thickness of the board.',
+    desc: 'Flame-retardant and anti-microbial compounds are dispersed through the matrix at the formulation stage, not coated on - so the protection runs through the full thickness of the board.',
   },
 ]
 
@@ -57,7 +57,7 @@ const process = [
   { title: 'Selection of raw material', desc: 'Agricultural rice husk is sourced from surrounding farms and screened for quality before entering the line.', image: rawMaterialImg },
   { title: 'Matrix formulation', desc: 'Husk fibre is blended with the engineered polymer matrix and functional additives in precise ratios.', image: matrixFormulationImg },
   { title: 'Interface strength', desc: 'Heat and pressure fuse the matrix into a dense, homogenous composite with strong inter-fibre bonding.', image: interfaceStrengthImg },
-  { title: 'Manufacturing', desc: 'Panels are pressed, cured, trimmed and finished to spec — ready for joinery, façades and interiors.', image: manufacturingImg },
+  { title: 'Manufacturing', desc: 'Panels are pressed, cured, trimmed and finished to spec - ready for joinery, façades and interiors.', image: manufacturingImg },
 ]
 
 export default function TechnicalDetails() {
@@ -68,7 +68,7 @@ export default function TechnicalDetails() {
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Technical Specifications</p>
             <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-husk-50 text-balance">
-              The science behind a board that performs like wood — and outlasts it
+              The science behind a board that performs like wood - and outlasts it
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
               Every Indowud NFC panel is engineered to a precise matrix
@@ -261,8 +261,8 @@ export default function TechnicalDetails() {
             Need the full data sheets for a tender submission?
           </h2>
           <p className="mt-4 text-sand-500 max-w-xl mx-auto">
-            Download the complete technical dossier — matrix formulation, test
-            certificates and dimensional tolerances — from our resources page.
+            Download the complete technical dossier - matrix formulation, test
+            certificates and dimensional tolerances - from our resources page.
           </p>
           <Link to="/downloads" className="inline-block mt-8">
             <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>

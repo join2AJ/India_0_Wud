@@ -5,7 +5,7 @@ import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu
 
 const EASE = [0.16, 1, 0.3, 1]
 
-// Each entry can carry a `panel` — when present, hovering/tapping the pill
+// Each entry can carry a `panel` - when present, hovering/tapping the pill
 // expands the dock into a layered structural mega-menu instead of routing.
 const items = [
   { to: '/about-us', label: 'About', icon: Leaf },
@@ -14,7 +14,7 @@ const items = [
     icon: Boxes,
     panel: {
       heading: 'The NFC Range',
-      blurb: 'One matrix, six profiles — boards, joinery, façades and the outdoors, all engineered from the same rice-husk composite.',
+      blurb: 'One matrix, six profiles - boards, joinery, façades and the outdoors, all engineered from the same rice-husk composite.',
       links: [
         { to: '/products/category/boards-doors', label: 'Boards & Doors', desc: 'The hero panel and pre-engineered shutters' },
         { to: '/products/category/frames-jaali', label: 'Frames & Jaali', desc: 'Joinery and CNC-routed façade screens' },
@@ -64,7 +64,7 @@ export default function DockNav() {
 
   return (
     <div className="fixed top-5 inset-x-0 z-50 flex justify-center px-4" onMouseLeave={close}>
-      {/* The "island" — a single pill that grows downward into a structural
+      {/* The "island" - a single pill that grows downward into a structural
           panel. Layout animations keep the pill and panel as one continuous
           surface rather than two disconnected elements. */}
       <motion.nav
@@ -144,7 +144,7 @@ export default function DockNav() {
           </div>
         </div>
 
-        {/* Mobile drawer — flat link list, same engraved surface, slides
+        {/* Mobile drawer - flat link list, same engraved surface, slides
             open beneath the pill row as one continuous physical layer. */}
         <AnimatePresence>
           {mobileOpen && (
@@ -184,7 +184,7 @@ export default function DockNav() {
           )}
         </AnimatePresence>
 
-        {/* Mega-menu — slides open beneath the pill row as a second physical
+        {/* Mega-menu - slides open beneath the pill row as a second physical
             layer of the same engraved surface (shared rounded container). */}
         <AnimatePresence mode="wait">
           {activePanel && (

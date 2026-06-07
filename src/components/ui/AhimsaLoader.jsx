@@ -37,7 +37,7 @@ export default function AhimsaLoader({ size = 240, className = '' }) {
           transition={{ duration: 2.8, repeat: Infinity, ease: EASE, times: [0, 0.55, 1] }}
         />
 
-        {/* grains — vesica shapes built from two circular arcs */}
+        {/* grains - vesica shapes built from two circular arcs */}
         {GRAINS.map((g, i) => {
           const d = `M 0 ${-g.ry} A ${g.rx} ${g.ry} 0 0 1 0 ${g.ry} A ${g.rx} ${g.ry} 0 0 1 0 ${-g.ry} Z`
           return (
@@ -65,7 +65,7 @@ export default function AhimsaLoader({ size = 240, className = '' }) {
           )
         })}
 
-        {/* tip bud — a single compass circle, breathing */}
+        {/* tip bud - a single compass circle, breathing */}
         <motion.circle
           cx="120" cy="44" r="4.5"
           stroke="currentColor" strokeWidth="1.6"

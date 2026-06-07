@@ -3,7 +3,7 @@ import { useInView, animate } from 'framer-motion'
 
 /**
  * Animates a number counting up from zero the first time it scrolls
- * into view — turns static stats into something that feels alive.
+ * into view - turns static stats into something that feels alive.
  */
 export default function CountUp({ value, prefix = '', suffix = '', duration = 1.6 }) {
   const ref = useRef(null)

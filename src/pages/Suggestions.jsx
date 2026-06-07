@@ -41,7 +41,7 @@ const guidelines = [
     title: 'Framing & constructive grid support',
     points: [
       'Frame on a grid no wider than 400mm centre-to-centre for 12–18mm boards used as load-bearing panels.',
-      'Allow a 2–3mm expansion gap at every panel edge and joint — even on a dimensionally stable material, good carpentry leaves room to breathe.',
+      'Allow a 2–3mm expansion gap at every panel edge and joint - even on a dimensionally stable material, good carpentry leaves room to breathe.',
       'Use NFC Frame and NFC Trim profiles from the same batch to guarantee a consistent colour and grain match across the structure.',
     ],
   },
@@ -50,7 +50,7 @@ const guidelines = [
     tag: 'Fixing',
     title: 'Gluing, screwing and fastening',
     points: [
-      'Indowud NFC-GLU is formulated specifically for this matrix — it bonds without the formaldehyde load of conventional wood adhesives.',
+      'Indowud NFC-GLU is formulated specifically for this matrix - it bonds without the formaldehyde load of conventional wood adhesives.',
       'Standard wood screws and carpentry tools work directly on the board; pre-drilling is recommended only at panel corners and near edges.',
       'Screw-holding strength exceeds MDF and particle board, so fixtures, hinges and hardware can be mounted without additional reinforcement blocks.',
     ],
@@ -61,7 +61,7 @@ const guidelines = [
     title: 'Edge protection & thermoforming',
     points: [
       'Seal cut edges with NFC Trim or an edge band to preserve the factory finish and maintain the flush, monolithic look.',
-      'For curved forms, heat the panel evenly to 120–130°C — it becomes pliable enough to shape over a mould and locks into the new form on cooling.',
+      'For curved forms, heat the panel evenly to 120–130°C - it becomes pliable enough to shape over a mould and locks into the new form on cooling.',
       'Avoid localised, concentrated heat sources; even, ambient heating produces the cleanest, most consistent curve.',
     ],
   },
@@ -114,7 +114,7 @@ export default function Suggestions() {
         </div>
       </section>
 
-      {/* Handling — what you can do to the board, straight off the line */}
+      {/* Handling - what you can do to the board, straight off the line */}
       <section className="py-16 px-6 lg:px-10 bg-husk-100 section-seam">
         <div className="max-w-[1000px] mx-auto">
           <Reveal className="text-center mb-10">
@@ -123,7 +123,7 @@ export default function Suggestions() {
               Handle it exactly like conventional timber
             </h2>
             <p className="mt-3 text-sand-500 max-w-xl mx-auto">
-              No specialised machinery, no learning curve — every tool already on site works directly on Indowud NFC.
+              No specialised machinery, no learning curve - every tool already on site works directly on Indowud NFC.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -141,7 +141,7 @@ export default function Suggestions() {
         </div>
       </section>
 
-      {/* Maximum support span table — straight from the technical dossier */}
+      {/* Maximum support span table - straight from the technical dossier */}
       <section className="py-20 px-6 lg:px-10">
         <div className="max-w-[1000px] mx-auto">
           <Reveal className="max-w-2xl mb-9">
@@ -150,7 +150,7 @@ export default function Suggestions() {
               Maximum support span by thickness &amp; range
             </h2>
             <p className="mt-3 text-sand-500 max-w-xl">
-              Indowud NFC boards are homogeneous — frame to this grid for larger
+              Indowud NFC boards are homogeneous - frame to this grid for larger
               areas to keep panels flat and free of deformation over time.
             </p>
           </Reveal>
@@ -188,10 +188,10 @@ export default function Suggestions() {
               {[
                 'Fix a magnetic ball catch at both the top and bottom of every wardrobe or cabinet shutter, with a straightener/stiffener as recommended.',
                 'Use box-type hinges at a span of every 300mm, and frame all four sides with the necessary stiffeners on sliding doors and shutters.',
-                'Fix shutters only after overlaying laminate, veneer or edge banding — or after sealing micro-pores with epoxy / solvent-based putty, primer or sealant.',
+                'Fix shutters only after overlaying laminate, veneer or edge banding - or after sealing micro-pores with epoxy / solvent-based putty, primer or sealant.',
                 'For ceilings, use 12mm+ board on a 300mm grid (Create / Build) or 200mm grid (Neo). For decking, use 25mm+ board on a 300mm support grid with a 4mm gap between panels.',
-                'Leave a 12mm gap between board and wall, 5mm at ceiling and floor, and 3mm between adjoining boards or trims — the panel needs room to breathe and expand.',
-                'Recommended adhesives: NFC-GLU, PUR, HeatX, WP1, Probond, Plastilok or Relam — drying time varies with atmospheric conditions.',
+                'Leave a 12mm gap between board and wall, 5mm at ceiling and floor, and 3mm between adjoining boards or trims - the panel needs room to breathe and expand.',
+                'Recommended adhesives: NFC-GLU, PUR, HeatX, WP1, Probond, Plastilok or Relam - drying time varies with atmospheric conditions.',
               ].map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm leading-relaxed text-sand-500">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-leaf-500 shrink-0" />
@@ -215,13 +215,13 @@ export default function Suggestions() {
               Indowud NFC can be thermoformed with a thermoforming machine, heat
               oven, heat gun or infrared heater. Its high natural-fibre content
               keeps density and dimensional stability uncompromised after
-              shaping — the panel may shrink slightly into its new form, so cut
+              shaping - the panel may shrink slightly into its new form, so cut
               or machine it only after it has taken its final shape, ideally
               over a purpose-built mould.
             </p>
             <p className="mt-3 text-sand-500 leading-relaxed">
               Any pattern can also be printed directly onto the board with a
-              flatbed digital printer — keep the surface dust-free, and seal
+              flatbed digital printer - keep the surface dust-free, and seal
               the printed area with a transparent varnish or sealant to guard
               against abrasion.
             </p>
@@ -248,7 +248,7 @@ export default function Suggestions() {
             <h3 className="font-heading font-bold text-xl text-ink-900 mb-1.5">Need site-specific guidance?</h3>
             <p className="text-sm text-sand-500 leading-relaxed max-w-md">
               Our technical team reviews drawings and specs directly with
-              architects and fabricators — at no charge — before the order is placed.
+              architects and fabricators - at no charge - before the order is placed.
             </p>
           </div>
           <Link to="/contact">
