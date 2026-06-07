@@ -43,7 +43,7 @@ export default function Sustainability() {
           </div>
           <Reveal delay={0.45}>
             <p className="mt-8 text-sand-300 leading-relaxed max-w-2xl mx-auto">
-              "No trees cut. No forests destroyed. No beings harmed." Ahimsa —
+              "No trees cut. No forests destroyed. No beings harmed." Ahimsa -
               the principle of non-violence - sits at the centre of how we
               design, manufacture and think about material. It isn't a tagline.
               It's the filter every decision passes through, from the rice
@@ -147,6 +147,48 @@ export default function Sustainability() {
             <div className="grid grid-cols-2 gap-3.5">
               <Swatch tone="board" ratio="3/4" rounded="rounded-[12px]" image={factoryAerial} label="Factory · aerial view" className="col-span-2 sm:col-span-1" />
               <Swatch tone="husk" ratio="3/4" rounded="rounded-[12px]" image={factoryInterior} label="Production line" className="col-span-2 sm:col-span-1" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Founder's journey - the origin story behind the pivot to NFC */}
+      <section className="py-20 px-6 lg:px-10">
+        <div className="max-w-[880px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow text-leaf-600 mb-3.5">Where It Began</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+              From ₹100 a month to an eco-industrial pioneer
+            </h2>
+            <p className="mt-5 text-ink-600 leading-relaxed max-w-xl mx-auto">
+              Indowud's founder spent four decades inside the plywood trade
+              before walking away from a thriving business to build something
+              that wouldn't cost the country its forests.
+            </p>
+          </Reveal>
+          <div className="space-y-5">
+            {[
+              { year: '1972', text: 'Arrives in Kolkata and takes up work as an office boy on ₹100 a month, completing his B.Com at night college alongside.' },
+              { year: '1987', text: 'Moves to Chennai as an accountant, then pivots into marketing within the plywood industry - learning the trade from the ground up.' },
+              { year: '2000s', text: 'Launches his own plywood enterprise, building it into a major importing-and-manufacturing operation with substantial turnover.' },
+              { year: '2015', text: 'Recognising the environmental toll of working in wood, he divests entirely from a successful company to search for a genuinely sustainable alternative.' },
+              { year: '2017', text: 'Founds Indowud Design Technology to transform paddy stubble - "parali" - into premium architectural boards, turning a pollution crisis into a building material.' },
+            ].map((m, i) => (
+              <Reveal key={m.year} delay={i * 0.06}>
+                <div className="flex gap-5 items-start rounded-[12px] border border-sand-200 bg-white p-6 shadow-[var(--shadow-warm-sm)]">
+                  <span className="shrink-0 font-mono text-sm font-semibold text-leaf-700 bg-leaf-100 border border-leaf-200 rounded-full px-3.5 py-1.5">{m.year}</span>
+                  <p className="text-[14.5px] leading-relaxed text-sand-500">{m.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.3}>
+            <div className="mt-7 rounded-[12px] bg-leaf-100/60 border border-leaf-200 p-6 text-center">
+              <p className="text-[14.5px] leading-relaxed text-leaf-800">
+                Today, the Chennai-based startup provides <strong>40 direct jobs</strong> and
+                supports <strong>over 100 indirect livelihoods</strong>, actively reshaping
+                the local economy around a cleaner way to build.
+              </p>
             </div>
           </Reveal>
         </div>

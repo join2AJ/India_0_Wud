@@ -35,7 +35,7 @@ const matrixIcons = {
   droplet: Droplet, bug: Bug, flame: Flame, waves: Waves, wind: Wind, leaf: Leaf,
 }
 
-// Straight from the Indowud nfc brochure's "why choose us" property grid —
+// Straight from the Indowud nfc brochure's "why choose us" property grid -
 // the claims that set the material apart from conventional plywood/MDF.
 const propertyTones = {
   green: 'bg-leaf-100 text-leaf-700',

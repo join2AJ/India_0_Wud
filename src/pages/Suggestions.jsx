@@ -4,7 +4,7 @@ import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 
-// Maximum constructive support span (in mm) by board range and thickness —
+// Maximum constructive support span (in mm) by board range and thickness -
 // straight from the technical dossier, so fabricators can frame correctly
 // the first time.
 const supportSpans = {

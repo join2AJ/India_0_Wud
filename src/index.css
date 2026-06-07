@@ -70,6 +70,27 @@ body {
   color: var(--color-ink-600);
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+  position: relative;
+}
+
+/* Sitewide husk-fibre grain - a faint paper-like noise washed over every
+   surface so the whole experience reads as a tactile, earthen material
+   rather than flat digital colour. Fixed and behind all content. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.36  0 0 0 0 0.27  0 0 0 0 0.16  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3, h4 {
@@ -117,6 +138,13 @@ h1, h2, h3, h4 {
   background:
     radial-gradient(120% 90% at 18% -10%, rgba(94, 126, 69, 0.12), transparent 55%),
     linear-gradient(160deg, #201C16 0%, #1A1A1A 45%, #15120E 100%);
+}
+
+/* Breathing room between stacked page sections - lets the husk-grain body
+   surface show through as a seam, so panels feel placed rather than welded. */
+main > section + section,
+main > div > section + section {
+  margin-top: clamp(0.75rem, 2.5vw, 2rem);
 }
 
 /* "CNC-routed" engraved surface — inner shadow + hairline border so an

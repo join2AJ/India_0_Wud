@@ -72,7 +72,7 @@ export default function TechnicalDetails() {
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
               Every Indowud NFC panel is engineered to a precise matrix
-              formulation and verified against international test standards —
+              formulation and verified against international test standards -
               so what you specify is exactly what gets delivered to site.
             </p>
           </Reveal>
@@ -99,6 +99,25 @@ export default function TechnicalDetails() {
               </Reveal>
             ))}
           </div>
+
+          {/* 110 PHR differentiator - the brochure's headline spec, the
+              reason Indowud reads as a true wood replacement and not a WPC */}
+          <Reveal delay={0.15}>
+            <div className="mt-6 rounded-[14px] border border-leaf-200 bg-leaf-50 p-7 sm:p-9 grid sm:grid-cols-[auto_1fr] gap-6 items-center">
+              <div className="shrink-0">
+                <p className="font-display font-extrabold text-[clamp(2.5rem,6vw,3.75rem)] leading-none tracking-[-0.02em] text-leaf-700">110<span className="text-[0.4em] align-top ml-1 font-mono uppercase tracking-[0.1em] text-leaf-600">PHR</span></p>
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-leaf-600">Parts per hundred resin</p>
+              </div>
+              <p className="text-[15px] leading-relaxed text-ink-900/80 max-w-[64ch]">
+                This is what sets Indowud NFC apart from foam boards and
+                conventional Wood Plastic Composites: an exceptionally high
+                natural-fibre concentration of 110 parts per hundred resin.
+                It's the reason the board carries genuine density, structural
+                strength and an authentic wood-like feel - not a look-alike,
+                a true plywood replacement engineered from agricultural waste.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 

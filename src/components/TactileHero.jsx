@@ -38,7 +38,7 @@ export default function TactileHero() {
         <OrganicVector className="w-[34rem] h-[34rem] opacity-50" tone="grain" />
       </motion.div>
 
-      <div className="relative max-w-[1280px] mx-auto grid lg:grid-cols-[1fr_0.92fr] gap-14 items-start">
+      <div className="relative max-w-[1280px] mx-auto grid lg:grid-cols-[1fr_0.92fr] gap-14 items-stretch">
         {/* ---- Copy column ---- */}
         <div>
           <motion.div
@@ -68,7 +68,7 @@ export default function TactileHero() {
             transition={{ duration: 0.7, delay: 0.26 }}
             className="mt-6 text-lg leading-relaxed text-sand-300 max-w-[48ch]"
           >
-            A natural-fibre composite matrix engineered from rice-husk waste —
+            A natural-fibre composite matrix engineered from rice-husk waste -
             plywood's strength and warmth, none of its compromises, displayed
             here as a tactile, three-dimensional material library.
           </motion.p>
@@ -119,7 +119,7 @@ export default function TactileHero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-          className="relative rounded-[20px] overflow-hidden surface-engraved sm:h-[520px] min-h-[320px]"
+          className="relative rounded-[20px] overflow-hidden surface-engraved min-h-[420px] h-full"
         >
           <video
             autoPlay

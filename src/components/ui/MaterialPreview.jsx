@@ -5,7 +5,7 @@ import { finishTones, thicknesses } from '../../data/content'
 
 /**
  * Procedurally generates a wood-grain swatch from SVG turbulence filters,
- * tinted to the selected finish and sized to suggest the selected thickness —
+ * tinted to the selected finish and sized to suggest the selected thickness -
  * a stand-in for real photography per finish/thickness combination.
  */
 export default function MaterialPreview({ finish, thickness, className = '' }) {
