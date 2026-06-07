@@ -1,225 +1,176 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Leaf, ShieldCheck, Droplets, Flame } from 'lucide-react'
+import { ArrowRight, FileText, Droplet, Bug, Flame, Waves, Wind, Leaf } from 'lucide-react'
 import Reveal from '../components/Reveal'
-import { features, philosophy, stats, products } from '../data/content'
+import Button from '../components/ui/Button'
+import Swatch from '../components/ui/Swatch'
+import SpecCard from '../components/ui/SpecCard'
+import StatCounter from '../components/ui/StatCounter'
+import Badge from '../components/ui/Badge'
+import { products, matrix } from '../data/content'
 
-const heroIcons = [
-  { Icon: Leaf, label: 'Zero Wood' },
-  { Icon: Droplets, label: 'Waterproof' },
-  { Icon: ShieldCheck, label: 'Termite Proof' },
-  { Icon: Flame, label: 'Flame Retardant' },
-]
+const matrixIcons = {
+  droplet: Droplet, bug: Bug, flame: Flame, waves: Waves, wind: Wind, leaf: Leaf,
+}
 
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative pt-36 pb-28 px-6 lg:px-10 overflow-hidden bg-gradient-to-b from-husk-100 via-cream to-cream">
+      {/* Hero — dark architectural */}
+      <section className="relative bg-ink-900 text-husk-100 pt-16 pb-16 px-6 lg:px-10 overflow-hidden">
         <motion.div
           aria-hidden
-          animate={{ y: [0, 18, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-16 -right-32 w-[28rem] h-[28rem] rounded-full bg-leaf-100/70 blur-3xl"
+          animate={{ opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/3 -right-40 w-[34rem] h-[34rem] rounded-full bg-leaf-700/15 blur-[100px]"
         />
-        <motion.div
-          aria-hidden
-          animate={{ y: [0, -22, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -bottom-40 -left-24 w-[26rem] h-[26rem] rounded-full bg-husk-200/60 blur-3xl"
-        />
-
-        <div className="relative max-w-5xl mx-auto text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-xs uppercase tracking-[0.35em] text-leaf-600 mb-6"
-          >
-            Climate-Positive Material Science
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-char-900 text-balance"
-          >
-            A pioneering wood<br className="hidden sm:block" /> that lets you{' '}
-            <span className="italic text-leaf-700">breathe freely</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-7 text-lg text-char-800/70 max-w-2xl mx-auto leading-relaxed"
-          >
-            Indowud crafts high-performance Natural Fibre Composite boards from
-            agricultural rice husk waste — a 100% waterproof, termite-proof
-            alternative to tropical wood, born from an Ahimsa design philosophy
-            of zero deforestation and zero toxic emissions.
-          </motion.p>
+        <div className="relative max-w-[1200px] mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="eyebrow text-leaf-300 mb-5"
+            >
+              Ahimsa Design · Natural Fiber Composite
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
+              className="font-display font-extrabold text-[clamp(2.75rem,6vw,4.75rem)] leading-[0.98] tracking-[-0.025em] text-husk-50"
+            >
+              We don't cut<br />down to <span className="text-leaf-400">build.</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28 }}
+              className="mt-6 text-lg leading-relaxed text-sand-200 max-w-[46ch]"
+            >
+              High-performance architectural panels engineered from agricultural
+              rice-husk waste. Plywood's strength, none of its compromises — and
+              not a single tree felled in the making of it.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="mt-8 flex flex-wrap gap-3.5"
+            >
+              <Link to="/contact">
+                <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Request a sample</Button>
+              </Link>
+              <Link to="/products">
+                <Button variant="on-dark" size="lg">Explore the range</Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.52 }}
+              className="mt-12 flex flex-wrap gap-12"
+            >
+              <StatCounter onDark accent eyebrow="Axe the Axe" value={20000} suffix="+" size="lg" caption="trees spared at full capacity, every single year." />
+              <StatCounter onDark eyebrow="Footprint" value={60} prefix="−" suffix="%" size="lg" caption="lower carbon footprint than traditional plywood." />
+            </motion.div>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            initial={{ opacity: 0, scale: 0.94, rotate: -1 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            <Link
-              to="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-leaf-700 text-husk-50 px-7 py-3.5 text-sm tracking-wide transition-all duration-300 hover:bg-leaf-600 hover:shadow-lg hover:shadow-leaf-700/20"
-            >
-              Explore the Collection
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-char-900/15 px-7 py-3.5 text-sm tracking-wide text-char-900 transition-all duration-300 hover:border-leaf-600 hover:text-leaf-700"
-            >
-              Our Philosophy
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
-          >
-            {heroIcons.map(({ Icon, label }, i) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-2.5 rounded-2xl border border-char-900/8 bg-white/50 backdrop-blur-sm py-6 px-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-leaf-400/40"
-              >
-                <Icon size={22} strokeWidth={1.4} className="text-leaf-700" />
-                <span className="text-xs text-char-800/70 tracking-wide">{label}</span>
-              </div>
-            ))}
+            <Swatch tone="board" ratio="3/4" frame label="NFC Board · 16mm matte" className="shadow-[var(--shadow-on-dark)]" />
           </motion.div>
         </div>
       </section>
 
-      {/* Philosophy band */}
-      <section className="bg-leaf-700 text-husk-50 py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-husk-200/80 mb-6">
-              The Ahimsa Design Philosophy
-            </p>
-          </Reveal>
-          <div className="space-y-3">
-            {philosophy.map((line, i) => (
-              <Reveal key={line} delay={i * 0.12} as="p">
-                <span className="block text-2xl sm:text-3xl font-display italic text-balance">
-                  {line}
-                </span>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={0.4}>
-            <p className="mt-8 text-sm text-husk-200/75 max-w-xl mx-auto leading-relaxed">
-              Every Indowud panel converts agricultural rice-husk waste into
-              architecture — closing the loop between farm and façade, without
-              a single tree falling.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-20 px-6 lg:px-10">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.1}>
-              <p className="font-display text-4xl sm:text-5xl text-leaf-700">{s.value}</p>
-              <p className="mt-2 text-sm tracking-wide text-char-800/60">{s.label}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-20 px-6 lg:px-10 bg-husk-50">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs uppercase tracking-[0.3em] text-leaf-600 mb-3">Engineered to Perform</p>
-            <h2 className="text-3xl sm:text-4xl font-medium text-char-900 text-balance">
-              Everything tropical wood promised — without the cost to the planet
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={(i % 3) * 0.1}>
-                <div className="h-full rounded-2xl bg-white border border-char-900/6 p-7 transition-all duration-400 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-leaf-700/5 hover:border-leaf-400/30">
-                  <h3 className="font-display text-xl text-char-900 mb-2">{f.title}</h3>
-                  <p className="text-sm text-char-800/65 leading-relaxed">{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Products preview */}
-      <section className="py-24 px-6 lg:px-10">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+      {/* NFC Matrix */}
+      <section className="bg-husk-50 py-20 px-6 lg:px-10">
+        <div className="max-w-[1200px] mx-auto">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6 mb-9">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-leaf-600 mb-3">The Collection</p>
-              <h2 className="text-3xl sm:text-4xl font-medium text-char-900 max-w-lg text-balance">
-                Boards, panels and profiles for every surface you imagine
+              <p className="eyebrow text-leaf-600 mb-3.5">The NFC Matrix</p>
+              <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 m-0 max-w-[18ch] leading-[1.05] text-balance">
+                One material. Every performance claim, verified.
               </h2>
             </div>
-            <Link
-              to="/products"
-              className="group inline-flex items-center gap-2 text-sm text-leaf-700 tracking-wide"
-            >
-              View all products
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <Button variant="secondary" iconRight={<FileText size={16} />}>Full spec sheet</Button>
           </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {matrix.map((m, i) => {
+              const Icon = matrixIcons[m.icon]
+              return (
+                <SpecCard
+                  key={m.property}
+                  delay={(i % 3) * 0.08}
+                  icon={Icon && <Icon size={22} strokeWidth={1.6} />}
+                  value={m.value}
+                  property={m.property}
+                  description={m.desc}
+                  standard={m.std}
+                />
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.slice(0, 3).map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.12}>
-                <div className="group h-full rounded-2xl overflow-hidden border border-char-900/6 bg-white transition-all duration-400 hover:shadow-xl hover:-translate-y-1.5">
-                  <div className="h-40 bg-gradient-to-br from-husk-200 via-husk-100 to-leaf-50 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-leaf-600/10 to-transparent" />
-                    <span className="absolute bottom-4 left-5 text-xs uppercase tracking-[0.2em] text-leaf-700/80">{p.tag}</span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-lg text-char-900 mb-2">{p.name}</h3>
-                    <p className="text-sm text-char-800/65 leading-relaxed">{p.desc}</p>
-                  </div>
-                </div>
+      {/* Product range */}
+      <section id="products" className="bg-husk-100 border-t border-husk-300 py-20 px-6 lg:px-10">
+        <div className="max-w-[1200px] mx-auto">
+          <Reveal>
+            <p className="eyebrow text-leaf-600 mb-3.5">Product range</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 mb-9 text-balance">
+              Five products. One zero-wood system.
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4.5 gap-y-5">
+            {products.map((p, i) => (
+              <Reveal key={p.id} delay={(i % 3) * 0.08} className={i === 0 ? 'sm:col-span-2' : ''}>
+                <ProductTile p={p} big={i === 0} />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA band */}
       <section className="py-24 px-6 lg:px-10">
-        <Reveal className="max-w-4xl mx-auto rounded-3xl bg-char-900 text-husk-50 px-8 sm:px-16 py-16 text-center relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-leaf-600/20 blur-3xl" />
-          <h2 className="text-3xl sm:text-4xl font-medium text-balance relative">
-            Ready to build something that doesn't cost the earth?
+        <Reveal className="max-w-[1100px] mx-auto rounded-[12px] bg-leaf-700 text-husk-50 px-8 sm:px-16 py-16 text-center relative overflow-hidden">
+          <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-husk-50/10 blur-3xl" />
+          <p className="eyebrow text-leaf-200 mb-4 relative">Let's build something honest</p>
+          <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-balance relative">
+            Ready to specify a material that doesn't cost the earth?
           </h2>
-          <p className="mt-4 text-husk-200/70 max-w-xl mx-auto relative">
-            Talk to our team about specifications, applications and how Indowud
-            NFC can fit into your next project.
+          <p className="mt-4 text-leaf-100/80 max-w-xl mx-auto relative">
+            Talk to our team about specifications, finishes and how Indowud NFC
+            can fit into your next project — or request a physical sample today.
           </p>
-          <Link
-            to="/contact"
-            className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-husk-50 text-char-900 px-8 py-3.5 text-sm tracking-wide transition-all duration-300 hover:bg-leaf-400 hover:text-husk-50"
-          >
-            Start a conversation
-            <ArrowRight size={16} />
+          <Link to="/contact" className="relative inline-block mt-8">
+            <Button variant="on-dark" size="lg" iconRight={<ArrowRight size={17} />}>Start a conversation</Button>
           </Link>
         </Reveal>
       </section>
     </div>
+  )
+}
+
+function ProductTile({ p, big }) {
+  return (
+    <Link to="/products" className="group block h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-[3px]">
+      <Swatch tone={p.tone} ratio={big ? '21/9' : '4/3'} rounded="rounded-none" />
+      <div className="px-5 pt-4.5 pb-5">
+        <div className="flex items-center gap-2.5 mb-2">
+          <h3 className="font-heading font-bold text-[20px] text-ink-900 m-0">{p.name}</h3>
+          <Badge tone="outline">{p.tag}</Badge>
+        </div>
+        <p className={`font-body text-[14.5px] leading-relaxed text-sand-500 m-0 ${big ? 'max-w-[52ch]' : ''}`}>{p.desc}</p>
+        <span className="inline-flex items-center gap-1.5 mt-3.5 font-mono text-xs tracking-[0.06em] uppercase text-sand-500 group-hover:text-leaf-600 transition-colors duration-200">
+          View product <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
   )
 }

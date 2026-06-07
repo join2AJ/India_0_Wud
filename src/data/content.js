@@ -1,67 +1,18 @@
-export const features = [
-  { title: 'Termite Proof', desc: 'Engineered from rice husk fibres that pests simply cannot feed on.' },
-  { title: '100% Waterproof', desc: 'Built to withstand humidity, rain and damp climates without swelling or warping.' },
-  { title: 'Flame Retardant', desc: 'Naturally resists ignition and suppresses smoke for safer interiors.' },
-  { title: 'Anti-Bacterial', desc: 'A hygienic surface that inhibits microbial growth in living spaces.' },
-  { title: 'Zero Formaldehyde', desc: 'No harmful emissions — just clean air for the people who live and work inside.' },
-  { title: 'Thermoformable', desc: 'Moulds into intricate forms, opening doors that timber never could.' },
-]
-
-export const benefits = [
-  { title: 'Prevents Deforestation', desc: 'Every board replaces wood with agricultural rice husk waste — not a single tree falls.' },
-  { title: 'Healthier Homes', desc: 'Anti-bacterial, formaldehyde-free panels that let interiors breathe freely.' },
-  { title: 'Weatherproof by Nature', desc: 'Ice, rain and water resistant — built for every climate, indoors and out.' },
-  { title: 'Designed to be Shaped', desc: 'Mouldable, machinable and paintable — a material that adapts to your vision.' },
-  { title: 'Pest Secure', desc: 'Naturally guarded against termites and rodents, for decades of durability.' },
-  { title: 'Closes the Loop', desc: 'Converts husk that would otherwise be burned — turning agricultural waste into architecture.' },
-]
-
 export const products = [
-  {
-    name: 'Indowud NFC Board',
-    tag: 'Flagship Panel',
-    desc: 'A zero-wood panel product — a superior, sustainable alternative to plywood, MDF and HDF, built entirely from natural fibre composite.',
-  },
-  {
-    name: 'ZerOwud NFC',
-    tag: 'Premium Range',
-    desc: 'Our signature climate-positive composite line, engineered for premium architecture and interior design projects that demand zero compromise.',
-  },
-  {
-    name: 'NFC Doors, Frames & Jaali',
-    tag: 'Joinery',
-    desc: 'Intricately crafted doors, door frames and traditional jaali screens — wood-like elegance with none of the ecological cost.',
-  },
-  {
-    name: 'NFC Decking & Flute',
-    tag: 'Exterior Living',
-    desc: 'Weatherproof decking and fluted profiles designed for outdoor spaces that face sun, rain and time without losing their character.',
-  },
-  {
-    name: 'NFC Textured Panels & Trims',
-    tag: 'Interior Finishing',
-    desc: 'Richly textured wall panels, trims and fences that bring natural warmth to interiors and facades alike.',
-  },
-  {
-    name: 'NFC Fence & Glu Profiles',
-    tag: 'Landscape & Build',
-    desc: 'Durable, low-maintenance profiles for boundaries and structural detailing — engineered to outlast traditional timber.',
-  },
+  { id: 'boards', name: 'NFC Boards', tone: 'board', tag: 'The hero panel', desc: 'A 100% waterproof, termite-proof plywood alternative. Cuts, drills and screws like wood — without a single tree felled.' },
+  { id: 'decking', name: 'NFC Decking', tone: 'deck', tag: 'Outdoor', desc: 'UV-stable, weatherproof planks engineered for patios, façades and poolside decks that face the elements every day.' },
+  { id: 'jaali', name: 'NFC Jaali', tone: 'jaali', tag: 'CNC screens', desc: 'CNC-routed decorative screens and partitions that bring privacy with light — a modern take on a timeless craft.' },
+  { id: 'trims', name: 'NFC Trims', tone: 'husk', tag: 'Profiles', desc: 'Edge bands, profiles and doorframes engineered to match every board in the range, down to the grain.' },
+  { id: 'glu', name: 'NFC-GLU', tone: 'leaf', tag: 'Adhesive', desc: 'A non-toxic, zero-formaldehyde structural bonding system — engineered for the same Ahimsa standard as the boards.' },
 ]
 
-export const certifications = [
-  {
-    name: 'CII GreenPro Ecolabel',
-    desc: 'Certified as a sustainable green product with measurably lower environmental impact, contributing to Green Building and Green Company ratings.',
-  },
-  {
-    name: 'GEN Accreditation (GENICES)',
-    desc: 'Accredited by the Global Ecolabelling Network, validating our environmental claims against rigorous international standards.',
-  },
-  {
-    name: 'EPD Verification',
-    desc: 'A Type III Environmental Product Declaration — independently verified, transparent reporting of our material’s lifecycle impact.',
-  },
+export const matrix = [
+  { icon: 'droplet', value: '100%', property: 'Waterproof & ice-proof', desc: 'Zero swelling. Zero delamination, even fully submerged.', std: '0% water absorption' },
+  { icon: 'bug', value: '100%', property: 'Termite & rodent proof', desc: 'No wood means no buffet — nothing to digest, nothing to lose.', std: 'Zero pest damage' },
+  { icon: 'flame', value: 'Class 1/A', property: 'Flame retardant', desc: 'Smoke-suppressant and self-extinguishing for safer interiors.', std: 'ASTM E84' },
+  { icon: 'waves', value: '130–160°C', property: 'Thermoformable', desc: 'Heat and mould into organic curves — a five-minute lock-in.', std: 'Dimensionally stable' },
+  { icon: 'wind', value: '0', property: 'Formaldehyde & VOC', desc: 'Safe indoor air. Nothing toxic ever off-gasses from the panel.', std: 'GREENGUARD' },
+  { icon: 'leaf', value: '−60%', property: 'Carbon vs plywood', desc: 'Built from rice husk that would otherwise be openly burned.', std: 'GreenPro · EPD' },
 ]
 
 export const philosophy = [
@@ -70,9 +21,32 @@ export const philosophy = [
   'We do not cut down to build.',
 ]
 
-export const stats = [
-  { value: '0', label: 'Trees Cut' },
-  { value: '100%', label: 'Waterproof' },
-  { value: '3', label: 'Green Certifications' },
-  { value: '∞', label: 'Design Possibilities' },
+export const certifications = [
+  {
+    name: 'CII GreenPro Ecolabel',
+    desc: 'Certified as a sustainable green product with measurably lower environmental impact — contributing directly to Green Building and Green Company ratings.',
+    icon: 'badge-check',
+  },
+  {
+    name: 'GEN Accreditation · GENICES',
+    desc: 'Accredited by the Global Ecolabelling Network, validating our environmental claims against rigorous, independent international standards.',
+    icon: 'globe',
+  },
+  {
+    name: 'EPD Verification',
+    desc: 'A Type III Environmental Product Declaration — independently verified, transparent reporting of our material’s lifecycle impact, end to end.',
+    icon: 'file-check',
+  },
 ]
+
+export const benefits = [
+  { title: 'Prevents Deforestation', desc: 'Every board replaces wood with agricultural rice husk waste — not a single tree falls in the process.', icon: 'trees' },
+  { title: 'Healthier Indoor Air', desc: 'Anti-bacterial, formaldehyde-free panels that let the people inside breathe freely, year-round.', icon: 'wind' },
+  { title: 'Weatherproof by Design', desc: 'Ice, rain and water resistant — engineered for every climate, indoors and out, without compromise.', icon: 'cloud-rain' },
+  { title: 'Built to be Shaped', desc: 'Mouldable, machinable, paintable — a material that bends to the architect’s vision, not the other way round.', icon: 'shapes' },
+  { title: 'Pest Secure for Decades', desc: 'Naturally guarded against termites and rodents — durability measured in decades, not seasons.', icon: 'shield-check' },
+  { title: 'Closes the Waste Loop', desc: 'Converts husk that would otherwise be burned in open fields into architecture that lasts a lifetime.', icon: 'recycle' },
+]
+
+export const finishes = ['Natural Husk', 'Charcoal Oak', 'Smoked Teak', 'Linen White', 'Slate']
+export const thicknesses = ['6mm', '12mm', '16mm', '18mm', '25mm']

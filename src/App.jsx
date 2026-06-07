@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import About from './pages/About'
 import Products from './pages/Products'
 import Sustainability from './pages/Sustainability'
 import Contact from './pages/Contact'
@@ -40,7 +39,6 @@ function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-          <Route path="/about" element={<PageTransition><About /></PageTransition>} />
           <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
           <Route path="/sustainability" element={<PageTransition><Sustainability /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
