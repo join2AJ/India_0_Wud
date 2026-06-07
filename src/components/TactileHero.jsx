@@ -1,10 +1,12 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Button from './ui/Button'
 import AhimsaLoader from './ui/AhimsaLoader'
 import OrganicVector from './ui/OrganicVector'
+import CountUp from './ui/CountUp'
+import Magnetic from './ui/Magnetic'
 import boardImg from '../assets/products/indowud-board.webp'
 import jaaliImg from '../assets/products/nfc-jaali.webp'
 import deckingImg from '../assets/products/nfc-decking.webp'
@@ -88,11 +90,17 @@ function TiltCard({ item, index }) {
 }
 
 export default function TactileHero() {
+  const sectionRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const vectorY = useTransform(scrollYProgress, [0, 1], [0, 120])
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, -80])
+
   return (
-    <section className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
+    <section ref={sectionRef} className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
       {/* Ambient glow — breathing radial wash that keeps the matte charcoal
-          from reading as inert flat colour. */}
+          from reading as inert flat colour. Drifts on scroll for parallax depth. */}
       <motion.div
+        style={{ y: glowY }}
         aria-hidden
         animate={{ opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
@@ -104,7 +112,9 @@ export default function TactileHero() {
         transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
         className="absolute -bottom-40 -right-32 w-[30rem] h-[30rem] rounded-full bg-grain-600/10 blur-[110px] pointer-events-none"
       />
-      <OrganicVector className="absolute top-1/2 -translate-y-1/2 -right-24 w-[34rem] h-[34rem] opacity-50 pointer-events-none hidden lg:block" tone="grain" />
+      <motion.div style={{ y: vectorY }} className="absolute top-1/2 -translate-y-1/2 -right-24 pointer-events-none hidden lg:block">
+        <OrganicVector className="w-[34rem] h-[34rem] opacity-50" tone="grain" />
+      </motion.div>
 
       <div className="relative max-w-[1280px] mx-auto grid lg:grid-cols-[1fr_0.92fr] gap-14 items-start">
         {/* ---- Copy column ---- */}
@@ -147,12 +157,16 @@ export default function TactileHero() {
             transition={{ duration: 0.7, delay: 0.36 }}
             className="mt-9 flex flex-wrap gap-3.5"
           >
-            <Link to="/contact">
-              <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Request a sample</Button>
-            </Link>
-            <Link to="/products">
-              <Button variant="on-dark" size="lg">Explore the range</Button>
-            </Link>
+            <Magnetic>
+              <Link to="/contact">
+                <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Request a sample</Button>
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link to="/products">
+                <Button variant="on-dark" size="lg">Explore the range</Button>
+              </Link>
+            </Magnetic>
           </motion.div>
 
           {/* Engraved metric strip — reads as routed into the surface via
@@ -164,13 +178,15 @@ export default function TactileHero() {
             className="mt-12 grid grid-cols-3 gap-px rounded-[14px] overflow-hidden surface-engraved bg-white/[0.04] max-w-[480px]"
           >
             {[
-              ['20K+', 'trees spared / yr'],
-              ['−60%', 'carbon vs plywood'],
-              ['0', 'formaldehyde & VOC'],
-            ].map(([value, label]) => (
-              <div key={label} className="bg-ink-900/40 px-4 py-4">
-                <p className="font-display font-extrabold text-[22px] text-husk-50">{value}</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-sand-400 mt-1 leading-tight">{label}</p>
+              { value: 20, prefix: '', suffix: 'K+', label: 'trees spared / yr' },
+              { value: 60, prefix: '−', suffix: '%', label: 'carbon vs plywood' },
+              { value: 0, prefix: '', suffix: '', label: 'formaldehyde & VOC' },
+            ].map((m) => (
+              <div key={m.label} className="bg-ink-900/40 px-4 py-4">
+                <p className="font-display font-extrabold text-[22px] text-husk-50">
+                  <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} />
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-sand-400 mt-1 leading-tight">{m.label}</p>
               </div>
             ))}
           </motion.div>

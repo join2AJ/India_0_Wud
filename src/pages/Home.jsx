@@ -4,13 +4,32 @@ import {
   ArrowRight, FileText, Droplet, Bug, Flame, Waves, Wind, Leaf,
   Wrench, ShieldCheck, Gem, Rat, Anchor, Microscope, ShieldPlus,
   Sun, Thermometer, CloudFog, Recycle, FlaskConical, Volume2, CloudOff,
+  BadgeCheck,
 } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
 import OrganicVector from '../components/ui/OrganicVector'
+import Magnetic from '../components/ui/Magnetic'
 import TactileHero from '../components/TactileHero'
 import { products, matrix } from '../data/content'
+import greenproBadge from '../assets/badges/greenpro.png'
+import iso9001 from '../assets/badges/iso-9001.png'
+import iso14001 from '../assets/badges/iso-14001.png'
+import iso45001 from '../assets/badges/iso-45001.png'
+import rohsBadge from '../assets/badges/rohs.png'
+
+// Image badges we hold real assets for, plus the additional compliance
+// marks the brochure calls out — rendered as styled chips since we don't
+// carry separate logo files for those.
+const imageBadges = [
+  { src: greenproBadge, label: 'CII GreenPro Ecolabel' },
+  { src: iso9001, label: 'ISO 9001:2015' },
+  { src: iso14001, label: 'ISO 14001:2015' },
+  { src: iso45001, label: 'ISO 45001:2018' },
+  { src: rohsBadge, label: 'RoHS Compliant' },
+]
+const chipBadges = ['CE Marked', 'Lead-Free', 'Make in India', 'MSME Registered', '#StartupIndia', 'EPD Verified']
 
 const matrixIcons = {
   droplet: Droplet, bug: Bug, flame: Flame, waves: Waves, wind: Wind, leaf: Leaf,
@@ -212,6 +231,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Certifications strip — the compliance marks the brochure leads with */}
+      <section className="py-16 px-6 lg:px-10 bg-husk-100 section-seam">
+        <div className="max-w-[1100px] mx-auto">
+          <Reveal className="text-center mb-9">
+            <p className="eyebrow text-leaf-600 mb-2.5">Certified, not just claimed</p>
+            <h2 className="font-heading font-bold text-xl text-ink-900">Independently verified, every step of the way</h2>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <div className="flex flex-wrap items-center justify-center gap-3.5 mb-5">
+              {imageBadges.map((b) => (
+                <div key={b.label} className="flex items-center gap-2.5 rounded-[10px] bg-white border border-sand-200 shadow-[var(--shadow-warm-sm)] px-4 py-2.5">
+                  <img src={b.src} alt={b.label} className="h-8 w-auto object-contain" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-sand-500 max-w-[12ch] leading-tight">{b.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              {chipBadges.map((label) => (
+                <span key={label} className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-leaf-700 bg-leaf-100 border border-leaf-200 rounded-full px-3.5 py-1.5">
+                  <BadgeCheck size={13} /> {label}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* CTA band — warm leaf-tinted panel, echoing the About hero's optimism */}
       <section className="relative py-24 px-6 lg:px-10 bg-husk-50 overflow-hidden">
         <Reveal className="max-w-[1100px] mx-auto rounded-[16px] bg-leaf-100 border border-leaf-200 px-8 sm:px-16 py-16 text-center relative overflow-hidden">
@@ -230,9 +278,11 @@ export default function Home() {
             Talk to our team about specifications, finishes and how Indowud NFC
             can fit into your next project — or request a physical sample today.
           </p>
-          <Link to="/contact" className="relative inline-block mt-8">
-            <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Start a conversation</Button>
-          </Link>
+          <Magnetic className="relative mt-8">
+            <Link to="/contact" className="inline-block">
+              <Button variant="accent" size="lg" iconRight={<ArrowRight size={17} />}>Start a conversation</Button>
+            </Link>
+          </Magnetic>
         </Reveal>
       </section>
     </div>
