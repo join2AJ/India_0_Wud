@@ -63,11 +63,11 @@ const process = [
 export default function TechnicalDetails() {
   return (
     <div>
-      <section className="texture-grain texture-charcoal text-cream-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">Technical Specifications</p>
-            <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-cream-50 text-balance">
+            <h1 className="font-display font-extrabold text-[clamp(2.25rem,5vw,3.5rem)] tracking-[-0.025em] text-husk-50 text-balance">
               The science behind a board that performs like wood — and outlasts it
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
@@ -118,7 +118,7 @@ export default function TechnicalDetails() {
                   <div className="relative w-28 h-28 mx-auto mb-5">
                     <span className="absolute inset-0 rounded-full bg-leaf-100 scale-110" aria-hidden />
                     <img src={p.image} alt={p.title} className="relative w-full h-full rounded-full object-cover border-[3px] border-white shadow-[var(--shadow-warm-sm)]" loading="lazy" />
-                    <span className="absolute -bottom-1.5 -right-1.5 grid place-items-center w-8 h-8 rounded-full bg-leaf-600 text-cream-50 font-mono text-[12px] font-semibold border-2 border-white">
+                    <span className="absolute -bottom-1.5 -right-1.5 grid place-items-center w-8 h-8 rounded-full bg-leaf-600 text-husk-50 font-mono text-[12px] font-semibold border-2 border-white">
                       {i + 1}
                     </span>
                   </div>
@@ -190,11 +190,11 @@ export default function TechnicalDetails() {
       </section>
 
       {/* Comparative study */}
-      <section className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-cream-100 border-t border-white/[0.05]">
+      <section className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-husk-100 border-t border-white/[0.05]">
         <div className="max-w-[1100px] mx-auto">
           <Reveal className="max-w-2xl mb-12">
             <p className="eyebrow text-leaf-300 mb-3.5">How NFC Compares</p>
-            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-cream-50 text-balance">
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-husk-50 text-balance">
               Measured against plywood, MDF and PVC/WPC foam board
             </h2>
           </Reveal>

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu, X } from 'lucide-react'
-import ThemeToggle from './ui/ThemeToggle'
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -71,11 +70,11 @@ export default function DockNav() {
       <motion.nav
         layout
         transition={{ layout: { duration: 0.45, ease: EASE } }}
-        className="texture-grain texture-charcoal surface-engraved relative w-full max-w-[860px] rounded-[20px] text-cream-100 shadow-[var(--shadow-on-dark)] overflow-hidden"
+        className="texture-grain texture-charcoal surface-engraved relative w-full max-w-[860px] rounded-[20px] text-husk-100 shadow-[var(--shadow-on-dark)] overflow-hidden"
       >
         <div className="relative flex items-center gap-1.5 px-3 py-2.5">
           <Link to="/" onClick={close} className="flex items-baseline gap-2 pl-2.5 pr-4 shrink-0">
-            <span className="font-display font-extrabold text-[17px] tracking-[-0.01em] text-cream-50">INDOWUD</span>
+            <span className="font-display font-extrabold text-[17px] tracking-[-0.01em] text-husk-50">INDOWUD</span>
             <span className="font-mono text-[9px] font-semibold tracking-[0.26em] text-leaf-300 border border-leaf-500/60 px-1.5 py-0.5 rounded">NFC</span>
           </Link>
 
@@ -92,7 +91,7 @@ export default function DockNav() {
                     onClick={() => setActivePanel(isOpenPanel ? null : it.label)}
                     aria-expanded={isOpenPanel}
                     className={`relative flex items-center gap-1.5 font-heading text-[13.5px] font-medium px-4 py-2 rounded-[12px] transition-colors duration-300 ${
-                      isOpenPanel ? 'text-cream-50' : 'text-sand-300 hover:text-cream-50'
+                      isOpenPanel ? 'text-husk-50' : 'text-sand-300 hover:text-husk-50'
                     }`}
                   >
                     {isOpenPanel && (
@@ -115,7 +114,7 @@ export default function DockNav() {
                   onMouseEnter={close}
                   className={({ isActive }) =>
                     `relative flex items-center gap-1.5 font-heading text-[13.5px] font-medium px-4 py-2 rounded-[12px] transition-colors duration-300 ${
-                      isActive ? 'text-cream-50' : 'text-sand-300 hover:text-cream-50'
+                      isActive ? 'text-husk-50' : 'text-sand-300 hover:text-husk-50'
                     }`
                   }
                 >
@@ -127,8 +126,6 @@ export default function DockNav() {
           </div>
 
           <div className="ml-auto flex items-center gap-2.5">
-            <ThemeToggle />
-
             <button
               onClick={() => navigate('/contact')}
               className="hidden sm:inline-flex items-center gap-2 font-heading text-[13px] font-semibold text-ink-900 bg-leaf-400 hover:bg-leaf-300 px-4 py-2 rounded-[12px] transition-colors duration-200 whitespace-nowrap"
@@ -140,7 +137,7 @@ export default function DockNav() {
             <button
               aria-label="Toggle menu"
               onClick={() => { setMobileOpen((v) => !v); close() }}
-              className="md:hidden grid place-items-center w-9 h-9 rounded-[10px] text-cream-100 surface-engraved bg-white/[0.04]"
+              className="md:hidden grid place-items-center w-9 h-9 rounded-[10px] text-husk-100 surface-engraved bg-white/[0.04]"
             >
               {mobileOpen ? <X size={18} strokeWidth={1.7} /> : <Menu size={18} strokeWidth={1.7} />}
             </button>
@@ -166,7 +163,7 @@ export default function DockNav() {
                       onClick={() => setMobileOpen(false)}
                       className={({ isActive }) =>
                         `block font-heading text-[15px] font-medium px-4 py-2.5 rounded-[10px] transition-colors duration-200 ${
-                          isActive ? 'text-cream-50 bg-white/[0.06]' : 'text-sand-300 hover:text-cream-50 hover:bg-white/[0.04]'
+                          isActive ? 'text-husk-50 bg-white/[0.06]' : 'text-sand-300 hover:text-husk-50 hover:bg-white/[0.04]'
                         }`
                       }
                     >
@@ -217,7 +214,7 @@ export default function DockNav() {
                           className="group flex items-center justify-between gap-4 rounded-[10px] px-4 py-3 transition-colors duration-200 hover:bg-white/[0.05]"
                         >
                           <span>
-                            <span className="block font-heading font-semibold text-[14px] text-cream-50">{l.label}</span>
+                            <span className="block font-heading font-semibold text-[14px] text-husk-50">{l.label}</span>
                             <span className="block font-body text-[12px] text-sand-400 mt-0.5">{l.desc}</span>
                           </span>
                           <span className="text-sand-400 group-hover:text-leaf-300 group-hover:translate-x-0.5 transition-all duration-200">

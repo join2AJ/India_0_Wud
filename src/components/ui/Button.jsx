@@ -3,7 +3,7 @@ const variants = {
   accent: 'bg-leaf-500 text-husk-50 border-leaf-500 hover:bg-leaf-600 hover:border-leaf-600 hover:shadow-[var(--shadow-warm-md)]',
   secondary: 'bg-transparent text-ink-900 border-ink-900 hover:bg-ink-900 hover:text-husk-50',
   ghost: 'bg-transparent text-ink-700 border-transparent hover:bg-husk-200',
-  'on-dark': 'bg-cream-100 text-[#1C1813] border-cream-100 hover:bg-white hover:shadow-[var(--shadow-on-dark)]',
+  'on-dark': 'bg-husk-100 text-ink-900 border-husk-100 hover:bg-white hover:shadow-[var(--shadow-on-dark)]',
 }
 
 const sizes = {

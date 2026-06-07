@@ -29,7 +29,7 @@ export default function Sustainability() {
   return (
     <div>
       {/* Hero */}
-      <section className="texture-grain texture-charcoal text-cream-100 pt-20 pb-20 px-6 lg:px-10">
+      <section className="texture-grain texture-charcoal text-husk-100 pt-20 pb-20 px-6 lg:px-10">
         <div className="max-w-[900px] mx-auto text-center">
           <Reveal>
             <p className="eyebrow text-leaf-300 mb-5">The Ahimsa Design Philosophy</p>
@@ -37,7 +37,7 @@ export default function Sustainability() {
           <div className="space-y-2.5">
             {philosophy.map((line, i) => (
               <Reveal key={line} delay={i * 0.12}>
-                <p className="font-display font-medium italic text-2xl sm:text-3xl text-cream-50 text-balance">{line}</p>
+                <p className="font-display font-medium italic text-2xl sm:text-3xl text-husk-50 text-balance">{line}</p>
               </Reveal>
             ))}
           </div>
