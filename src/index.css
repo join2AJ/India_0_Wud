@@ -1,6 +1,29 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Expanded:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Night mode — flips the husk (surface) and ink (text) roles so every
+   `bg-husk-*` / `text-ink-*` utility site-wide repaints automatically,
+   without touching component markup. Accent palettes (sand/leaf/grain)
+   stay put — they read fine on both light and dark surfaces. */
+:root.dark {
+  --color-husk-50: #18140F;
+  --color-husk-100: #221D17;
+  --color-husk-200: #2C2520;
+  --color-husk-300: #3A3228;
+
+  --color-ink-900: #F5F0E4;
+  --color-ink-800: #EDE6D5;
+  --color-ink-700: #E2D8C2;
+  --color-ink-600: #C9BDA9;
+
+  --color-sand-200: #4B4133;
+
+  color-scheme: dark;
+}
+
+
 @theme {
   --font-display: 'Archivo Expanded', 'Archivo', system-ui, sans-serif;
   --font-heading: 'Archivo', system-ui, sans-serif;
@@ -69,6 +92,7 @@ body {
   background: var(--color-husk-50);
   color: var(--color-ink-600);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
 }
 
 h1, h2, h3, h4 {

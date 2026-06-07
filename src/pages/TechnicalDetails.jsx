@@ -4,7 +4,6 @@ import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import SpecCard from '../components/ui/SpecCard'
 import { matrix } from '../data/content'
-import Swatch from '../components/ui/Swatch'
 import rawMaterialImg from '../assets/process/selection-of-raw-material.webp'
 import matrixFormulationImg from '../assets/process/matrix-formulation.webp'
 import interfaceStrengthImg from '../assets/process/interface-strength.webp'
@@ -115,12 +114,16 @@ export default function TechnicalDetails() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4.5">
             {process.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08}>
-                <div className="h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)]">
-                  <Swatch ratio="4/3" rounded="rounded-none" image={p.image} label={`0${i + 1} · ${p.title}`} />
-                  <div className="p-5">
-                    <h3 className="font-heading font-bold text-base text-ink-900 mb-1.5">{p.title}</h3>
-                    <p className="text-[13.5px] leading-relaxed text-sand-500">{p.desc}</p>
+                <div className="h-full rounded-[14px] border border-sand-200 bg-white p-6 text-center shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-md)] hover:-translate-y-1">
+                  <div className="relative w-28 h-28 mx-auto mb-5">
+                    <span className="absolute inset-0 rounded-full bg-leaf-100 scale-110" aria-hidden />
+                    <img src={p.image} alt={p.title} className="relative w-full h-full rounded-full object-cover border-[3px] border-white shadow-[var(--shadow-warm-sm)]" loading="lazy" />
+                    <span className="absolute -bottom-1.5 -right-1.5 grid place-items-center w-8 h-8 rounded-full bg-leaf-600 text-husk-50 font-mono text-[12px] font-semibold border-2 border-white">
+                      {i + 1}
+                    </span>
                   </div>
+                  <h3 className="font-heading font-bold text-base text-ink-900 mb-1.5">{p.title}</h3>
+                  <p className="text-[13.5px] leading-relaxed text-sand-500">{p.desc}</p>
                 </div>
               </Reveal>
             ))}

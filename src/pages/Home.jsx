@@ -113,12 +113,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product range — raised tiles on the same dark sheet */}
-      <section id="products" className="texture-grain texture-charcoal py-20 px-6 lg:px-10 text-husk-100 border-t border-white/[0.05]">
+      {/* Product range — light husk sheet, breaks the charcoal rhythm */}
+      <section id="products" className="bg-husk-50 py-20 px-6 lg:px-10 text-ink-900 border-t border-sand-200/60">
         <div className="max-w-[1200px] mx-auto">
           <Reveal>
-            <p className="eyebrow text-leaf-300 mb-3.5">Product range</p>
-            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-husk-50 mb-9 text-balance">
+            <p className="eyebrow text-leaf-600 mb-3.5">Product range</p>
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 mb-9 text-balance">
               Five products. One zero-wood system.
             </h2>
           </Reveal>
@@ -132,15 +132,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA band — engraved leaf panel, kept warm to break the charcoal rhythm */}
-      <section className="texture-grain texture-charcoal py-24 px-6 lg:px-10 border-t border-white/[0.05]">
-        <Reveal className="max-w-[1100px] mx-auto rounded-[16px] surface-well px-8 sm:px-16 py-16 text-center relative overflow-hidden">
-          <div aria-hidden className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-leaf-500/10 blur-[100px]" />
-          <p className="eyebrow text-leaf-300 mb-4 relative">Let's build something honest</p>
-          <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-husk-50 text-balance relative">
+      {/* CTA band — leaf-tinted light close, warm contrast before the dark footer */}
+      <section className="bg-husk-100 py-24 px-6 lg:px-10 border-t border-sand-200/60">
+        <Reveal className="max-w-[1100px] mx-auto rounded-[16px] bg-leaf-100/70 border border-leaf-300/40 px-8 sm:px-16 py-16 text-center relative overflow-hidden">
+          <div aria-hidden className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-leaf-400/20 blur-[100px]" />
+          <p className="eyebrow text-leaf-700 mb-4 relative">Let's build something honest</p>
+          <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance relative">
             Ready to specify a material that doesn't cost the earth?
           </h2>
-          <p className="mt-4 text-sand-300 max-w-xl mx-auto relative">
+          <p className="mt-4 text-ink-700 max-w-xl mx-auto relative">
             Talk to our team about specifications, finishes and how Indowud NFC
             can fit into your next project — or request a physical sample today.
           </p>
@@ -155,15 +155,15 @@ export default function Home() {
 
 function ProductTile({ p, big }) {
   return (
-    <Link to="/products" className="group block h-full rounded-[14px] overflow-hidden surface-raised transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(0,0,0,0.55)]">
+    <Link to={`/products/${p.id}`} className="group block h-full rounded-[14px] overflow-hidden bg-husk-100 border border-sand-200/70 shadow-[var(--shadow-warm-sm)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[var(--shadow-warm-lg)]">
       <Swatch tone={p.tone} image={p.image} imageFit="contain" ratio={big ? '21/9' : '4/3'} rounded="rounded-none" />
       <div className="px-5 pt-4.5 pb-5">
         <div className="flex items-center gap-2.5 mb-2">
-          <h3 className="font-heading font-bold text-[20px] text-husk-50 m-0">{p.name}</h3>
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-sand-300 bg-white/[0.04] border border-white/[0.08] rounded-full px-2.5 py-1">{p.tag}</span>
+          <h3 className="font-heading font-bold text-[20px] text-ink-900 m-0">{p.name}</h3>
+          <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-sand-500 bg-sand-100 border border-sand-200 rounded-full px-2.5 py-1">{p.tag}</span>
         </div>
-        <p className={`font-body text-[14.5px] leading-relaxed text-sand-400 m-0 ${big ? 'max-w-[52ch]' : ''}`}>{p.desc}</p>
-        <span className="inline-flex items-center gap-1.5 mt-3.5 font-mono text-xs tracking-[0.06em] uppercase text-sand-400 group-hover:text-leaf-300 transition-colors duration-300">
+        <p className={`font-body text-[14.5px] leading-relaxed text-sand-500 m-0 ${big ? 'max-w-[52ch]' : ''}`}>{p.desc}</p>
+        <span className="inline-flex items-center gap-1.5 mt-3.5 font-mono text-xs tracking-[0.06em] uppercase text-sand-500 group-hover:text-leaf-600 transition-colors duration-300">
           View product <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
         </span>
       </div>

@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import AhimsaLoader from './components/ui/AhimsaLoader'
 import Home from './pages/Home'
 import Products from './pages/Products'
+import ProductCategory from './pages/ProductCategory'
+import ProductDetail from './pages/ProductDetail'
 import Sustainability from './pages/Sustainability'
 import TechnicalDetails from './pages/TechnicalDetails'
 import Suggestions from './pages/Suggestions'
@@ -65,6 +67,8 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
           <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
+          <Route path="/products/category/:slug" element={<PageTransition><ProductCategory /></PageTransition>} />
+          <Route path="/products/:id" element={<PageTransition><ProductDetail /></PageTransition>} />
           <Route path="/about-us" element={<PageTransition><Sustainability /></PageTransition>} />
           <Route path="/technical-details" element={<PageTransition><TechnicalDetails /></PageTransition>} />
           <Route path="/suggestions" element={<PageTransition><Suggestions /></PageTransition>} />

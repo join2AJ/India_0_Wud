@@ -98,7 +98,7 @@ export default function TactileHero() {
             <span className="grid place-items-center w-7 h-7 rounded-full bg-leaf-500/20 text-leaf-300">
               <AhimsaLoader size={26} />
             </span>
-            <span className="eyebrow text-leaf-300">Ahimsa Action · live material index</span>
+            <span className="eyebrow text-leaf-300">Zero-wood material library</span>
           </motion.div>
 
           <motion.h1

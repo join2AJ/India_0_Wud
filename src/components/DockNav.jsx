@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Boxes, FlaskConical, Hammer, FolderDown, Mail, Leaf, Menu, X } from 'lucide-react'
+import ThemeToggle from './ui/ThemeToggle'
 
 const EASE = [0.16, 1, 0.3, 1]
 
@@ -16,9 +17,9 @@ const items = [
       heading: 'The NFC Range',
       blurb: 'One matrix, six profiles — boards, joinery, façades and the outdoors, all engineered from the same rice-husk composite.',
       links: [
-        { to: '/products', label: 'Boards & Doors', desc: 'The hero panel and pre-engineered shutters' },
-        { to: '/products', label: 'Frames & Jaali', desc: 'Joinery and CNC-routed façade screens' },
-        { to: '/products', label: 'Decking & Fence', desc: 'Outdoor profiles built for every season' },
+        { to: '/products/category/boards-doors', label: 'Boards & Doors', desc: 'The hero panel and pre-engineered shutters' },
+        { to: '/products/category/frames-jaali', label: 'Frames & Jaali', desc: 'Joinery and CNC-routed façade screens' },
+        { to: '/products/category/decking-fence', label: 'Decking & Fence', desc: 'Outdoor profiles built for every season' },
       ],
     },
   },
@@ -125,21 +126,25 @@ export default function DockNav() {
             })}
           </div>
 
-          <button
-            onClick={() => navigate('/contact')}
-            className="hidden sm:inline-flex ml-auto items-center gap-2 font-heading text-[13px] font-semibold text-ink-900 bg-leaf-400 hover:bg-leaf-300 px-4 py-2 rounded-[12px] transition-colors duration-200 whitespace-nowrap"
-          >
-            Request a sample
-            <ArrowUpRight size={14} />
-          </button>
+          <div className="ml-auto flex items-center gap-2.5">
+            <ThemeToggle />
 
-          <button
-            aria-label="Toggle menu"
-            onClick={() => { setMobileOpen((v) => !v); close() }}
-            className="md:hidden ml-auto grid place-items-center w-9 h-9 rounded-[10px] text-husk-100 surface-engraved bg-white/[0.04]"
-          >
-            {mobileOpen ? <X size={18} strokeWidth={1.7} /> : <Menu size={18} strokeWidth={1.7} />}
-          </button>
+            <button
+              onClick={() => navigate('/contact')}
+              className="hidden sm:inline-flex items-center gap-2 font-heading text-[13px] font-semibold text-ink-900 bg-leaf-400 hover:bg-leaf-300 px-4 py-2 rounded-[12px] transition-colors duration-200 whitespace-nowrap"
+            >
+              Request a sample
+              <ArrowUpRight size={14} />
+            </button>
+
+            <button
+              aria-label="Toggle menu"
+              onClick={() => { setMobileOpen((v) => !v); close() }}
+              className="md:hidden grid place-items-center w-9 h-9 rounded-[10px] text-husk-100 surface-engraved bg-white/[0.04]"
+            >
+              {mobileOpen ? <X size={18} strokeWidth={1.7} /> : <Menu size={18} strokeWidth={1.7} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile drawer — flat link list, same engraved surface, slides
