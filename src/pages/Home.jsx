@@ -84,7 +84,7 @@ export default function Home() {
           <Reveal className="text-center max-w-2xl mx-auto mb-12">
             <p className="eyebrow text-leaf-600 mb-3.5">Eighteen reasons, one material</p>
             <h2 className="font-heading font-bold text-[clamp(1.5rem,3.5vw,2.1rem)] tracking-[-0.02em] text-ink-900 text-balance">
-              Everything plywood promises - and the things it never delivered
+              Everything plywood promises
             </h2>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
