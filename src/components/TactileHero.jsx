@@ -76,7 +76,7 @@ function TiltCard({ item, index }) {
 
 export default function TactileHero() {
   return (
-    <section className="texture-grain texture-charcoal relative pt-12 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
+    <section className="texture-grain texture-charcoal relative pt-8 pb-24 px-6 lg:px-10 overflow-hidden text-husk-100">
       {/* Ambient glow — breathing radial wash that keeps the matte charcoal
           from reading as inert flat colour. */}
       <motion.div
