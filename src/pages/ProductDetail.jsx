@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Package, Download, BadgeCheck, Droplet, Bug, Flame, Anvil } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
@@ -38,6 +39,20 @@ export default function ProductDetail() {
       transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
       className="max-w-[1200px] mx-auto px-6 lg:px-10 pt-16 pb-20"
     >
+      <Seo
+        title={product.name}
+        description={product.desc}
+        path={`/products/${product.id}`}
+        type="product"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.name,
+          description: product.desc,
+          brand: { '@type': 'Brand', name: 'Indowud NFC' },
+          category: category?.label,
+        }}
+      />
       <Link to={`/products/category/${product.category}`} className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.08em] uppercase text-sand-500 hover:text-ink-900 transition-colors duration-200 mb-7">
         <ArrowLeft size={15} /> {category?.label || 'All products'}
       </Link>

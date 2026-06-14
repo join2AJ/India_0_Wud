@@ -1,0 +1,27 @@
+<!doctype html>
+<!--
+  Static form for Netlify's build-time form detection. Netlify scans HTML
+  files in the publish directory for `data-netlify="true"` forms - the real
+  contact form rendered by Contact.jsx (same name and fields) submits to this
+  registration via fetch. This page is never linked or shown to visitors.
+-->
+<html>
+  <body>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="company" />
+      <select name="reason">
+        <option value="Request a material sample">Request a material sample</option>
+        <option value="Get a project quote">Get a project quote</option>
+        <option value="Become a dealer / distributor">Become a dealer / distributor</option>
+        <option value="Technical specification support">Technical specification support</option>
+        <option value="Something else">Something else</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>

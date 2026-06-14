@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Flame, TreePine, Wind, Users, Factory, Sprout, ArrowRight, Quote } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import CountUp from '../components/ui/CountUp'
@@ -51,6 +52,11 @@ const chapters = [
 export default function CaseStudy() {
   return (
     <div>
+      <Seo
+        title="Case Study"
+        description="How rice-husk waste becomes a forest-saving building material - the story behind Indowud NFC's closed-loop manufacturing."
+        path="/case-study"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[62vh] flex items-center pt-24 pb-20 px-6 lg:px-10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.16]" aria-hidden>
           <img src={riceFieldsImg} alt="" className="w-full h-full object-cover" />

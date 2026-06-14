@@ -1,0 +1,42 @@
+# Indowud NFC — robots.txt
+# Allow all search engine and AI assistant crawlers full access so the site's
+# material story, products and journal can be indexed and cited.
+
+User-agent: *
+Allow: /
+
+# AI assistant / LLM crawlers - explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://india-0-wud.netlify.app/sitemap.xml

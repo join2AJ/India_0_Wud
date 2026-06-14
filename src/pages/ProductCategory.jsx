@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Badge from '../components/ui/Badge'
 import Swatch from '../components/ui/Swatch'
@@ -19,6 +20,7 @@ export default function ProductCategory() {
 
   return (
     <div className="bg-husk-50 min-h-screen">
+      <Seo title={category.label} description={category.blurb} path={`/products/category/${category.slug}`} />
       <section className="pt-16 pb-14 px-6 lg:px-10">
         <div className="max-w-[1200px] mx-auto">
           <Link to="/products" className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.08em] uppercase text-sand-500 hover:text-ink-900 transition-colors duration-200 mb-7">

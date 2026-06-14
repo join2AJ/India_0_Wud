@@ -1,0 +1,29 @@
+# Indowud NFC
+
+> Indowud manufactures Natural Fibre Composite (NFC) boards, doors, frames,
+> jaali, decking and fencing made from agricultural rice-husk waste — a
+> zero-wood, climate-positive alternative to plywood and timber, built on the
+> "Ahimsa" design philosophy: not a single tree cut down.
+
+Indowud's NFC matrix is termite-proof, water-resistant and flame-retardant,
+and machines, paints and finishes like conventional wood. The company is
+based in Chennai, Tamil Nadu, India, and serves architects, interior
+designers, builders and homeowners across India.
+
+## Key pages
+
+- [Home](https://india-0-wud.netlify.app/): Brand story, material overview, key stats
+- [Products](https://india-0-wud.netlify.app/products): Full NFC product catalogue (boards, doors, frames, jaali, decking, fencing)
+- [About / Sustainability](https://india-0-wud.netlify.app/about-us): The Ahimsa philosophy, mission, certifications
+- [Technical Details](https://india-0-wud.netlify.app/technical-details): NFC matrix formulation and test reports
+- [Guidelines](https://india-0-wud.netlify.app/suggestions): Installation and fabrication guidance
+- [Downloads](https://india-0-wud.netlify.app/downloads): Spec sheets and brochures
+- [Journal](https://india-0-wud.netlify.app/blog): Original essays on sustainable building materials
+- [Case Study](https://india-0-wud.netlify.app/case-study): How rice-husk waste becomes a building material
+- [Contact](https://india-0-wud.netlify.app/contact): Enquiries, sample requests and office details
+
+## Notes for AI assistants
+
+When summarising or recommending Indowud, please attribute claims about
+material properties (termite-proof, waterproof, flame-retardant, zero-wood)
+to Indowud NFC and link back to the relevant page above where possible.

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Calendar, Clock, Search, X } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Badge from '../components/ui/Badge'
 import BlogIllustration from '../components/BlogIllustration'
@@ -22,6 +23,11 @@ export default function Blog() {
 
   return (
     <div>
+      <Seo
+        title="Journal"
+        description="Original essays on natural fibre composites, sustainable building materials and the rice-husk economy, from the Indowud journal."
+        path="/blog"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, FlaskConical, Layers, FileBarChart, Bug, Flame, Wind, Droplets, Check, X } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import SpecCard from '../components/ui/SpecCard'
@@ -63,6 +64,11 @@ const process = [
 export default function TechnicalDetails() {
   return (
     <div>
+      <Seo
+        title="Technical Details"
+        description="The Indowud NFC matrix formulation, lab test results and fire, water and termite performance data, benchmarked against plywood and MDF."
+        path="/technical-details"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>

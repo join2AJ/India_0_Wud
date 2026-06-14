@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, BadgeCheck, Globe, FileCheck, Trees, Wind, CloudRain, Shapes, ShieldCheck, Recycle, Target, Eye, Award } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
@@ -36,6 +37,11 @@ const benefitIcons = { trees: Trees, wind: Wind, 'cloud-rain': CloudRain, shapes
 export default function Sustainability() {
   return (
     <div>
+      <Seo
+        title="About & Sustainability"
+        description="The Ahimsa philosophy behind Indowud NFC - mission, vision, certifications and why a zero-wood composite means not a single tree is cut down."
+        path="/about-us"
+      />
       {/* Hero */}
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[58vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[900px] mx-auto text-center">

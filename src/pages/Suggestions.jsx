@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Hammer, Layers3, Flame, Ruler, Wrench, Scissors, Drill, PaintBucket, Printer, Layers, Thermometer } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
@@ -70,6 +71,11 @@ const guidelines = [
 export default function Suggestions() {
   return (
     <div>
+      <Seo
+        title="Installation Guidelines"
+        description="Framing, fixing, edge protection and thermoforming guidelines for fabricating and installing Indowud NFC boards, doors, frames and decking."
+        path="/suggestions"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>

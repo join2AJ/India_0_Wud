@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Download, FileText, BookOpen, Layers, Languages, CheckCircle2 } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
@@ -21,6 +22,11 @@ export default function Downloads() {
 
   return (
     <div>
+      <Seo
+        title="Downloads"
+        description="Download Indowud NFC brochures, technical guidelines and full product catalogue specification sheets."
+        path="/downloads"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>

@@ -1,5 +1,6 @@
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Clock, CircleCheck } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -17,6 +18,21 @@ export default function BlogPost() {
 
   return (
     <div>
+      <Seo
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title,
+          description: post.excerpt,
+          author: { '@type': 'Organization', name: 'Indowud NFC' },
+          publisher: { '@type': 'Organization', name: 'Indowud NFC' },
+          mainEntityOfPage: `https://india-0-wud.netlify.app/blog/${post.slug}`,
+        }}
+      />
       <section className="relative texture-grain texture-charcoal text-husk-100 min-h-[40vh] flex items-end pt-24 pb-0 px-6 lg:px-10 overflow-hidden">
         <div className="relative max-w-[760px] mx-auto text-center pb-10">
           <Reveal>

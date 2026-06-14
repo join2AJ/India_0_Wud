@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import Swatch from '../components/ui/Swatch'
@@ -8,6 +9,11 @@ import { products, categories } from '../data/content'
 export default function Products() {
   return (
     <div className="bg-husk-50 min-h-screen">
+      <Seo
+        title="Products"
+        description="Browse the full Indowud NFC range - boards, doors, frames, jaali, decking and fencing, all engineered from a single zero-wood rice-husk composite matrix."
+        path="/products"
+      />
       <section className="pt-16 pb-14 px-6 lg:px-10">
         <div className="max-w-[1200px] mx-auto">
           <Reveal>

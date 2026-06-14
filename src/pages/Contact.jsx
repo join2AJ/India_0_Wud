@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageCircleQuestion, FileText, Hammer } from 'lucide-react'
+import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
 import factoryAerial from '../assets/photos/factory-aerial-2.jpg'
@@ -36,16 +37,37 @@ const nextSteps = [
   { Icon: Hammer, title: 'We support the build', desc: 'From sample dispatch to on-site guidance, we stay with you through installation.' },
 ]
 
+function encodeFormData(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&')
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    const form = e.target
+    const data = Object.fromEntries(new FormData(form))
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData({ 'form-name': 'contact', ...data }),
+    })
+      .then(() => setSubmitted(true))
+      .catch(() => setError(true))
   }
 
   return (
     <div>
+      <Seo
+        title="Contact"
+        description="Get in touch with Indowud NFC for material samples, project quotes, dealership enquiries and technical specification support."
+        path="/contact"
+      />
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[760px] mx-auto text-center">
           <Reveal>
@@ -108,7 +130,9 @@ export default function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-6">
+                  <input type="hidden" name="form-name" value="contact" />
+                  <input type="text" name="bot-field" className="hidden" tabIndex="-1" autoComplete="off" />
                   <div className="grid sm:grid-cols-2 gap-6">
                     {fields.map((f) => (
                       <label key={f.name} className="block text-left">
@@ -147,6 +171,11 @@ export default function Contact() {
                       className="mt-2 w-full rounded-[5px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/15 resize-none"
                     />
                   </label>
+                  {error && (
+                    <p className="text-sm text-[#A64B36]">
+                      Something went wrong sending your message - please try again or email us directly.
+                    </p>
+                  )}
                   <Button type="submit" variant="accent" size="lg" iconRight={<Send size={15} />}>
                     Send message
                   </Button>
