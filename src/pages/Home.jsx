@@ -278,16 +278,16 @@ export default function Home() {
                 { letter: 'A', Icon: Sprout,      title: 'Agricultural-husk made', sub: 'Preventing air pollution from husk burning.' },
               ].map(({ letter, Icon, title, sub }, i) => (
                 <Reveal key={i} delay={i * 0.07}>
-                  <div className="flex items-center gap-5 py-5">
-                    <span className="w-9 shrink-0 font-display font-extrabold text-[2rem] tracking-[-0.03em] text-leaf-600/30 leading-none select-none">
+                  <div className="flex items-center gap-6 py-6">
+                    <span className="w-12 shrink-0 font-display font-extrabold text-[2.6rem] tracking-[-0.04em] text-leaf-600/40 leading-none select-none">
                       {letter}
                     </span>
-                    <div className="flex items-center justify-center w-10 h-10 shrink-0 rounded-[10px] bg-leaf-100">
-                      <Icon size={18} strokeWidth={1.6} className="text-leaf-700" />
+                    <div className="flex items-center justify-center w-11 h-11 shrink-0 rounded-[11px] bg-leaf-100">
+                      <Icon size={20} strokeWidth={1.5} className="text-leaf-700" />
                     </div>
                     <div>
-                      <p className="font-heading font-semibold text-[15px] text-ink-900">{title}</p>
-                      <p className="text-[13px] text-sand-400 mt-0.5">{sub}</p>
+                      <p className="font-heading font-bold text-[16.5px] text-ink-900 tracking-[-0.01em]">{title}</p>
+                      <p className="text-[13.5px] text-sand-400 mt-1 font-medium">{sub}</p>
                     </div>
                   </div>
                 </Reveal>
