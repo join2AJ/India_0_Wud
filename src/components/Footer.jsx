@@ -184,8 +184,8 @@ export default function Footer() {
           Pointer-events are off so every nav link underneath stays clickable. */}
       <div
         aria-hidden
-        className="hidden lg:block absolute bottom-0 right-0 w-[480px] opacity-[0.22]"
-        style={{ pointerEvents: 'none', zIndex: 0 }}
+        className="hidden lg:block absolute w-[460px] opacity-[0.22]"
+        style={{ pointerEvents: 'none', zIndex: 0, bottom: '2rem', right: '2.5rem' }}
       >
         <DeerFamily />
       </div>
