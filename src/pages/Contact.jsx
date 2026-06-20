@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageCircleQuestion, FileText, Hammer } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageCircleQuestion, FileText, Hammer, AlertCircle } from 'lucide-react'
 import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
@@ -9,13 +9,6 @@ import factoryInterior from '../assets/photos/factory-interior.jpg'
 
 const officeAddress = 'First Floor, New, 30, 1st Main Rd E, Shenoy Nagar, Chennai, Tamil Nadu 600030'
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(officeAddress)}&output=embed`
-
-const fields = [
-  { name: 'name', label: 'Full name', type: 'text', required: true },
-  { name: 'email', label: 'Email address', type: 'email', required: true },
-  { name: 'phone', label: 'Phone number', type: 'tel', required: false },
-  { name: 'company', label: 'Company / Studio', type: 'text', required: false },
-]
 
 const reasons = [
   'Request a material sample',
@@ -37,29 +30,152 @@ const nextSteps = [
   { Icon: Hammer, title: 'We support the build', desc: 'From sample dispatch to on-site guidance, we stay with you through installation.' },
 ]
 
+// ── Validation rules ───────────────────────────────────────────────────────
+
+// Rejects strings that contain obvious HTML/script injection patterns.
+// React already escapes output, but this catches bad intent at entry.
+const INJECTION = /<[a-z!/?]|javascript:|on[a-z]+=|data:/i
+
+function validateName(v) {
+  const s = v.trim()
+  if (!s) return 'Full name is required.'
+  if (s.length < 2) return 'Name must be at least 2 characters.'
+  if (s.length > 100) return 'Name must be under 100 characters.'
+  if (INJECTION.test(s)) return 'Name contains invalid characters.'
+  if (/[<>{}[\]\\]/.test(s)) return 'Please remove special characters from the name.'
+  return ''
+}
+
+function validateEmail(v) {
+  const s = v.trim()
+  if (!s) return 'Email address is required.'
+  // RFC-5321-ish: user@domain.tld with common characters
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s)) return 'Please enter a valid email address.'
+  if (INJECTION.test(s)) return 'Email contains invalid characters.'
+  if (s.length > 254) return 'Email address is too long.'
+  return ''
+}
+
+function validatePhone(v) {
+  if (!v.trim()) return '' // optional field
+  // Accept: optional +91 / 0 / 91 prefix, then 10 digits starting with 6–9
+  const digits = v.trim().replace(/[\s\-().]/g, '')
+  if (!/^(\+91|91|0)?[6-9]\d{9}$/.test(digits)) {
+    return 'Enter a valid 10-digit Indian mobile number (e.g. 98765 43210).'
+  }
+  return ''
+}
+
+function validateCompany(v) {
+  if (!v.trim()) return '' // optional
+  if (v.trim().length > 100) return 'Company name must be under 100 characters.'
+  if (INJECTION.test(v)) return 'Company name contains invalid characters.'
+  return ''
+}
+
+function validateReason(v) {
+  if (!v || !reasons.includes(v)) return 'Please select a reason for reaching out.'
+  return ''
+}
+
+function validateMessage(v) {
+  const s = v.trim()
+  if (!s) return 'Please tell us about your project.'
+  if (s.length < 10) return 'Message is too short — a brief description helps us respond better.'
+  if (s.length > 2000) return 'Message must be under 2000 characters.'
+  if (INJECTION.test(s)) return 'Message contains invalid characters.'
+  return ''
+}
+
+const validators = { name: validateName, email: validateEmail, phone: validatePhone, company: validateCompany, reason: validateReason, message: validateMessage }
+
+function validate(data) {
+  return Object.fromEntries(
+    Object.entries(validators).map(([field, fn]) => [field, fn(data[field] ?? '')])
+  )
+}
+
+// ── Encoding for Netlify Forms ─────────────────────────────────────────────
+
 function encodeFormData(data) {
   return Object.keys(data)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&')
 }
 
+// ── Shared field wrapper ───────────────────────────────────────────────────
+
+function FieldWrap({ label, required, error, touched, children }) {
+  const showError = touched && error
+  return (
+    <label className="block text-left">
+      <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">
+        {label}{required && ' *'}
+      </span>
+      {children(showError)}
+      {showError && (
+        <span className="flex items-center gap-1 mt-1.5 text-[11px] text-[#A64B36]">
+          <AlertCircle size={11} />
+          {error}
+        </span>
+      )}
+    </label>
+  )
+}
+
+const inputClass = (showError) =>
+  `mt-2 w-full rounded-[5px] border bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:ring-2 ${
+    showError
+      ? 'border-[#A64B36] focus:border-[#A64B36] focus:ring-[#A64B36]/15'
+      : 'border-sand-200 focus:border-leaf-500 focus:ring-leaf-500/15'
+  }`
+
+// ── Main component ─────────────────────────────────────────────────────────
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
+  const [values, setValues] = useState({ name: '', email: '', phone: '', company: '', reason: '', message: '' })
+  const [touched, setTouched] = useState({})
+  const [errors, setErrors] = useState({})
+
+  const handleChange = useCallback((field, value) => {
+    setValues((v) => ({ ...v, [field]: value }))
+    if (touched[field]) {
+      setErrors((e) => ({ ...e, [field]: validators[field](value) }))
+    }
+  }, [touched])
+
+  const handleBlur = useCallback((field) => {
+    setTouched((t) => ({ ...t, [field]: true }))
+    setErrors((e) => ({ ...e, [field]: validators[field](values[field] ?? '') }))
+  }, [values])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const form = e.target
-    const data = Object.fromEntries(new FormData(form))
 
+    // Mark all fields touched and run full validation on submit
+    const allTouched = Object.fromEntries(Object.keys(validators).map((k) => [k, true]))
+    setTouched(allTouched)
+    const errs = validate(values)
+    setErrors(errs)
+    if (Object.values(errs).some(Boolean)) return // abort if any error
+
+    const sanitised = Object.fromEntries(
+      Object.entries(values).map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v])
+    )
+
+    setSubmitError(false)
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encodeFormData({ 'form-name': 'contact', ...data }),
+      body: encodeFormData({ 'form-name': 'contact', ...sanitised }),
     })
       .then(() => setSubmitted(true))
-      .catch(() => setError(true))
+      .catch(() => setSubmitError(true))
   }
+
+  const hasErrors = Object.values(errors).some(Boolean)
 
   return (
     <div>
@@ -130,52 +246,137 @@ export default function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                  noValidate
+                >
                   <input type="hidden" name="form-name" value="contact" />
+                  {/* Honeypot — hidden from real users, bots fill it in */}
                   <input type="text" name="bot-field" className="hidden" tabIndex="-1" autoComplete="off" />
+
                   <div className="grid sm:grid-cols-2 gap-6">
-                    {fields.map((f) => (
-                      <label key={f.name} className="block text-left">
-                        <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">
-                          {f.label}{f.required && ' *'}
-                        </span>
+                    {/* Name */}
+                    <FieldWrap label="Full name" required error={errors.name} touched={touched.name}>
+                      {(showError) => (
                         <input
-                          type={f.type}
-                          name={f.name}
-                          required={f.required}
-                          className="mt-2 w-full rounded-[5px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/15"
+                          type="text"
+                          name="name"
+                          value={values.name}
+                          onChange={(e) => handleChange('name', e.target.value)}
+                          onBlur={() => handleBlur('name')}
+                          autoComplete="name"
+                          maxLength={100}
+                          className={inputClass(showError)}
                         />
-                      </label>
-                    ))}
+                      )}
+                    </FieldWrap>
+
+                    {/* Email */}
+                    <FieldWrap label="Email address" required error={errors.email} touched={touched.email}>
+                      {(showError) => (
+                        <input
+                          type="email"
+                          name="email"
+                          value={values.email}
+                          onChange={(e) => handleChange('email', e.target.value)}
+                          onBlur={() => handleBlur('email')}
+                          autoComplete="email"
+                          maxLength={254}
+                          className={inputClass(showError)}
+                        />
+                      )}
+                    </FieldWrap>
+
+                    {/* Phone */}
+                    <FieldWrap label="Phone number" error={errors.phone} touched={touched.phone}>
+                      {(showError) => (
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={values.phone}
+                          onChange={(e) => handleChange('phone', e.target.value)}
+                          onBlur={() => handleBlur('phone')}
+                          autoComplete="tel"
+                          placeholder="+91 98765 43210"
+                          maxLength={15}
+                          className={inputClass(showError)}
+                        />
+                      )}
+                    </FieldWrap>
+
+                    {/* Company */}
+                    <FieldWrap label="Company / Studio" error={errors.company} touched={touched.company}>
+                      {(showError) => (
+                        <input
+                          type="text"
+                          name="company"
+                          value={values.company}
+                          onChange={(e) => handleChange('company', e.target.value)}
+                          onBlur={() => handleBlur('company')}
+                          autoComplete="organization"
+                          maxLength={100}
+                          className={inputClass(showError)}
+                        />
+                      )}
+                    </FieldWrap>
                   </div>
-                  <label className="block text-left">
-                    <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">What can we help with? *</span>
-                    <select
-                      name="reason"
-                      required
-                      defaultValue=""
-                      className="mt-2 w-full rounded-[5px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/15"
-                    >
-                      <option value="" disabled>Select a reason for reaching out</option>
-                      {reasons.map((r) => (
-                        <option key={r} value={r}>{r}</option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="block text-left">
-                    <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">Tell us about your project *</span>
-                    <textarea
-                      name="message"
-                      required
-                      rows={5}
-                      className="mt-2 w-full rounded-[5px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm text-ink-900 outline-none transition-all duration-200 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/15 resize-none"
-                    />
-                  </label>
-                  {error && (
-                    <p className="text-sm text-[#A64B36]">
-                      Something went wrong sending your message - please try again or email us directly.
+
+                  {/* Reason */}
+                  <FieldWrap label="What can we help with?" required error={errors.reason} touched={touched.reason}>
+                    {(showError) => (
+                      <select
+                        name="reason"
+                        value={values.reason}
+                        onChange={(e) => handleChange('reason', e.target.value)}
+                        onBlur={() => handleBlur('reason')}
+                        className={inputClass(showError)}
+                      >
+                        <option value="">Select a reason for reaching out</option>
+                        {reasons.map((r) => (
+                          <option key={r} value={r}>{r}</option>
+                        ))}
+                      </select>
+                    )}
+                  </FieldWrap>
+
+                  {/* Message */}
+                  <FieldWrap label="Tell us about your project" required error={errors.message} touched={touched.message}>
+                    {(showError) => (
+                      <>
+                        <textarea
+                          name="message"
+                          value={values.message}
+                          onChange={(e) => handleChange('message', e.target.value)}
+                          onBlur={() => handleBlur('message')}
+                          rows={5}
+                          maxLength={2000}
+                          className={`${inputClass(showError)} resize-none`}
+                        />
+                        <span className="block text-right text-[10px] text-sand-400 mt-1">
+                          {values.message.length} / 2000
+                        </span>
+                      </>
+                    )}
+                  </FieldWrap>
+
+                  {submitError && (
+                    <p className="flex items-center gap-2 text-sm text-[#A64B36]">
+                      <AlertCircle size={14} />
+                      Something went wrong — please try again or email us directly at info@indowud.com
                     </p>
                   )}
+
+                  {hasErrors && touched.name && (
+                    <p className="text-[11px] text-sand-400">
+                      Please fix the errors above before sending.
+                    </p>
+                  )}
+
                   <Button type="submit" variant="accent" size="lg" iconRight={<Send size={15} />}>
                     Send message
                   </Button>
@@ -230,7 +431,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* What happens next - sets expectations for the journey from enquiry to install */}
+      {/* What happens next */}
       <section className="pb-24 px-6 lg:px-10">
         <div className="max-w-[1200px] mx-auto">
           <Reveal>
