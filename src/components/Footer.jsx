@@ -30,98 +30,168 @@ const cols = [
   ]},
 ]
 
-// Deer family silhouette — stag, doe and fawn — rendered as a single SVG so
-// it scales cleanly at any footer width. The trio lives because the forest
-// does: a quiet visual reminder of the Ahimsa promise.
-function DeerFamily({ className }) {
+// Deer family rendered entirely as filled SVG paths so it scales perfectly
+// at any size. Pointer-events are disabled — the illustration sits behind the
+// nav columns and never blocks a click. Opacity is kept low enough to keep
+// every link readable while still making the family clearly visible.
+function DeerFamily() {
   return (
-    <svg viewBox="0 0 860 210" className={className} aria-hidden fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      {/* ── DOE (left) ─────────────────────────────────── */}
-      {/* body */}
-      <path d="M52,168 C52,138 75,112 138,107 C200,102 272,115 280,140 C287,160 262,173 210,175 C148,177 52,172 52,168 Z" />
-      {/* neck */}
-      <path d="M102,110 C104,93 112,76 122,63 C126,57 134,52 134,52 L140,58 C140,58 132,63 129,68 C119,81 113,97 112,112 Z" />
-      {/* head */}
-      <path d="M118,30 C118,17 130,8 144,11 C158,14 167,26 163,40 C159,52 147,57 134,53 C121,49 118,41 118,30 Z" />
-      {/* muzzle */}
-      <path d="M155,46 C162,44 170,48 172,56 C168,58 160,56 155,52 Z" />
-      {/* ear */}
-      <path d="M119,25 C109,14 106,1 116,-3 C125,-7 134,8 130,24 Z" />
-      {/* front legs */}
-      <path d="M118,170 C116,182 117,200 115,205 C113,207 109,207 109,204 C108,199 110,181 108,168 Z" />
-      <path d="M143,172 C141,184 142,200 140,204 C138,207 134,207 134,204 C133,199 136,183 134,171 Z" />
-      {/* back legs */}
-      <path d="M222,170 C220,182 221,200 219,204 C217,207 213,207 213,204 C212,199 214,181 212,169 Z" />
-      <path d="M248,167 C246,180 247,197 245,202 C243,205 239,205 239,202 C238,197 240,179 238,166 Z" />
-      {/* tail */}
-      <path d="M278,126 C290,120 298,130 293,142 C289,151 276,148 276,138 Z" />
+    <svg
+      viewBox="0 0 520 310"
+      aria-hidden
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ fill: '#F5F0E4', pointerEvents: 'none', display: 'block', width: '100%', height: '100%' }}
+    >
+      {/* ─── DOE (left, medium) ──────────────────────────── */}
+      {/* Body */}
+      <ellipse cx="115" cy="218" rx="88" ry="42" />
+      {/* Neck – thick tapered slab angled forward-up */}
+      <path d="M75,182 C72,164 65,148 56,136 L70,130 C80,142 88,158 92,178 Z" />
+      {/* Head – elongated oval */}
+      <ellipse cx="50" cy="122" rx="26" ry="18" transform="rotate(-15 50 122)" />
+      {/* Ear back */}
+      <path d="M36,112 C28,96 27,80 36,76 C44,72 52,88 48,110 Z" />
+      {/* Ear forward */}
+      <path d="M62,108 C68,92 76,82 84,88 C90,94 82,110 70,112 Z" />
+      {/* Muzzle */}
+      <ellipse cx="72" cy="126" rx="14" ry="10" transform="rotate(-10 72 126)" />
+      {/* Front legs */}
+      <path d="M72,256 C70,270 71,292 69,298 C67,301 62,301 62,297 C61,292 63,270 62,255 Z" />
+      <path d="M96,260 C94,274 95,296 93,302 C91,305 86,305 86,301 C85,296 87,274 86,259 Z" />
+      {/* Back legs */}
+      <path d="M155,256 C153,270 154,292 152,298 C150,301 145,301 145,297 C144,292 146,270 145,255 Z" />
+      <path d="M176,252 C174,266 175,288 173,294 C171,297 166,297 166,293 C165,288 167,266 166,251 Z" />
+      {/* Tail */}
+      <path d="M200,200 C212,193 220,204 215,216 C210,226 198,223 198,213 Z" />
 
-      {/* ── FAWN (centre, smallest) ─────────────────────── */}
-      {/* body */}
-      <path d="M356,172 C356,152 370,138 408,135 C445,132 474,144 475,163 C476,175 460,182 422,183 C382,184 356,176 356,172 Z" />
-      {/* neck */}
-      <path d="M432,137 C434,124 441,113 449,107 C452,105 457,103 457,103 L461,108 C461,108 457,110 454,113 C446,119 440,130 439,138 Z" />
-      {/* head */}
-      <path d="M442,90 C442,80 452,74 462,77 C472,80 478,90 474,100 C470,109 460,113 450,110 C440,106 442,99 442,90 Z" />
-      {/* muzzle */}
-      <path d="M469,103 C475,101 481,105 483,111 C479,113 473,111 469,107 Z" />
-      {/* ear */}
-      <path d="M443,86 C435,76 433,66 441,63 C448,60 455,73 452,85 Z" />
-      {/* front legs */}
-      <path d="M372,178 C370,188 371,202 369,206 C367,208 364,208 363,205 C363,201 365,187 363,176 Z" />
-      <path d="M390,179 C388,189 389,203 387,207 C385,209 382,209 381,206 C381,202 383,188 381,178 Z" />
-      {/* back legs */}
-      <path d="M440,177 C438,187 439,201 437,205 C435,207 432,207 431,204 C431,200 433,186 431,176 Z" />
-      <path d="M455,175 C453,185 454,199 452,203 C450,205 447,205 446,202 C446,198 448,184 446,174 Z" />
+      {/* ─── FAWN (centre, smallest) ─────────────────────── */}
+      {/* Body */}
+      <ellipse cx="298" cy="232" rx="60" ry="32" />
+      {/* Neck */}
+      <path d="M263,206 C260,193 256,181 250,172 L260,167 C267,176 272,188 274,204 Z" />
+      {/* Head */}
+      <ellipse cx="246" cy="160" rx="20" ry="14" transform="rotate(-12 246 160)" />
+      {/* Ear back */}
+      <path d="M234,152 C227,139 226,126 234,123 C241,120 248,133 244,150 Z" />
+      {/* Ear forward */}
+      <path d="M256,148 C261,135 268,126 275,131 C280,136 273,150 263,152 Z" />
+      {/* Muzzle */}
+      <ellipse cx="262" cy="163" rx="11" ry="8" transform="rotate(-8 262 163)" />
+      {/* Front legs */}
+      <path d="M262,260 C260,272 261,290 259,295 C257,298 253,298 253,294 C252,289 254,271 253,258 Z" />
+      <path d="M280,264 C278,276 279,294 277,299 C275,302 271,302 271,298 C270,293 272,275 271,262 Z" />
+      {/* Back legs */}
+      <path d="M322,260 C320,272 321,290 319,295 C317,298 313,298 313,294 C312,289 314,271 313,258 Z" />
+      <path d="M340,256 C338,268 339,286 337,291 C335,294 331,294 331,290 C330,285 332,267 331,254 Z" />
+      {/* Tail */}
+      <path d="M357,218 C366,212 374,222 370,232 C366,240 356,237 356,229 Z" />
 
-      {/* ── STAG (right, largest, with antlers) ─────────── */}
-      {/* body */}
-      <path d="M548,162 C548,118 582,88 668,85 C754,82 808,110 808,145 C808,170 780,180 706,182 C622,184 548,172 548,162 Z" />
-      {/* neck */}
-      <path d="M604,92 C602,72 596,54 588,40 C584,33 578,27 578,27 L586,22 C586,22 592,28 597,36 C606,51 612,70 614,93 Z" />
-      {/* head */}
-      <path d="M568,10 C568,-5 583,-15 599,-11 C615,-7 624,7 618,22 C612,35 598,40 583,35 C568,30 568,22 568,10 Z" />
-      {/* muzzle */}
-      <path d="M610,25 C618,21 627,25 630,34 C625,37 616,34 611,29 Z" />
-      {/* ear left */}
-      <path d="M569,5 C558,-8 556,-22 567,-26 C577,-30 588,-12 584,5 Z" />
-      {/* ear right */}
-      <path d="M608,1 C613,-13 621,-22 629,-17 C637,-12 630,4 618,8 Z" />
+      {/* ─── STAG (right, tallest, antlers) ─────────────── */}
+      {/* Body */}
+      <ellipse cx="440" cy="205" rx="72" ry="52" transform="rotate(-5 440 205)" />
+      {/* Neck – broad and powerful */}
+      <path d="M397,162 C392,142 383,122 373,108 L387,101 C398,115 407,136 412,158 Z" />
+      {/* Head */}
+      <ellipse cx="367" cy="94" rx="30" ry="21" transform="rotate(-18 367 94)" />
+      {/* Ear back */}
+      <path d="M350,82 C341,64 340,47 350,43 C359,39 368,56 363,80 Z" />
+      {/* Ear forward */}
+      <path d="M380,77 C387,59 396,48 405,55 C412,61 403,78 390,81 Z" />
+      {/* Muzzle */}
+      <ellipse cx="386" cy="99" rx="16" ry="11" transform="rotate(-15 386 99)" />
 
-      {/* antlers — left beam */}
-      <path d="M578,22 C574,8 566,-12 558,-30 C557,-33 560,-35 562,-33 C570,-15 577,5 582,20 Z" />
-      {/* left brow tine */}
-      <path d="M565,-8 C558,-17 548,-24 541,-28 C539,-30 541,-33 543,-31 C550,-27 560,-20 568,-10 Z" />
-      {/* left bez tine */}
-      <path d="M558,-20 C555,-30 555,-42 560,-50 C561,-52 564,-50 563,-48 C559,-41 560,-30 563,-19 Z" />
-      {/* left top fork */}
-      <path d="M562,-30 C567,-40 574,-48 580,-52 C581,-54 584,-52 583,-50 C577,-47 571,-39 566,-28 Z" />
+      {/* ANTLERS ── the defining feature */}
+      {/* Left main beam: sweeps up and back from the skull */}
+      <path d="
+        M356,72
+        C352,56 344,34 336,14
+        C335,11 339,8 341,11
+        C349,31 357,54 361,72 Z" />
+      {/* Left brow tine – first branch off main beam */}
+      <path d="
+        M346,42
+        C338,30 326,22 315,18
+        C313,16 314,12 317,13
+        C328,17 340,25 349,38 Z" />
+      {/* Left bez tine */}
+      <path d="
+        M339,22
+        C336,10 337,-2 342,-12
+        C343,-14 347,-13 346,-10
+        C342,-1 341,10 344,22 Z" />
+      {/* Left top fork A */}
+      <path d="
+        M337,12
+        C330,0 330,-14 335,-22
+        C336,-25 340,-23 339,-20
+        C335,-13 335,0 340,12 Z" />
+      {/* Left top fork B */}
+      <path d="
+        M337,12
+        C344,2 352,-6 356,-10
+        C358,-12 361,-10 360,-7
+        C356,-3 348,3 342,12 Z" />
 
-      {/* antlers — right beam */}
-      <path d="M596,18 C600,4 608,-16 614,-35 C615,-38 618,-37 617,-34 C611,-16 604,5 600,19 Z" />
-      {/* right brow tine */}
-      <path d="M610,-10 C617,-20 628,-26 636,-30 C638,-31 639,-28 637,-27 C630,-23 620,-17 613,-8 Z" />
-      {/* right bez tine */}
-      <path d="M613,-22 C615,-33 613,-44 608,-52 C607,-54 610,-56 611,-54 C617,-46 619,-34 616,-22 Z" />
-      {/* right top fork */}
-      <path d="M614,-33 C610,-43 610,-54 615,-60 C616,-62 619,-60 618,-58 C614,-53 614,-43 617,-32 Z" />
+      {/* Right main beam: sweeps up and forward */}
+      <path d="
+        M374,68
+        C378,50 382,28 382,8
+        C382,5 386,4 386,7
+        C386,27 382,50 378,68 Z" />
+      {/* Right brow tine */}
+      <path d="
+        M381,36
+        C389,24 402,16 412,12
+        C414,10 415,13 413,15
+        C404,19 391,27 383,38 Z" />
+      {/* Right bez tine */}
+      <path d="
+        M382,16
+        C386,4 384,-9 380,-18
+        C379,-20 382,-23 384,-21
+        C388,-11 390,3 386,16 Z" />
+      {/* Right top fork A */}
+      <path d="
+        M382,8
+        C378,-4 378,-18 383,-26
+        C384,-29 388,-27 387,-24
+        C383,-17 383,-3 386,8 Z" />
+      {/* Right top fork B */}
+      <path d="
+        M382,8
+        C388,-2 396,-8 402,-11
+        C404,-13 406,-10 405,-8
+        C399,-5 392,0 386,9 Z" />
 
-      {/* front legs */}
-      <path d="M584,174 C582,188 583,205 581,210 C579,212 575,212 574,209 C573,204 576,188 574,173 Z" />
-      <path d="M614,176 C612,190 613,207 611,211 C609,213 605,213 604,210 C603,205 606,189 604,175 Z" />
-      {/* back legs */}
-      <path d="M724,172 C722,186 723,203 721,207 C719,209 715,209 714,206 C713,201 716,185 714,171 Z" />
-      <path d="M752,168 C750,182 751,199 749,204 C747,206 743,206 742,203 C741,198 744,182 742,167 Z" />
-      {/* tail */}
-      <path d="M805,112 C820,106 830,118 824,132 C818,144 804,140 804,128 Z" />
+      {/* Stag front legs */}
+      <path d="M400,250 C398,266 399,290 397,296 C395,299 390,299 389,295 C388,290 391,266 390,249 Z" />
+      <path d="M426,254 C424,270 425,294 423,300 C421,303 416,303 415,299 C414,294 417,270 416,253 Z" />
+      {/* Stag back legs */}
+      <path d="M488,246 C486,262 487,286 485,292 C483,295 478,295 477,291 C476,286 479,262 478,245 Z" />
+      <path d="M508,240 C506,256 507,280 505,286 C503,289 498,289 497,285 C496,280 499,256 498,239 Z" />
+      {/* Tail */}
+      <path d="M510,182 C524,174 534,187 528,200 C522,212 508,208 508,197 Z" />
     </svg>
   )
 }
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-950 text-husk-100 px-6 lg:px-10 pt-14 pb-8">
-      <div className="max-w-[1360px] mx-auto">
+    <footer className="relative bg-ink-950 text-husk-100 px-6 lg:px-10 pt-14 pb-8 overflow-hidden">
+
+      {/* Deer family — absolutely pinned to the bottom-right, behind all text.
+          Sized so the family fills the right half of the footer height.
+          Pointer-events are off so every nav link underneath stays clickable. */}
+      <div
+        aria-hidden
+        className="hidden lg:block absolute bottom-0 right-0 w-[480px] opacity-[0.22]"
+        style={{ pointerEvents: 'none', zIndex: 0 }}
+      >
+        <DeerFamily />
+      </div>
+
+      {/* All footer content sits above the illustration */}
+      <div className="relative max-w-[1360px] mx-auto" style={{ zIndex: 1 }}>
         <div className="flex flex-wrap gap-14">
           <div className="max-w-[300px]">
             <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
@@ -155,12 +225,15 @@ export default function Footer() {
 
           <div className="flex flex-wrap gap-14 ml-auto">
             {cols.map((c) => (
-              <div key={c.h}>
+              <div key={c.h} className="relative" style={{ zIndex: 2 }}>
                 <p className="eyebrow text-leaf-300 mb-3.5">{c.h}</p>
                 <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
                   {c.items.map((it) => (
                     <li key={it.label}>
-                      <Link to={it.to} className="font-body text-sm text-sand-300 hover:text-husk-50 transition-colors duration-200">
+                      <Link
+                        to={it.to}
+                        className="font-body text-sm text-sand-200 hover:text-husk-50 transition-colors duration-200"
+                      >
                         {it.label}
                       </Link>
                     </li>
@@ -171,12 +244,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Deer family — centred above the copyright strip, very subtle */}
-        <div className="mt-12 mb-1 flex justify-center">
-          <DeerFamily className="w-full max-w-[600px] text-husk-100 opacity-[0.13]" />
-        </div>
-
-        <div className="border-t border-[#4A4234] mt-4 pt-5 flex flex-wrap justify-between gap-3">
+        <div className="border-t border-[#4A4234] mt-10 pt-5 flex flex-wrap justify-between gap-3">
           <span className="font-mono text-[11.5px] text-sand-400">© {new Date().getFullYear()} Indowud NFC · Chennai, India</span>
           <span className="font-mono text-[11.5px] text-sand-400">Climate-positive material science</span>
         </div>
