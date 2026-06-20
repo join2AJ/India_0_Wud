@@ -4,7 +4,7 @@ import {
   ArrowRight, FileText, Droplet, Bug, Flame, Waves, Wind, Leaf,
   Wrench, ShieldCheck, Gem, Rat, Anchor, Microscope, ShieldPlus,
   Sun, Thermometer, CloudFog, Recycle, FlaskConical, Volume2, CloudOff,
-  BadgeCheck,
+  BadgeCheck, Axe, HeartPulse, Droplets, Blend, ShieldAlert, Sprout,
 } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
@@ -241,6 +241,58 @@ export default function Home() {
                 <ProductTile p={p} big={i === 0} />
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AHIMSA acronym — the philosophy made tangible */}
+      <section className="relative py-20 px-6 lg:px-10 bg-husk-50 overflow-hidden">
+        <div className="relative max-w-[1200px] mx-auto">
+          <div className="flex flex-col lg:flex-row gap-14 lg:gap-20 items-start">
+
+            {/* Left: the philosophy text */}
+            <Reveal className="lg:w-[320px] shrink-0 lg:sticky lg:top-24">
+              <p className="eyebrow text-leaf-600 mb-3.5">The philosophy</p>
+              <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance leading-[1.15]">
+                Ahimsa Design Philosophy
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-sand-500">
+                No trees are cut when making Indowud NFC.
+                India has one of the worst termite problems
+                — but NFC gives them nothing to eat.
+                You don't even need to kill a single termite.
+              </p>
+              <Link to="/about-us" className="inline-flex items-center gap-2 mt-7 font-mono text-[11px] uppercase tracking-[0.18em] text-leaf-600 hover:text-leaf-700 transition-colors duration-200">
+                Our full story <ArrowRight size={13} />
+              </Link>
+            </Reveal>
+
+            {/* Right: AHIMSA rows */}
+            <div className="flex-1 divide-y divide-sand-200 border-t border-sand-200">
+              {[
+                { letter: 'A', Icon: Axe,        title: 'Axe the axe',           sub: 'No more trees cut — not one.' },
+                { letter: 'H', Icon: HeartPulse,  title: 'Healthy homes',          sub: 'Anti-bacterial protective properties.' },
+                { letter: 'I', Icon: Droplets,    title: 'Ice, rain & water proof', sub: 'Zero swelling. Zero delamination.' },
+                { letter: 'M', Icon: Blend,       title: 'Mouldable',              sub: 'Thermoformable and easy to design with.' },
+                { letter: 'S', Icon: ShieldAlert, title: 'Secure',                 sub: 'Against termites and rodents alike.' },
+                { letter: 'A', Icon: Sprout,      title: 'Agricultural-husk made', sub: 'Preventing air pollution from husk burning.' },
+              ].map(({ letter, Icon, title, sub }, i) => (
+                <Reveal key={i} delay={i * 0.07}>
+                  <div className="flex items-center gap-5 py-5">
+                    <span className="w-9 shrink-0 font-display font-extrabold text-[2rem] tracking-[-0.03em] text-leaf-600/30 leading-none select-none">
+                      {letter}
+                    </span>
+                    <div className="flex items-center justify-center w-10 h-10 shrink-0 rounded-[10px] bg-leaf-100">
+                      <Icon size={18} strokeWidth={1.6} className="text-leaf-700" />
+                    </div>
+                    <div>
+                      <p className="font-heading font-semibold text-[15px] text-ink-900">{title}</p>
+                      <p className="text-[13px] text-sand-400 mt-0.5">{sub}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
