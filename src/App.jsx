@@ -18,6 +18,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import NoticeBoard from './pages/NoticeBoard'
 import CaseStudy from './pages/CaseStudy'
+import NotFound from './pages/NotFound'
 
 function Splash() {
   return (
@@ -84,6 +85,7 @@ function App() {
           <Route path="/blog/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
           <Route path="/notice-board" element={<PageTransition><NoticeBoard /></PageTransition>} />
           <Route path="/case-study" element={<PageTransition><CaseStudy /></PageTransition>} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
       <Footer />
