@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
@@ -8,7 +8,19 @@ import Badge from '../components/ui/Badge'
 import { products, categories } from '../data/content'
 
 export default function Products() {
-  const [active, setActive] = useState('all')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [active, setActive] = useState(searchParams.get('category') || 'all')
+
+  useEffect(() => {
+    const cat = searchParams.get('category')
+    if (cat) setActive(cat)
+  }, [searchParams])
+
+  function selectTab(slug) {
+    setActive(slug)
+    if (slug === 'all') setSearchParams({})
+    else setSearchParams({ category: slug })
+  }
 
   const tabs = [{ slug: 'all', label: 'All Products' }, ...categories]
   const visible = active === 'all' ? products : products.filter((p) => p.category === active)
@@ -43,7 +55,7 @@ export default function Products() {
           {tabs.map((t) => (
             <button
               key={t.slug}
-              onClick={() => setActive(t.slug)}
+              onClick={() => selectTab(t.slug)}
               className={`shrink-0 px-4 py-2 rounded-[8px] font-mono text-[11px] tracking-[0.1em] uppercase transition-all duration-200
                 ${active === t.slug
                   ? 'bg-ink-900 text-husk-50'

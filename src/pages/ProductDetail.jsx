@@ -53,7 +53,7 @@ export default function ProductDetail() {
           category: category?.label,
         }}
       />
-      <Link to={`/products/category/${product.category}`} className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.08em] uppercase text-sand-500 hover:text-ink-900 transition-colors duration-200 mb-7">
+      <Link to={`/products?category=${product.category}`} className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.08em] uppercase text-sand-500 hover:text-ink-900 transition-colors duration-200 mb-7">
         <ArrowLeft size={15} /> {category?.label || 'All products'}
       </Link>
 
