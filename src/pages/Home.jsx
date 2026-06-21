@@ -225,30 +225,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product range - raised cards on the warm husk surface */}
+      {/* Product range — all 11 in one compact showcase grid */}
       <section id="products" className="relative py-20 px-6 lg:px-10 bg-husk-100 section-seam overflow-hidden">
         <OrganicVector flip className="absolute -bottom-28 -left-32 w-[30rem] h-[30rem] opacity-60" tone="grain" />
         <div className="relative max-w-[1200px] mx-auto">
-          <Reveal>
-            <p className="eyebrow text-leaf-600 mb-3.5">Product range</p>
-            <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 mb-9 text-balance">
-              Eleven products. A zero-wood system.
-            </h2>
+          <Reveal className="flex flex-wrap items-end justify-between gap-6 mb-10">
+            <div>
+              <p className="eyebrow text-leaf-600 mb-3.5">Product range</p>
+              <h2 className="font-heading font-bold text-[clamp(1.75rem,4vw,2.5rem)] tracking-[-0.02em] text-ink-900 text-balance">
+                Eleven products. One zero-wood system.
+              </h2>
+            </div>
+            <Link to="/products">
+              <Button variant="outline" iconRight={<ArrowRight size={15} />}>Explore all products</Button>
+            </Link>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.slice(0, 6).map((p, i) => (
-              <Reveal key={p.id} delay={(i % 3) * 0.07} className={i === 0 ? 'sm:col-span-2' : ''}>
-                <ProductTile p={p} big={i === 0} />
+
+          {/* 4-column grid — all 11 products, last row centred */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
+            {products.map((p, i) => (
+              <Reveal key={p.id} delay={(i % 4) * 0.05}>
+                <Link
+                  to={`/products/${p.id}`}
+                  className="group relative flex flex-col items-center rounded-[12px] border border-sand-200 bg-white overflow-hidden shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-[3px]"
+                >
+                  <div className="w-full bg-husk-50 flex items-center justify-center aspect-square p-5">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-108"
+                    />
+                  </div>
+                  <div className="w-full px-3.5 py-3 border-t border-sand-100">
+                    <p className="font-heading font-semibold text-[13px] text-ink-900 leading-snug truncate">{p.name}</p>
+                    <p className="font-mono text-[10px] tracking-[0.08em] uppercase text-sand-400 mt-0.5">{p.tag}</p>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.2}>
-            <div className="mt-8 text-center">
-              <Link to="/products">
-                <Button variant="outline" iconRight={<ArrowRight size={15} />}>See all 11 products</Button>
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
