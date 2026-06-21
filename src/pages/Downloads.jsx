@@ -16,7 +16,7 @@ const resources = [
     tag: 'PDF · 8.2 MB',
     pdf: '/downloads/indowud-nfc-brochure-english.pdf',
     filename: 'Indowud-NFC-Brochure-English.pdf',
-    // html: '/downloads/brochure-english/index.html', // add when HTML version is available
+    html: '/downloads/brochure-english/index.html',
   },
   {
     Icon: Languages,
@@ -176,13 +176,13 @@ export default function Downloads() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <Badge tone="outline">{r.tag}</Badge>
                     <div className="ml-auto flex items-center gap-3">
-                      {/* View online — opens PDF inline in browser tab */}
+                      {/* View online — HTML if available, else PDF in tab */}
                       <a
-                        href={r.pdf}
+                        href={r.html || r.pdf}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.06em] uppercase text-sand-500 hover:text-ink-900 transition-colors"
-                        title="View in browser"
+                        title={r.html ? 'View as webpage' : 'View in browser'}
                       >
                         <Eye size={13} /> View
                       </a>
