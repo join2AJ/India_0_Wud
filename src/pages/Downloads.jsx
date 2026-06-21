@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Download, FileText, BookOpen, Layers, Languages, CheckCircle2, AlertCircle } from 'lucide-react'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver'
+import { Download, FileText, BookOpen, Layers, Languages, CheckCircle2, AlertCircle, Eye, Package } from 'lucide-react'
 import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Button from '../components/ui/Button'
@@ -10,34 +12,38 @@ const resources = [
   {
     Icon: BookOpen,
     title: 'E-Brochure · English',
-    desc: 'The full product overview - range, finishes, certifications and the Ahimsa story, in English.',
+    desc: 'The full product overview — range, finishes, certifications and the Ahimsa story, in English.',
     tag: 'PDF · 8.2 MB',
-    file: '/downloads/indowud-nfc-brochure-english.pdf',
+    pdf: '/downloads/indowud-nfc-brochure-english.pdf',
     filename: 'Indowud-NFC-Brochure-English.pdf',
+    // html: '/downloads/brochure-english/index.html', // add when HTML version is available
   },
   {
     Icon: Languages,
     title: 'E-Brochure · Hindi',
-    desc: 'वही जानकारी, हिंदी में - उन ग्राहकों और साझेदारों के लिए जो हिंदी में पढ़ना पसंद करते हैं।',
+    desc: 'वही जानकारी, हिंदी में — उन ग्राहकों और साझेदारों के लिए जो हिंदी में पढ़ना पसंद करते हैं।',
     tag: 'PDF · 8.4 MB',
-    file: '/downloads/indowud-nfc-brochure-hindi.pdf',
+    pdf: '/downloads/indowud-nfc-brochure-hindi.pdf',
     filename: 'Indowud-NFC-Brochure-Hindi.pdf',
+    // html: '/downloads/brochure-hindi/index.html',
   },
   {
     Icon: FileText,
     title: 'Technical Guidelines',
     desc: 'Framing, fastening, edge protection and thermoforming instructions for fabricators and site teams.',
     tag: 'PDF · 3.1 MB',
-    file: '/downloads/indowud-nfc-technical-guidelines.pdf',
+    pdf: '/downloads/indowud-nfc-technical-guidelines.pdf',
     filename: 'Indowud-NFC-Technical-Guidelines.pdf',
+    // html: '/downloads/technical-guidelines/index.html',
   },
   {
     Icon: Layers,
     title: 'Product Catalogue',
-    desc: 'Full specification sheets for every panel in the range - boards, doors, frames, decking, jaali and more.',
+    desc: 'Full specification sheets for every panel in the range — boards, doors, frames, decking, jaali and more.',
     tag: 'PDF · 12.6 MB',
-    file: '/downloads/indowud-nfc-product-catalogue.pdf',
+    pdf: '/downloads/indowud-nfc-product-catalogue.pdf',
     filename: 'Indowud-NFC-Product-Catalogue.pdf',
+    // html: '/downloads/product-catalogue/index.html',
   },
 ]
 
@@ -55,12 +61,29 @@ function validate({ name, email }) {
   return errs
 }
 
+async function buildAndDownloadZip() {
+  const zip = new JSZip()
+  const folder = zip.folder('Indowud-NFC-Resources')
+
+  await Promise.all(
+    resources.map(async (r) => {
+      const res = await fetch(r.pdf)
+      const blob = await res.blob()
+      folder.file(r.filename, blob)
+    })
+  )
+
+  const content = await zip.generateAsync({ type: 'blob' })
+  saveAs(content, 'Indowud-NFC-Resources.zip')
+}
+
 export default function Downloads() {
   const [values, setValues] = useState({ name: '', email: '', org: '' })
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
   const [sent, setSent] = useState(false)
   const [submitError, setSubmitError] = useState(false)
+  const [zipping, setZipping] = useState(false)
 
   const errsFor = (field) => touched[field] && errors[field]
 
@@ -77,32 +100,33 @@ export default function Downloads() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const allTouched = { name: true, email: true, org: true }
-    setTouched(allTouched)
+    setTouched({ name: true, email: true, org: true })
     const errs = validate(values)
     setErrors(errs)
     if (Object.keys(errs).length) return
 
+    // Save lead to Netlify Forms (fire-and-forget — email disabled for now)
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeForm({
+        'form-name': 'downloads',
+        'bot-field': '',
+        name: values.name.trim(),
+        email: values.email.trim(),
+        org: values.org.trim(),
+      }),
+    }).catch(() => {}) // silently ignore — zip still downloads
+
+    setSent(true)
+    setSubmitError(false)
+    setZipping(true)
     try {
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeForm({
-          'form-name': 'downloads',
-          'bot-field': '',
-          name: values.name.trim(),
-          email: values.email.trim(),
-          org: values.org.trim(),
-        }),
-      })
-      if (res.ok) {
-        setSent(true)
-        setSubmitError(false)
-      } else {
-        setSubmitError(true)
-      }
+      await buildAndDownloadZip()
     } catch {
       setSubmitError(true)
+    } finally {
+      setZipping(false)
     }
   }
 
@@ -119,6 +143,7 @@ export default function Downloads() {
         description="Download Indowud NFC brochures, technical guidelines and full product catalogue specification sheets."
         path="/downloads"
       />
+
       <section className="texture-grain texture-charcoal text-husk-100 min-h-[56vh] flex items-center pt-24 pb-16 px-6 lg:px-10">
         <div className="max-w-[820px] mx-auto text-center">
           <Reveal>
@@ -127,9 +152,8 @@ export default function Downloads() {
               Brochures, specs and guidelines — ready to share with your team
             </h1>
             <p className="mt-6 text-lg text-sand-300 leading-relaxed max-w-xl mx-auto">
-              Everything an architect, fabricator or procurement team needs to
-              specify Indowud NFC with confidence — fill the form and download
-              the full set instantly.
+              View any resource online or download the PDF individually.
+              Want everything in one go? Fill the short form and download the full set as a ZIP.
             </p>
           </Reveal>
         </div>
@@ -142,34 +166,43 @@ export default function Downloads() {
           <div className="grid sm:grid-cols-2 gap-4.5">
             {resources.map((r, i) => (
               <Reveal key={r.title} delay={(i % 2) * 0.08}>
-                <div className="h-full rounded-[12px] border border-sand-200 bg-white p-7 shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-1">
+                <div className="h-full flex flex-col rounded-[12px] border border-sand-200 bg-white p-7 shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-1">
                   <span className="grid place-items-center w-11 h-11 rounded-[5px] bg-leaf-100 text-leaf-700 mb-4">
                     <r.Icon size={20} strokeWidth={1.6} />
                   </span>
                   <h3 className="font-heading font-bold text-lg text-ink-900 mb-2">{r.title}</h3>
-                  <p className="text-sm leading-relaxed text-sand-500 mb-4">{r.desc}</p>
-                  <div className="flex items-center justify-between">
+                  <p className="text-sm leading-relaxed text-sand-500 mb-5 flex-1">{r.desc}</p>
+
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Badge tone="outline">{r.tag}</Badge>
-                    {sent ? (
+                    <div className="ml-auto flex items-center gap-3">
+                      {/* View online — opens PDF inline in browser tab */}
                       <a
-                        href={r.file}
-                        download={r.filename}
-                        className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.06em] uppercase text-leaf-600 hover:text-leaf-800 transition-colors"
+                        href={r.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.06em] uppercase text-sand-500 hover:text-ink-900 transition-colors"
+                        title="View in browser"
                       >
-                        <Download size={14} /> Download
+                        <Eye size={13} /> View
                       </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.06em] uppercase text-sand-400 cursor-default select-none">
-                        <Download size={14} /> Fill form →
-                      </span>
-                    )}
+                      {/* Download PDF individually — always available */}
+                      <a
+                        href={r.pdf}
+                        download={r.filename}
+                        className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.06em] uppercase text-leaf-600 hover:text-leaf-800 transition-colors"
+                        title="Download PDF"
+                      >
+                        <Download size={13} /> PDF
+                      </a>
+                    </div>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Form / success */}
+          {/* ZIP form */}
           <Reveal delay={0.1}>
             <div className="rounded-[12px] border border-sand-200 bg-white p-8 sm:p-10 shadow-[var(--shadow-warm-sm)]">
               {sent ? (
@@ -181,23 +214,31 @@ export default function Downloads() {
                   <span className="grid place-items-center w-14 h-14 rounded-full bg-leaf-100 text-leaf-700">
                     <CheckCircle2 size={28} strokeWidth={1.5} />
                   </span>
-                  <h3 className="font-heading font-bold text-2xl text-ink-900">All yours</h3>
+                  <h3 className="font-heading font-bold text-2xl text-ink-900">
+                    {zipping ? 'Packing your ZIP…' : 'Download started!'}
+                  </h3>
                   <p className="text-sand-500 max-w-sm">
-                    Click <strong>Download</strong> on any card to save the file. All four are ready.
+                    {zipping
+                      ? 'Bundling all 4 files — this will take just a moment.'
+                      : 'Indowud-NFC-Resources.zip has been saved to your device. You can also download files individually from the cards.'}
                   </p>
-                  <div className="w-full mt-2 space-y-2.5">
-                    {resources.map((r) => (
-                      <a
-                        key={r.title}
-                        href={r.file}
-                        download={r.filename}
-                        className="flex items-center justify-between w-full rounded-[8px] border border-sand-200 bg-husk-50/60 px-4 py-3 text-sm font-heading font-medium text-ink-900 hover:border-leaf-400 hover:bg-leaf-50 transition-all duration-200 group"
-                      >
-                        <span className="truncate">{r.title}</span>
-                        <Download size={14} className="shrink-0 ml-3 text-leaf-600 group-hover:text-leaf-700" />
-                      </a>
-                    ))}
-                  </div>
+                  {!zipping && (
+                    <button
+                      onClick={async () => {
+                        setZipping(true)
+                        try { await buildAndDownloadZip() } catch {}
+                        setZipping(false)
+                      }}
+                      className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-leaf-600 hover:text-leaf-800 transition-colors mt-2"
+                    >
+                      <Package size={13} /> Download ZIP again
+                    </button>
+                  )}
+                  {submitError && (
+                    <p className="flex items-center gap-2 text-[12px] text-red-500 mt-1">
+                      <AlertCircle size={13} /> ZIP failed — use the individual PDF links instead.
+                    </p>
+                  )}
                 </motion.div>
               ) : (
                 <form
@@ -211,8 +252,19 @@ export default function Downloads() {
                   <input type="hidden" name="form-name" value="downloads" />
                   <input type="hidden" name="bot-field" />
 
-                  <p className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500 mb-1">Request the full set</p>
-                  <h3 className="font-heading font-bold text-2xl text-ink-900 mb-1">One form, every resource</h3>
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="grid place-items-center w-10 h-10 rounded-[8px] bg-leaf-100 text-leaf-700 shrink-0">
+                      <Package size={18} strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <p className="font-mono text-[11px] tracking-[0.16em] uppercase text-sand-500">Download the full set</p>
+                      <h3 className="font-heading font-bold text-xl text-ink-900 leading-snug">All 4 files in one ZIP</h3>
+                    </div>
+                  </div>
+
+                  <p className="text-[13px] text-sand-400 border-b border-sand-100 pb-5">
+                    E-Brochure (EN + HI) · Technical Guidelines · Product Catalogue
+                  </p>
 
                   <div>
                     <label className="block text-left">
@@ -268,16 +320,10 @@ export default function Downloads() {
                     </label>
                   </div>
 
-                  {submitError && (
-                    <p className="flex items-center gap-2 text-[13px] text-red-500 bg-red-50 border border-red-200 rounded-[6px] px-3 py-2.5">
-                      <AlertCircle size={14} /> Something went wrong. Please try again.
-                    </p>
-                  )}
-
-                  <Button type="submit" variant="accent" size="lg" iconRight={<Download size={15} />} className="w-full justify-center">
-                    Get all resources
+                  <Button type="submit" variant="accent" size="lg" iconRight={<Package size={15} />} className="w-full justify-center">
+                    Download all as ZIP
                   </Button>
-                  <p className="text-center text-[11.5px] text-sand-400">No spam. Just the files.</p>
+                  <p className="text-center text-[11.5px] text-sand-400">No spam. Your details help us serve you better.</p>
                 </form>
               )}
             </div>
