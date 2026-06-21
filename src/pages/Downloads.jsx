@@ -25,7 +25,7 @@ const resources = [
     tag: 'PDF · 8.4 MB',
     pdf: '/downloads/indowud-nfc-brochure-hindi.pdf',
     filename: 'Indowud-NFC-Brochure-Hindi.pdf',
-    // html: '/downloads/brochure-hindi/index.html',
+    html: '/downloads/brochure-hindi/index.html',
   },
   {
     Icon: FileText,
@@ -34,7 +34,7 @@ const resources = [
     tag: 'PDF · 3.1 MB',
     pdf: '/downloads/indowud-nfc-technical-guidelines.pdf',
     filename: 'Indowud-NFC-Technical-Guidelines.pdf',
-    // html: '/downloads/technical-guidelines/index.html',
+    html: '/downloads/technical-guidelines/index.html',
   },
   {
     Icon: Layers,
@@ -43,7 +43,7 @@ const resources = [
     tag: 'PDF · 12.6 MB',
     pdf: '/downloads/indowud-nfc-product-catalogue.pdf',
     filename: 'Indowud-NFC-Product-Catalogue.pdf',
-    // html: '/downloads/product-catalogue/index.html',
+    html: '/downloads/product-catalogue/index.html',
   },
 ]
 

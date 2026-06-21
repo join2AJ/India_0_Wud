@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>INDOWUD nfc — ई-ब्रोशर (हिन्दी)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cedarville+Cursive&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink-950:#15120E; --ink-900:#1C1813; --ink-800:#272219; --ink-700:#383024; --ink-600:#4B4133;
+  --husk-50:#FBF8F1; --husk-100:#F5F0E4; --husk-200:#EDE6D5; --husk-300:#E2D8C2;
+  --sand-200:#D6CBB9; --sand-300:#BBAD97; --sand-400:#9A8C76; --sand-500:#786A57; --sand-600:#594E3F;
+  --leaf-700:#3C5230; --leaf-600:#4C6A3A; --leaf-500:#5E7E45; --leaf-400:#7E9C60; --leaf-300:#A6C08A; --leaf-200:#CCDCB8; --leaf-100:#E6EEDB;
+  --gold-600:#A87C3F; --gold-500:#C49A5A; --gold-300:#E2C896;
+  --danger:#A64B36; --warn:#C18A3A; --teal:#4E6B6E;
+  --fd:'Noto Sans Devanagari','Archivo',system-ui,sans-serif; --fb:'Noto Sans Devanagari','IBM Plex Sans',system-ui,sans-serif; --fm:'IBM Plex Mono',monospace;
+  --flatin:'Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;background:#2A2620;font-family:var(--fb);color:var(--ink-700);}
+.deck{display:flex;flex-direction:column;align-items:center;gap:22px;padding:34px 0 60px;}
+.page{zoom:var(--z,1);}
+
+/* ---- A4 landscape page (1123x794 @96dpi) ---- */
+.page{
+  position:relative;width:1123px;height:794px;overflow:hidden;background:var(--husk-50);
+  box-shadow:0 18px 50px rgba(0,0,0,0.4);color:var(--ink-700);
+}
+.page.dark{background:var(--ink-950);color:var(--husk-100);}
+.page.cream{background:var(--husk-100);}
+.pad{position:absolute;inset:0;padding:62px 70px;display:flex;flex-direction:column;}
+
+/* running chrome */
+.run{position:absolute;left:70px;right:70px;bottom:30px;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sand-400);}
+.dark .run{color:var(--sand-300);}
+.run .pg{font-weight:600;}
+.brandline{position:absolute;top:30px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:baseline;}
+.wm{display:flex;align-items:baseline;gap:7px;}
+.wm b{font-family:var(--fd);font-weight:800;font-size:15px;letter-spacing:-0.01em;color:var(--ink-900);}
+.dark .wm b{color:var(--husk-50);}
+.wm .n{font-family:var(--fm);font-size:8px;font-weight:600;letter-spacing:0.24em;color:var(--leaf-600);border:1px solid var(--leaf-500);padding:1px 4px;border-radius:3px;}
+.dark .wm .n{color:var(--leaf-300);}
+.brandline .meta{font-family:var(--fm);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand-400);}
+
+/* typography helpers */
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--leaf-600);margin:0;}
+.dark .eyebrow{color:var(--leaf-300);}
+.gold .eyebrow,.eyebrow.gold{color:var(--gold-600);}
+h1.disp{font-family:var(--fd);font-weight:800;letter-spacing:-0.025em;line-height:0.98;color:var(--ink-900);margin:0;}
+.dark h1.disp{color:var(--husk-50);}
+h2.head{font-family:var(--fd);font-weight:700;letter-spacing:-0.02em;line-height:1.04;color:var(--ink-900);margin:0;}
+.dark h2.head{color:var(--husk-50);}
+p.body{font-family:var(--fb);font-size:15px;line-height:1.62;color:var(--ink-600);margin:0;}
+.dark p.body{color:var(--sand-200);}
+.lede{font-size:18.5px;line-height:1.55;color:var(--ink-700);}
+.dark .lede{color:var(--husk-100);}
+.rule{height:2px;background:var(--ink-900);width:54px;border:0;margin:0;}
+.dark .rule{background:var(--leaf-400);}
+.hair{height:1px;background:var(--husk-300);border:0;margin:0;}
+.dark .hair{background:rgba(242,234,217,0.12);}
+
+/* chips / badges */
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink-700);background:#fff;border:1px solid var(--husk-300);padding:6px 11px;border-radius:999px;}
+.dark .chip{color:var(--husk-100);background:rgba(242,234,217,0.06);border-color:rgba(242,234,217,0.14);}
+.chip.leaf{color:var(--leaf-700);background:var(--leaf-100);border-color:var(--leaf-200);}
+.chip svg{width:13px;height:13px;}
+.tag{display:inline-flex;align-items:center;font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--husk-50);background:var(--ink-900);padding:5px 10px;border-radius:4px;}
+.tag.leaf{background:var(--leaf-500);}
+
+/* material swatch */
+.sw{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(0,0,0,0.10);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -34px 60px rgba(0,0,0,0.20);display:flex;align-items:flex-end;}
+.sw.frame{border:3px solid var(--ink-900);border-radius:5px;}
+.dark .sw{border-color:rgba(242,234,217,0.14);}
+.sw .lab{font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(21,18,14,0.62);white-space:nowrap;
+  background:rgba(251,248,241,0.82);backdrop-filter:blur(3px);padding:5px 9px;margin:10px;border-radius:4px;}
+.sw.on-dark .lab{color:rgba(242,234,217,0.85);background:rgba(21,18,14,0.5);}
+
+/* spec list */
+.spec{display:flex;flex-direction:column;gap:0;}
+.spec .row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--husk-300);}
+.dark .spec .row{border-color:rgba(242,234,217,0.12);}
+.spec .k{font-family:var(--fm);font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--sand-500);}
+.dark .spec .k{color:var(--sand-300);}
+.spec .v{font-family:var(--fb);font-size:14px;font-weight:600;color:var(--ink-900);text-align:right;}
+.dark .spec .v{color:var(--husk-50);}
+
+/* data tables */
+table.dt{width:100%;border-collapse:collapse;font-family:var(--fb);font-size:12.5px;}
+table.dt th{font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sand-500);
+  text-align:left;padding:9px 12px;border-bottom:2px solid var(--ink-900);font-weight:500;}
+table.dt td{padding:8px 12px;border-bottom:1px solid var(--husk-300);color:var(--ink-700);vertical-align:top;}
+table.dt tr:nth-child(even) td{background:rgba(226,216,194,0.28);}
+table.dt td.num,table.dt th.num{text-align:right;font-family:var(--fm);font-size:12px;}
+table.dt td.hl{font-weight:700;color:var(--leaf-700);}
+.mono{font-family:var(--fm);}
+
+/* pillars / matrix */
+.grid{display:grid;gap:14px;}
+.cell{background:#fff;border:1px solid var(--husk-300);border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(40,32,20,0.05);}
+.dark .cell{background:rgba(242,234,217,0.04);border-color:rgba(242,234,217,0.12);}
+.cell .icn{width:40px;height:40px;border-radius:9px;display:grid;place-items:center;background:var(--leaf-100);color:var(--leaf-700);margin-bottom:14px;}
+.dark .cell .icn{background:rgba(126,156,96,0.16);color:var(--leaf-300);}
+.cell .icn svg{width:21px;height:21px;}
+.cell h4{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--ink-900);margin:0 0 5px;}
+.dark .cell h4{color:var(--husk-50);}
+.cell p{font-family:var(--fb);font-size:12.5px;line-height:1.5;color:var(--ink-600);margin:0;}
+.dark .cell p{color:var(--sand-200);}
+.bignum{font-family:var(--fd);font-weight:800;letter-spacing:-0.03em;line-height:0.9;color:var(--ink-900);}
+.dark .bignum{color:var(--husk-50);}
+.bignum .g{color:var(--leaf-500);}
+.dark .bignum .g{color:var(--leaf-300);}
+
+/* deer */
+.deer{position:absolute;background-image:url('assets/brand/deer-family.png');background-size:contain;background-repeat:no-repeat;background-position:center;}
+
+/* Hindi legibility overrides — Devanagari renders poorly in mono/letter-spaced caps */
+.eyebrow{font-family:var(--fb);letter-spacing:.04em;font-size:13.5px;font-weight:600;}
+.chip{font-family:var(--fb);font-size:13.5px;letter-spacing:0;padding:7px 13px;text-transform:none;font-weight:500;}
+.tag{font-family:var(--fb);font-size:12.5px;letter-spacing:.01em;text-transform:none;font-weight:600;padding:6px 11px;}
+.spec .k{font-family:var(--fb);font-size:13px;letter-spacing:0;text-transform:none;}
+.cell p, .body{font-size:14.5px;}
+table.dt th{font-family:var(--fb);letter-spacing:.01em;text-transform:none;font-size:11.5px;}
+.run,.brandline .meta{font-family:var(--fb);letter-spacing:.04em;text-transform:none;font-size:11px;}
+.mono{font-family:var(--fb);}
+@media print{
+  @page{size:A4 landscape;margin:0;}
+  html,body{background:#fff;}
+  .deck{display:block;gap:0;padding:0;}
+  .page{zoom:1 !important;box-shadow:none;break-after:page;page-break-after:always;margin:0;}
+  .page:last-child{break-after:auto;page-break-after:auto;}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck"></div>
+<script>
+/* ============ ICON SET (inline lucide-style strokes) ============ */
+const IC = (p)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICON = {
+  droplet: IC('<path d="M12 2.7 6.5 9.2A6 6 0 1 0 17.5 9.2Z"/>'),
+  bug: IC('<path d="M8 9V6a4 4 0 0 1 8 0v3"/><rect x="6" y="9" width="12" height="9" rx="6"/><path d="M3 13h3M18 13h3M4 9l2 1M20 9l-2 1M4 18l2-1M20 18l-2-1M12 18v3"/>'),
+  flame: IC('<path d="M12 3c1 3 4 4 4 8a4 4 0 0 1-8 0c0-1 .5-2 1-2.5C9 11 9 7 12 3Z"/>'),
+  leaf: IC('<path d="M11 20A7 7 0 0 1 4 13c0-5 5-9 16-9 0 8-4 14-9 14Z"/><path d="M4 20c4-6 8-8 13-9"/>'),
+  wind: IC('<path d="M3 8h12a3 3 0 1 0-3-3M3 16h15a3 3 0 1 1-3 3M3 12h18"/>'),
+  waves: IC('<path d="M2 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>'),
+  shield: IC('<path d="M12 3 5 6v5c0 4 3 7 7 9 4-2 7-5 7-9V6Z"/><path d="m9 12 2 2 4-4"/>'),
+  badge: IC('<path d="m12 2 2.4 1.8 3 .2.9 2.9L20 9l-1.7 2.5L20 14l-1.7 2.1.9 2.9-3 .2L12 21l-2.4-1.8-3-.2-.9-2.9L4 14l1.7-2.5L4 9l1.7-2.1L4.8 4l3-.2Z"/><path d="m9 12 2 2 4-4"/>'),
+  recycle: IC('<path d="M7 19H4l2-3M17 5l1.5 2.6L21 7M10 4 8 7l3 1M14 20l2-3-3-1M4.5 11 3 8.4 5.5 8M19.5 13 21 15.6 18.5 16"/>'),
+  ruler: IC('<path d="m16 3 5 5L8 21l-5-5Z"/><path d="m9 7 1.5 1.5M12 4l1.5 1.5M6 10l1.5 1.5M7 14l1.5 1.5"/>'),
+  hammer: IC('<path d="m15 12-8.5 8.5a2 2 0 0 1-3-3L12 9"/><path d="M17.6 6.4 14 10l-2-2 3.6-3.6a2.8 2.8 0 0 1 4 4Z"/>'),
+  thermo: IC('<path d="M14 14V5a2 2 0 1 0-4 0v9a4 4 0 1 0 4 0Z"/>'),
+  paint: IC('<rect x="3" y="3" width="18" height="7" rx="1.5"/><path d="M19 10v4a2 2 0 0 1-2 2h-5v2"/><rect x="9" y="18" width="4" height="4" rx="1"/>'),
+  print: IC('<path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 17h10v4H7Z"/>'),
+  cut: IC('<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 8 20 18M8 16 20 6"/>'),
+  cnc: IC('<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8M7 9l3 3-3 3M13 15h4"/>'),
+  layers: IC('<path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/>'),
+  door: IC('<path d="M5 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><circle cx="15" cy="12" r="1"/>'),
+  grid: IC('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>'),
+  fence: IC('<path d="M4 21V8l2-3 2 3v13M16 21V8l2-3 2 3v13M3 12h18M3 16h18"/>'),
+  drop2: IC('<path d="M12 2.7 6.5 9.2A6 6 0 1 0 17.5 9.2Z"/><path d="M9.5 13a2.5 2.5 0 0 0 2.5 2.5"/>'),
+  volume: IC('<path d="M11 5 6 9H3v6h3l5 4Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12"/>'),
+  factory: IC('<path d="M3 21V9l6 4V9l6 4V5l6 3v13Z"/><path d="M3 21h18M8 17h2M14 17h2"/>'),
+  check: IC('<path d="m5 12 5 5 9-10"/>'),
+  arrow: IC('<path d="M5 12h14M13 6l6 6-6 6"/>'),
+  spark: IC('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>'),
+  mortar: IC('<path d="M4 9h16l-1.5 4.5a5 5 0 0 1-4.7 3.5H10.2a5 5 0 0 1-4.7-3.5Z"/><path d="M12 6V3M9 6V4.5M15 6V4.5M9 21h6"/>'),
+};
+
+/* ============ small builders ============ */
+const SW = {
+  board:'linear-gradient(150deg,#6E6151,#3C342A)',
+  husk:'linear-gradient(150deg,#D8CBB2,#B6A788)',
+  zerowud:'linear-gradient(150deg,#C9BCA6,#9C8F78)',
+  jaali:'repeating-linear-gradient(45deg,#5A4F40 0 14px,#4A4034 14px 28px)',
+  deck:'repeating-linear-gradient(90deg,#6A5C49 0 22px,#5C4F3E 22px 25px)',
+  door:'linear-gradient(180deg,#6B5D4A 0 100%),linear-gradient(#000,#000)',
+  frame:'linear-gradient(120deg,#7A6B55,#54483A)',
+  flute:'repeating-linear-gradient(90deg,#6E6051 0 10px,#574B3D 10px 20px)',
+  textured:'repeating-linear-gradient(88deg,rgba(0,0,0,0.18) 0 2px,transparent 2px 11px),linear-gradient(150deg,#6E6151,#473D30)',
+  trim:'linear-gradient(150deg,#7A6C57,#4E4434)',
+  fence:'repeating-linear-gradient(90deg,#6A5C49 0 16px,#2A2620 16px 20px)',
+  glu:'linear-gradient(150deg,#3C5230,#2C3D22)',
+  leaf:'linear-gradient(150deg,#6E9050,#44602F)',
+};
+function swatch(tone, label, opts={}){
+  const grain = (tone==='board'||tone==='textured'||tone==='trim') ? `<div style="position:absolute;inset:0;background:repeating-linear-gradient(178deg,rgba(0,0,0,0.14) 0 2px,transparent 2px 13px);opacity:.5"></div>`:'';
+  const cls = 'sw'+(opts.frame?' frame':'')+(opts.onDark?' on-dark':'');
+  return `<div class="${cls}" style="background:${SW[tone]||SW.board};${opts.style||''}">${grain}${label?`<span class="lab">${label}</span>`:''}</div>`;
+}
+function chip(txt, kind, icon){return `<span class="chip${kind?' '+kind:''}">${icon?ICON[icon]:''}${txt}</span>`;}
+function brand(dark){return `<div class="brandline"><div class="wm"><b>INDOWUD</b><span class="n">NFC</span></div><span class="meta">अहिंसा डिज़ाइन · नैचुरल फाइबर कम्पोज़िट</span></div>`;}
+function run(n){return `<div class="run"><span>indowud.com</span><span class="pg">${String(n).padStart(2,'0')} / ${String((window.PAGES||[]).length||36).padStart(2,'0')}</span></div>`;}
+
+/* ============ PAGE RENDERERS (filled in data.js below) ============ */
+window.ICON=ICON; window.SW=SW; window.swatch=swatch; window.chip=chip; window.brand=brand; window.run=run;
+</script>
+<script src="hindi-pages.js"></script>
+<script>
+  const deck=document.getElementById('deck');
+  deck.innerHTML = window.PAGES.map((fn,i)=>fn(i+1)).join('');
+  function fit(){ const s=Math.min(1,(window.innerWidth-44)/1123); document.documentElement.style.setProperty('--z', s.toFixed(4)); }
+  fit(); window.addEventListener('resize', fit);
+</script>
+</body>
+</html>
