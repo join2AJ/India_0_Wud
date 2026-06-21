@@ -15,11 +15,13 @@ const items = [
     icon: Boxes,
     panel: {
       heading: 'The NFC Range',
-      blurb: 'One matrix, six profiles - boards, joinery, façades and the outdoors, all engineered from the same rice-husk composite.',
+      blurb: 'Eleven products across panels, joinery, surfaces, outdoor and adhesive — all engineered from the same zero-wood rice-husk composite.',
       links: [
-        { to: '/products/category/boards-doors', label: 'Boards & Doors', desc: 'The hero panel and pre-engineered shutters' },
-        { to: '/products/category/frames-jaali', label: 'Frames & Jaali', desc: 'Joinery and CNC-routed façade screens' },
-        { to: '/products/category/decking-fence', label: 'Decking & Fence', desc: 'Outdoor profiles built for every season' },
+        { to: '/products/category/panels',    label: 'Panels',              desc: 'zerOwud & Indowud NFC boards — the foundation of the system' },
+        { to: '/products/category/joinery',   label: 'Joinery',             desc: 'Doors, frames and CNC-routed Jaali screens' },
+        { to: '/products/category/surfaces',  label: 'Surfaces & Profiles', desc: 'Fluted louvers, textured panels and trim' },
+        { to: '/products/category/outdoor',   label: 'Outdoor',             desc: 'Decking and fencing built for every season' },
+        { to: '/products/category/adhesive',  label: 'Adhesive',            desc: 'NFC-GLU — purpose-made bonding agent' },
       ],
     },
   },

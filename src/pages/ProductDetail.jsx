@@ -57,67 +57,70 @@ export default function ProductDetail() {
         <ArrowLeft size={15} /> {category?.label || 'All products'}
       </Link>
 
-      <div className="grid lg:grid-cols-2 gap-11 items-start">
-        <div>
-          <MaterialPreview finish={finishes[finish]} thickness={thicknesses[thick]} className="w-full" />
-          <div className="flex gap-3 mt-3.5">
-            <Swatch image={product.image} imageFit="contain" ratio="1/1" rounded="rounded-[5px]" className="flex-1" label="Product photo" />
-            <Swatch tone={product.tone} ratio="1/1" rounded="rounded-[5px]" className="flex-1 opacity-80" label="Material tone" />
+      {/* Panel products: show MaterialPreview + finish/thickness pickers */}
+      {product.category === 'panels' ? (
+        <div className="grid lg:grid-cols-2 gap-11 items-start">
+          <div>
+            <MaterialPreview finish={finishes[finish]} thickness={thicknesses[thick]} className="w-full" />
+            <div className="flex gap-3 mt-3.5">
+              <Swatch image={product.image} imageFit="contain" ratio="1/1" rounded="rounded-[5px]" className="flex-1" label="Product photo" />
+              <Swatch tone={product.tone} ratio="1/1" rounded="rounded-[5px]" className="flex-1 opacity-80" label="Material tone" />
+            </div>
+          </div>
+          <div>
+            <div className="flex gap-2 mb-4">
+              <Badge tone="cert" icon={<BadgeCheck size={13} />}>GreenPro</Badge>
+              <Badge tone="accent">Zero-wood</Badge>
+            </div>
+            <h1 className="font-heading font-bold text-[clamp(2rem,4vw,2.75rem)] tracking-[-0.02em] text-ink-900 mb-3.5 leading-[1.04]">{product.name}</h1>
+            <p className="text-lg leading-relaxed text-ink-600 mb-7 max-w-[46ch]">{product.longDesc || product.desc}</p>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-sand-500 mb-2.5">Finish</p>
+            <div className="flex flex-wrap gap-2.5 mb-6">
+              {finishes.map((f, i) => (
+                <button key={f} onClick={() => setFinish(i)}
+                  className={`font-body text-[13.5px] px-3.5 py-2 cursor-pointer rounded-full border-[1.5px] transition-all duration-200 ${finish === i ? 'border-ink-900 bg-ink-900 text-husk-50' : 'border-sand-200 bg-transparent text-ink-600 hover:border-ink-700'}`}>
+                  {f}
+                </button>
+              ))}
+            </div>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-sand-500 mb-2.5">Thickness</p>
+            <div className="flex flex-wrap gap-2.5 mb-7">
+              {thicknesses.map((t, i) => (
+                <button key={t} onClick={() => setThick(i)}
+                  className={`font-mono text-[13px] px-3.5 py-2 cursor-pointer rounded-[5px] border-[1.5px] transition-all duration-200 ${thick === i ? 'border-leaf-500 bg-leaf-100 text-leaf-700 font-semibold' : 'border-sand-200 bg-transparent text-ink-600 hover:border-leaf-400'}`}>
+                  {t}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-sand-400 mb-7 max-w-[46ch] leading-relaxed">
+              The swatch above is procedurally generated to preview your finish and thickness — actual board grain and tone may vary. Request a physical sample for an exact match.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/contact"><Button variant="accent" size="lg" iconRight={<Package size={17} />}>Request this sample</Button></Link>
+              <Button variant="secondary" size="lg" iconLeft={<Download size={17} />}>Datasheet</Button>
+            </div>
           </div>
         </div>
-
-        <div>
-          <div className="flex gap-2 mb-4">
-            <Badge tone="cert" icon={<BadgeCheck size={13} />}>GreenPro</Badge>
-            <Badge tone="accent">Zero-wood</Badge>
+      ) : (
+        /* All other products: clean product image + description, no grain preview */
+        <div className="grid lg:grid-cols-2 gap-11 items-start">
+          <div className="rounded-[14px] bg-husk-100 overflow-hidden flex items-center justify-center p-10 aspect-[4/3]">
+            <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" />
           </div>
-          <h1 className="font-heading font-bold text-[clamp(2rem,4vw,2.75rem)] tracking-[-0.02em] text-ink-900 mb-3.5 leading-[1.04]">{product.name}</h1>
-          <p className="text-lg leading-relaxed text-ink-600 mb-7 max-w-[46ch]">
-            {product.longDesc || product.desc}
-          </p>
-
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-sand-500 mb-2.5">Finish</p>
-          <div className="flex flex-wrap gap-2.5 mb-6">
-            {finishes.map((f, i) => (
-              <button
-                key={f}
-                onClick={() => setFinish(i)}
-                className={`font-body text-[13.5px] px-3.5 py-2 cursor-pointer rounded-full border-[1.5px] transition-all duration-200 ${
-                  finish === i ? 'border-ink-900 bg-ink-900 text-husk-50' : 'border-sand-200 bg-transparent text-ink-600 hover:border-ink-700'
-                }`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-sand-500 mb-2.5">Thickness</p>
-          <div className="flex flex-wrap gap-2.5 mb-7">
-            {thicknesses.map((t, i) => (
-              <button
-                key={t}
-                onClick={() => setThick(i)}
-                className={`font-mono text-[13px] px-3.5 py-2 cursor-pointer rounded-[5px] border-[1.5px] transition-all duration-200 ${
-                  thick === i ? 'border-leaf-500 bg-leaf-100 text-leaf-700 font-semibold' : 'border-sand-200 bg-transparent text-ink-600 hover:border-leaf-400'
-                }`}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-
-          <p className="text-xs text-sand-400 mb-7 max-w-[46ch] leading-relaxed">
-            The swatch above is procedurally generated to preview your finish
-            and thickness selection - actual board grain and tone may vary.
-            Request a physical sample for an exact match.
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact"><Button variant="accent" size="lg" iconRight={<Package size={17} />}>Request this sample</Button></Link>
-            <Button variant="secondary" size="lg" iconLeft={<Download size={17} />}>Datasheet</Button>
+          <div>
+            <div className="flex gap-2 mb-4">
+              <Badge tone="accent">{product.tag}</Badge>
+              <Badge tone="cert" icon={<BadgeCheck size={13} />}>Zero-wood</Badge>
+            </div>
+            <h1 className="font-heading font-bold text-[clamp(2rem,4vw,2.75rem)] tracking-[-0.02em] text-ink-900 mb-3.5 leading-[1.04]">{product.name}</h1>
+            <p className="text-lg leading-relaxed text-ink-600 mb-8 max-w-[46ch]">{product.longDesc || product.desc}</p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/contact"><Button variant="accent" size="lg" iconRight={<Package size={17} />}>Request a sample</Button></Link>
+              <Button variant="secondary" size="lg" iconLeft={<Download size={17} />}>Datasheet</Button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         {detailSpecs.map((s, i) => (

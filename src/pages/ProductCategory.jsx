@@ -4,7 +4,6 @@ import { ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../components/Seo'
 import Reveal from '../components/Reveal'
 import Badge from '../components/ui/Badge'
-import Swatch from '../components/ui/Swatch'
 import { products, categories } from '../data/content'
 
 export default function ProductCategory() {
@@ -42,8 +41,10 @@ export default function ProductCategory() {
         <div className="max-w-[1200px] mx-auto grid sm:grid-cols-2 gap-4.5">
           {items.map((p, i) => (
             <Reveal key={p.id} delay={(i % 2) * 0.08}>
-              <Link to={`/products/${p.id}`} className="group block w-full text-left h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-[3px]">
-                <Swatch tone={p.tone} image={p.image} imageFit="contain" ratio="4/3" rounded="rounded-none" />
+              <Link to={`/products/${p.id}`} className="group flex flex-col h-full rounded-[12px] overflow-hidden border border-sand-200 bg-white shadow-[var(--shadow-warm-sm)] transition-all duration-300 hover:shadow-[var(--shadow-warm-lg)] hover:-translate-y-[3px]">
+                <div className="bg-husk-100 aspect-[4/3] flex items-center justify-center p-8 overflow-hidden">
+                  <img src={p.image} alt={p.name} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                </div>
                 <div className="px-5 pt-4.5 pb-5">
                   <div className="flex items-center gap-2.5 mb-2">
                     <h3 className="font-heading font-bold text-[20px] text-ink-900 m-0">{p.name}</h3>
